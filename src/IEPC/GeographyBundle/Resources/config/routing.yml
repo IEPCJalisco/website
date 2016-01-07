@@ -1,0 +1,3 @@
+iepc_geography_homepage:
+    path:     /
+    defaults: { _controller: IEPCGeographyBundle:Default:index }

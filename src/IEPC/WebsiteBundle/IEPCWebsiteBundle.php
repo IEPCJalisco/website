@@ -1,6 +1,4 @@
-<?php
-
-namespace IEPC\WebsiteBundle;
+<?php namespace IEPC\WebsiteBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

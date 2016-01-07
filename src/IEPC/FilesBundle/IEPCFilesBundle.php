@@ -1,6 +1,4 @@
-<?php
-
-namespace IEPC\FilesBundle;
+<?php namespace IEPC\FilesBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

@@ -1,6 +1,4 @@
-<?php
-
-namespace IEPC\FilesBundle\Controller;
+<?php namespace IEPC\FilesBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 

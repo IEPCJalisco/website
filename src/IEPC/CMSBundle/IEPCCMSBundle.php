@@ -1,6 +1,4 @@
-<?php
-
-namespace IEPC\CMSBundle;
+<?php namespace IEPC\CMSBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

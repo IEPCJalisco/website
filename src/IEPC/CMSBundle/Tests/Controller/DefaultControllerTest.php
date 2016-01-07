@@ -1,6 +1,4 @@
-<?php
-
-namespace IEPC\CMSBundle\Tests\Controller;
+<?php namespace IEPC\CMSBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

@@ -1,6 +1,4 @@
-<?php
-
-namespace IEPC\WebsiteBundle\Controller;
+<?php namespace IEPC\WebsiteBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
