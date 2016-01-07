@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new IEPC\WebsiteBundle\IEPCWebsiteBundle(),
             new IEPC\CMSBundle\IEPCCMSBundle(),
             new IEPC\GeographyBundle\IEPCGeographyBundle(),
+            new IEPC\SesionBundle\IEPCSesionBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

@@ -1,0 +1,15 @@
+{
+  "name": "IEPC Jalisco",
+  "authors": [
+    "iZam b. <izma@mabkil.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "Propietary",
+  "homepage": "",
+  "private": true,
+  "dependencies": {
+    "angular": "~1.4.8"
+  }
+}
