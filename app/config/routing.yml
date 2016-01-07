@@ -1,0 +1,17 @@
+iepccms:
+    resource: "@IEPCCMSBundle/Resources/config/routing.xml"
+    prefix:   /
+
+iepc_website:
+    resource: "@IEPCWebsiteBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+iepc_page:
+    resource: "@IEPCPageBundle/Resources/config/routing.xml"
+    prefix:   /
+
+iepc_files:
+    resource: "@IEPCFilesBundle/Resources/config/routing.xml"
+    prefix:   /
+

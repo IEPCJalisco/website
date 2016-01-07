@@ -1,0 +1,4 @@
+services:
+#    iepc_website.example:
+#        class: IEPC\WebsiteBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
