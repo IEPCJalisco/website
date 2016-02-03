@@ -1,0 +1,12 @@
+/* TEAM */
+
+Webmaster/Programador: Ismael Barragan <izma@mabkil.com>
+Twitter: izambl
+Location: Zapopan, México
+
+
+
+/* SITE */
+
+Last update: 2016/01
+Standards: HTML5, CSS3

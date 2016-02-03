@@ -2,17 +2,18 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
-    - { resource: "@IEPCCMSBundle/Resources/config/services.yml" }
-    - { resource: "@IEPCFilesBundle/Resources/config/services.yml" }
-    - { resource: "@IEPCGeographyBundle/Resources/config/services.yml" }
-    - { resource: "@IEPCPageBundle/Resources/config/services.yml" }
-    - { resource: "@IEPCWebsiteBundle/Resources/config/services.yml" }
-    - { resource: "@IEPCSesionBundle/Resources/config/services.yml" }
+    - { resource: assetic.yml }
+#    - { resource: "@IEPCCMSBundle/Resources/config/services.yml" }
+#    - { resource: "@IEPCFilesBundle/Resources/config/services.yml" }
+#    - { resource: "@IEPCGeographyBundle/Resources/config/services.yml" }
+#    - { resource: "@IEPCPageBundle/Resources/config/services.yml" }
+#    - { resource: "@IEPCWebsiteBundle/Resources/config/services.yml" }
+#    - { resource: "@IEPCSesionBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: en
+    locale: es
 
 framework:
     #esi:             ~
@@ -73,3 +74,4 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+

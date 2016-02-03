@@ -41,5 +41,8 @@ monolog:
         #    type:   chromephp
         #    level:  info
 
-#swiftmailer:
-#    delivery_address: me@example.com
+assetic:
+    use_controller: true
+
+swiftmailer:
+    delivery_address: izma@mabkil.com

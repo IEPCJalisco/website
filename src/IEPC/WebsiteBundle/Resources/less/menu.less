@@ -1,0 +1,162 @@
+@import "variables";
+@import "mixins";
+
+#mainMenu {
+    padding: 0;
+    margin: 0;
+    display: block;
+    position: relative;
+    width: 100%;
+    background-color: #757575;
+    color: #eeeeee;
+    font-family: 'Raleway', sans-serif;
+}
+#mainMenu li {
+    img {
+        height: 1.5em;
+        vertical-align: middle;
+    }
+    a, span{
+        text-decoration: none;
+        font-weight: normal;
+        padding: 5px 15px;
+        white-space: nowrap;
+        color: #eeeeee;
+        text-align: center;
+        display: block;
+        margin: 0;
+        font-size: 0.9em;
+    }
+    &:hover {
+        background-color: @mainHL !important;
+    }
+}
+#mainMenu ul {
+    margin: 0 auto;
+    padding: 0;
+}
+
+#mainMenu .openMenu {
+    line-height: 1.5em;
+    display: none;
+    img {
+        height: 1.5em;
+        margin: 0.25em 0 0.25em 0.25em;
+    }
+}
+#mainMenu .closeMenu {
+    display: none;
+    line-height: 1.5em;
+    img {
+        height: 1.5em;
+        margin-left: 0.25em;
+    }
+}
+
+// First level
+#mainMenu .menuContainer > ul {
+    .flexboxMenu;
+    li {
+        position: relative;
+        padding: 0;
+        list-style: none;
+        display: inline-block;
+        background-color: #757575;
+        white-space: nowrap;
+    }
+}
+#mainMenu .menuContainer > ul > li {
+    padding: 0;
+}
+
+// Second level
+#mainMenu li > ul {
+    position: absolute;
+    display: block;
+    background-color: #757575;
+    left: 0;
+    z-index: 20000;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s 0.15s ease-out;
+}
+#mainMenu li:hover > ul {
+    display: block;
+    max-height: 600px;
+}
+#mainMenu li > ul li {
+    display: block !important;
+    background-color: #888888 !important;
+}
+#mainMenu li > ul li a {
+    display: block;
+    text-align: left;
+}
+
+@media @notmaxwidth {
+    #mainMenu {
+        text-align: left;
+        position: static;
+        .openMenu {
+            display: inline-block;
+        }
+        .menuContainer {
+            display: block;
+            position: absolute;
+            top: 2em;
+            left: 0;
+            bottom: 0;
+            right: auto;
+            z-index: 20000;
+            transform: translate3d(-100%, 0, 0);
+            -webkit-transform: translate3d(-100%, 0, 0);
+            -ms-transform: translate3d(-100%, 0, 0);
+            transition: transform 0.15s linear;
+            overflow: auto;
+            > ul {
+                position: relative;
+                display: block;
+                li {
+                    display: block;
+                    a, span {
+                        text-align: left;
+                    }
+                }
+            }
+            li > ul {
+                position: relative;
+                display: block;
+                max-height: none;
+                li {
+                    padding-left: 1em;
+                }
+            }
+        }
+        .closeMenu {
+            display: block;
+            position: absolute;
+            top: 0;
+            left :0;
+            height: 2em;
+            width: 18em;
+            background-color: @secondHL;
+            transform: translate3d(-100%, 0, 0);
+            -webkit-transform: translate3d(-100%, 0, 0);
+            -ms-transform: translate3d(-100%, 0, 0);
+            transition: transform 0.15s linear;
+        }
+        &.open {
+            .menuContainer {
+                width: 18em;
+                transform: translate3d(0, 0, 0);
+                -webkit-transform: translate3d(0, 0, 0);
+                -ms-transform: translate3d(0, 0, 0);
+            }
+            .closeMenu {
+                transform: translate3d(0, 0, 0);
+                -webkit-transform: translate3d(0, 0, 0);
+                -ms-transform: translate3d(0, 0, 0);
+            }
+        }
+    }
+}

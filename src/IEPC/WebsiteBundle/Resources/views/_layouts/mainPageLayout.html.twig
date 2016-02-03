@@ -1,0 +1,59 @@
+{% extends 'IEPCWebsiteBundle::base.html.twig' %}
+
+{% block layout %}
+    <header>
+        {% block header %}
+            <row class="container">
+                <column cols="3" class="logo">
+                    <a href="{{ path('iepc_website_homepage') }}">
+                        {% image '@IEPCWebsiteBundle/Resources/images/iepc.png' %}
+                            <img src="{{ asset_url }}" alt="IEPC">
+                        {% endimage %}
+                    </a>
+                </column>
+                <column cols="6">
+                    {% block headerCenter '&nbsp;' %}
+                </column>
+                <column cols="3" class="social">
+                    <ul class="socialLinks">
+                        <li><a target="_blank" href="https://www.facebook.com/iepcjalisco" title="Facebook">F</a></li>
+                        <li><a target="_blank" href="https://twitter.com/iepcjalisco" title="Twitter">T</a></li>
+                        <li><a target="_blank" href="https://www.youtube.com/user/iepcjalisco" title="Youtube">Y</a></li>
+                        <li><a target="_blank" href="https://www.flickr.com/photos/iepcjalisco" title="Flickr">F</a></li>
+                        <li><a target="_blank" href="http://livestream.com/iepcjalisco" title="Livestream">L</a></li>
+                    </ul>
+                </column>
+            </row>
+        {% endblock header %}
+    </header>
+
+    {% block mainMenu %}
+        {{  render(controller('IEPCWebsiteBundle:Menu:mainMenu')) }}
+    {% endblock mainMenu %}
+
+    <main class="container">
+        <div>
+            {# slider #}
+            {{  render(controller('IEPCWebsiteBundle:Slider:mainSlider')) }}
+        </div>
+
+        <row>
+            {# banners #}
+            <column cols="8"></column>
+            <column cols="4"></column>
+        </row>
+    </main>
+
+    <footer>
+        {% block footer %}
+            <row>
+                <column cols="7">
+
+                </column>
+                <column cols="5">
+
+                </column>
+            </row>
+        {% endblock footer %}
+    </footer>
+{% endblock layout %}

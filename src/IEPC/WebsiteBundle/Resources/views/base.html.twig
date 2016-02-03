@@ -1,64 +1,47 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <title>{% block title 'Instituto Electoral y de Participación Ciudadana del Estado de Jalisco'%}</title>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1">
-    <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('apple-icon-57x57.png') }}">
-    <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('apple-icon-60x60.png') }}">
-    <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('apple-icon-72x72.png') }}">
-    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('apple-icon-76x76.png') }}">
-    <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('apple-icon-114x114.png') }}">
-    <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('apple-icon-120x120.png') }}">
-    <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('apple-icon-144x144.png') }}">
-    <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('apple-icon-152x152.png') }}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-icon-180x180.png') }}">
-    <link rel="icon" type="image/png" sizes="192x192"  href="{{ asset('android-icon-192x192.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('favicon-96x96.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}">
-    <link rel="shortcut icon" href="{{ asset('favicon_72px.png') }}">
-    <link type="text/css" href="{{ asset('bundles/iepcjrevistafolios/jplayer/skin/blue.monday/css/jplayer.blue.monday.min.css') }}" rel="stylesheet" />
-    <link rel="manifest" href="{{ asset('manifest.json') }}">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="{{ asset('ms-icon-144x144.png') }}">
-    <meta name="theme-color" content="#ffffff">
-    {% block stylesheets '' %}
-</head>
-<body class="{% block bodyClass '' %}">
-<script>
-    window.fbAsyncInit = function() {
-        FB.init({
-            appId      : '1616197345318787',
-            xfbml      : true,
-            version    : 'v2.3'
-        });
-    };
-    (function(d, s, id){
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {return;}
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/es_LA/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-</script>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-{% block layout '' %}
-<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-<script>
-    window.jQuery || document.write('<script src="{{ asset('bundles/iepcjrevistafolios/js/jquery-1.11.3.min.js') }}"><\/script>');
-</script>
-<script src="{{ asset('bundles/iepcjrevistafolios/jplayer/jquery.jplayer.min.js') }}"></script>
-{% block javascripts '' %}
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    <head>
+        <title>{% block title 'Instituto Electoral y de Participación Ciudadana del Estado de Jalisco'%}</title>
+        <meta name="description" content="{% block description 'El organismo público autónomo depositario de la autoridad electoral, responsable del ejercicio de la función estatal de organizar los procesos electorales locales y los de plebiscito y referéndum' %}">
+        <meta name="keywords" content="{% block keywords 'elecciones, partidos, politicos, jalisco, iepc, ine, electoral, candidato, independiente, eleccion, voto, votacion, urna, electronica' %}">
+        {% block metatags '' %}
+        {% block seotags '' %}
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="{{ asset('favicon_144px.png') }}">
+        <meta name="theme-color" content="#ffffff">
 
-    ga('create', 'UA-12992509-4', 'auto');
-    ga('send', 'pageview');
-</script>
-</body>
+        <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('favicon_57px.png') }}">
+        <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('favicon_60px.png') }}">
+        <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('favicon_72px.png') }}">
+        <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('favicon_76px.png') }}">
+        <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('favicon_114px.png') }}">
+        <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('favicon_120px.png') }}">
+        <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('favicon_144px.png') }}">
+        <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('favicon_152px.png') }}">
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicon_180px.png') }}">
+        <link rel="icon" type="image/png" sizes="192x192"  href="{{ asset('favicon_192x192.png') }}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon_32px.png') }}">
+        <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('favicon_96px.png') }}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon_16px.png') }}">
+        <link rel="shortcut icon" href="{{ asset('favicon_72px.png') }}">
+        <link type="text/plain" rel="author" href="humans.txt">
+        <link rel="manifest" href="{{ asset('manifest.json') }}">
+        <link rel="stylesheet" href='https://fonts.googleapis.com/css?family=Raleway:400,700'>
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:400,700,700italic,400italic'>
+        <link rel="stylesheet" href="{{ asset('assets/kube/kube.min.css') }}">
+        {% stylesheets output='css/iepcjalisco.css' filter='?yui_css'
+            '@IEPCWebsiteBundle/Resources/less/iepcjalisco.less'
+        %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+        {% block stylesheets '' %}
+    </head>
+    <body class="{% block bodyClass '' %}">
+        {% block layout '' %}
+        <script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
+        {% block javascripts '' %}
+    </body>
 </html>

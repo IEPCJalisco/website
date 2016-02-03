@@ -1,0 +1,3 @@
+iepc_sesion_homepage:
+    path:     /
+    defaults: { _controller: IEPCSesionBundle:Default:index }

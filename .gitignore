@@ -15,5 +15,7 @@
 /vendor/
 /web/bundles/
 /web/assets/vendor
+/web/css/*
+/web/js/*
 
 /.idea/workspace.xml

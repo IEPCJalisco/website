@@ -1,0 +1,48 @@
+@import "variables";
+@import "mixins";
+
+body {
+    font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    font-size: 16px;
+}
+
+body > header {
+    background: linear-gradient(#ffffff, #e3e3e3);
+    .logo {
+        padding: 0.75em 0;
+        img {
+            max-height: 5em;
+        }
+    }
+    .social {
+        text-align: right;
+        padding: 0.75em 0;
+        ul {
+            .simpleUl;
+            li {
+                display: inline-block;
+            }
+        }
+    }
+    @media @notmaxwidth {
+        padding: 0.25em 0;
+        .logo {
+            img {
+                max-height: 4em;
+            }
+        }
+    }
+    @media @mobileview {
+        row column[cols] {
+            margin: 0;
+        }
+        .logo {
+            img {
+                max-height: 2em;
+            }
+        }
+    }
+}
+
+body > footer {
+}
