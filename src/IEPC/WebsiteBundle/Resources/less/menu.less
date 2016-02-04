@@ -1,10 +1,7 @@
 @import "variables";
 @import "mixins";
 
-// @todo Remove overflow on body when menu opens
-// @todo Calculate scroll offset when opening menu
-// @todo Bind menuclose event on overlay
-// @todo Put JS code on it's own file
+// @todo Bind swipe to open menu on mobile
 
 #mainMenu {
     padding: 0;
@@ -50,15 +47,6 @@
         margin: 0.25em 0 0.25em 0.25em;
     }
 }
-#mainMenu .closeMenu {
-    display: none;
-    cursor: pointer;
-    line-height: 1.5em;
-    img {
-        height: 1.5em;
-        margin-left: 0.25em;
-    }
-}
 #mainMenu .overlay {
     display: none;
     position: absolute;
@@ -66,9 +54,23 @@
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: #ffffff;
+    background-color: #333333;
     opacity: 0.5;
     z-index: 19999;
+}
+#mainMenu .menuContainer .header {
+    display: none;
+    background-color: #ffffff;
+    padding: 1em 0;
+    img {
+        width: 60%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    }
+    &:hover {
+        background-color: #ffffff !important;
+    }
 }
 
 // First level
@@ -125,7 +127,7 @@
         .menuContainer {
             display: block;
             position: absolute;
-            top: 2em;
+            top: 0;
             left: 0;
             bottom: 0;
             right: auto;
@@ -154,30 +156,17 @@
                 }
             }
         }
-        .closeMenu {
+        .menuContainer .header {
             display: block;
-            position: absolute;
-            top: 0;
-            left :0;
-            z-index: 20000;
-            height: 2em;
-            width: 18em;
-            max-width: 100%;
-            background-color: #666666;
-            transform: translate3d(-100%, 0, 0);
-            -webkit-transform: translate3d(-100%, 0, 0);
-            -ms-transform: translate3d(-100%, 0, 0);
-            transition: transform 0.15s linear;
         }
         &.open {
             .menuContainer {
                 width: 18em;
                 max-width: 100%;
-                transform: translate3d(0, 0, 0);
-                -webkit-transform: translate3d(0, 0, 0);
-                -ms-transform: translate3d(0, 0, 0);
-            }
-            .closeMenu {
+                box-shadow: 1px 0 5px 1px #333333;
+                -webkit-box-shadow: 1px 0 5px 1px #333333;
+                -ms-box-shadow: 1px 0 5px 1px #333333;
+                -moz-box-shadow: 1px 0 5px 1px #333333;
                 transform: translate3d(0, 0, 0);
                 -webkit-transform: translate3d(0, 0, 0);
                 -ms-transform: translate3d(0, 0, 0);

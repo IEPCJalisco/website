@@ -1,17 +1,19 @@
 <nav id="mainMenu">
-    <div class="openMenu" onclick="$('#mainMenu').toggleClass('open');">
+    <div class="openMenu">
         {% image '@IEPCWebsiteBundle/Resources/images/icons/menu.svg' %}
             <img src="{{ asset_url }}" alt="Menu">
         {% endimage %}
     </div>
-    <div class="closeMenu" onclick="$('#mainMenu').removeClass('open');">
-        {% image '@IEPCWebsiteBundle/Resources/images/icons/back.svg' %}
-            <img src="{{ asset_url }}" alt="Back">
-        {% endimage %}
-    </div>
-    <div class="overlay"></div>
+    <div class="overlay" onclick="$('#mainMenu').removeClass('open');"></div>
     <div class="menuContainer">
         <ul class="container">
+            <li class="header">
+                <div>
+                    {% image '@IEPCWebsiteBundle/Resources/images/iepc.png' %}
+                        <img src="{{ asset_url }}" alt="IEPC">
+                    {% endimage %}
+                </div>
+            </li>
             <li>
                 <span>
                     Instituto Electoral
