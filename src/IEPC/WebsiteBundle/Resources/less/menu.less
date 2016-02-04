@@ -1,6 +1,11 @@
 @import "variables";
 @import "mixins";
 
+// @todo Remove overflow on body when menu opens
+// @todo Calculate scroll offset when opening menu
+// @todo Bind menuclose event on overlay
+// @todo Put JS code on it's own file
+
 #mainMenu {
     padding: 0;
     margin: 0;
@@ -54,6 +59,17 @@
         margin-left: 0.25em;
     }
 }
+#mainMenu .overlay {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #ffffff;
+    opacity: 0.5;
+    z-index: 19999;
+}
 
 // First level
 #mainMenu .menuContainer > ul {
@@ -96,6 +112,10 @@
 }
 
 @media @notmaxwidth {
+    body.menuOpen {
+        overflow: hidden;
+    }
+
     #mainMenu {
         text-align: left;
         position: static;
@@ -139,10 +159,11 @@
             position: absolute;
             top: 0;
             left :0;
+            z-index: 20000;
             height: 2em;
             width: 18em;
             max-width: 100%;
-            background-color: @secondHL;
+            background-color: #666666;
             transform: translate3d(-100%, 0, 0);
             -webkit-transform: translate3d(-100%, 0, 0);
             -ms-transform: translate3d(-100%, 0, 0);
@@ -160,6 +181,9 @@
                 transform: translate3d(0, 0, 0);
                 -webkit-transform: translate3d(0, 0, 0);
                 -ms-transform: translate3d(0, 0, 0);
+            }
+            .overlay {
+                display: block;
             }
         }
     }

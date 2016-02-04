@@ -63,12 +63,10 @@
 
     <main class="container">
         <div>
-            {# slider #}
             {{  render(controller('IEPCWebsiteBundle:Slider:mainSlider')) }}
         </div>
 
         <row>
-            {# banners #}
             <column cols="8"></column>
             <column cols="4"></column>
         </row>
@@ -76,12 +74,68 @@
 
     <footer>
         {% block footer %}
-            <row>
-                <column cols="7">
+            <row end class="container">
+                <column cols="6" class="hideTablet">
+                    <nav class="sitemap">
+                        <row end>
+                            <column cols="4">
+                                <strong>Instituto Electoral</strong><br>
+                                <a href="http://www.iepcjalisco.org.mx/que-es-el-iepc">¿Qué es el Instituto Electoral?</a><br>
+                                <a href="http://www.iepcjalisco.org.mx/integracion-del-consejo-general">Integración del Consejo</a><br>
+                                <a href="http://www.iepcjalisco.org.mx/organigrama">Organigrama</a><br>
+                                <a href="http://www.iepcjalisco.org.mx/directorio-institucional">Directorio Institucional</a><br>
+                                <a href="http://www.iepcjalisco.org.mx/resultados-electorales">Resultados Electorales</a><br>
+                                <a href="http://www.iepcjalisco.org.mx/geografia-electoral">Geografía Electoral</a><br><br>
+                                <strong>Partidos y Agrupaciones</strong>
+                                <a href="http://www.iepcjalisco.org.mx/partidos-politicos">Partidos Políticos</a><br>
+                                <a href="http://www.iepcjalisco.org.mx/agrupaciones-politicas">Agrupaciones Políticas</a><br><br>
+                            </column>
+                            <column cols="4">
+                                <strong>Legislación</strong><br>
+                                <a href="http://www.iepcjalisco.org.mx/legislacion">Leyes, reglamentos y lineamientos</a><br>
+                                <a href="http://www.iepcjalisco.org.mx/delitos-electorales">Delitos electorales</a><br><br>
 
+                                <strong>Participación ciudadana</strong><br>
+                                <a href="http://www.iepcjalisco.org.mx/participacion-ciudadana/programas">Programas</a><br>
+                                <a href="http://www.iepcjalisco.org.mx/mecanismos-participacion-ciudadana">Mecanísmos de participación</a><br>
+                                <a href="http://www.iepcjalisco.org.mx/directorio-autoridades-ciudadanas">Directorio de autoridades</a><br>
+                                <a href="http://www.iepcjalisco.org.mx/calendario/%3C?%20print(Date(">Eventos</a><br>
+                                <a href="http://www.iepcjalisco.org.mx/sitios-de-interes">Sitios de interés</a>
+                            </column>
+                            <column cols="4">
+                                <strong><a href="http://www.iepcjalisco.org.mx/proceso-electoral-2015">Proceso Electoral 2014-2015</a></strong><br><br>
+                                <strong>Transparencia</strong><br>
+                                <a href="http://www.iepcjalisco.org.mx/transparencia2/informacion-fundamental.php">Información fundamental</a><br>
+                                <a href="http://www.iepcjalisco.org.mx/transparencia2/articulo-8.php">Artículo 8</a><br>
+                                <a href="http://www.iepcjalisco.org.mx/transparencia2/articulo-14.php">Artículo 14</a><br>
+                                <a href="http://www.iepcjalisco.org.mx/transparencia-focalizada">Transparencia focalizada</a><br><br>
+                                <strong><a href="http://www.iepcjalisco.org.mx/sala-de-prensa">Sala de prensa</a></strong>
+                            </column>
+                        </row>
+                    </nav>
                 </column>
-                <column cols="5">
-
+                <column cols="6">
+                    <row>
+                        <column cols="8" class="mapa">
+                            <a href="https://www.google.com.mx/maps/place/Instituto+Electoral+y+de+Participaci%C3%B3n+Ciudana+del+Estado+de+Jalisco/@20.6916996,-103.3760411,15z/data=!4m2!3m1!1s0x8428ae3ea966b0ed:0xded589bd795d099e" target="_blank">
+                                {% image '@IEPCWebsiteBundle/Resources/images/mapa.png' %}
+                                    <img src="{{ asset_url }}" alt="Esquina Florencia y López Mateos">
+                                {% endimage %}
+                            </a>
+                        </column>
+                        <column cols="4">
+                            {% image '@IEPCWebsiteBundle/Resources/images/iepc_white.png' %}
+                                <img class="logo" src="{{ asset_url }}" alt="IEPC">
+                            {% endimage %}
+                            Florencia #2370, Colonia Italia Providencia<br>
+                            CP. 44648, Guadalajara, Jalisco, México<br>
+                            <i class="fa-phone"></i> 01 33 36 41 45 07/09/18 y 01 800 7017 881<br>
+                            <a href="http://www.iepcjalisco.org.mx">http://www.iepcjalisco.org.mx</a>
+                        </column>
+                    </row>
+                    <div class="aviso">
+                        <a title="Aviso de confidencialidad" href="/aviso-de-confidencialidad">Aviso de confidencialidad</a>
+                    </div>
                 </column>
             </row>
         {% endblock footer %}

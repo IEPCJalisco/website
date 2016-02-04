@@ -6,6 +6,11 @@ body {
     font-size: 16px;
 }
 
+a {
+    color: @mainHL;
+    text-decoration: none;
+}
+
 body > header {
     background: linear-gradient(#ffffff, #e3e3e3);
     .logo {
@@ -63,4 +68,32 @@ body > header {
 }
 
 body > footer {
+    margin-top: 1em;
+    font-size: 1em;
+    padding: 1em 0;
+    background-color: #BBBBBB;
+    min-height: 10em;
+    text-align: center;
+    .logo {
+        max-height: 4em;
+        display: block;
+        margin: 0 auto 1em auto;
+    }
+    .sitemap {
+        text-align: left;
+        font-size: 0.9em;
+    }
+    .aviso {
+        font-weight: bold;
+        margin-top: 1em;
+        background-color: #FAFAFA;
+    }
+    @media @tabletview {
+        .sitemap {
+            padding-left: 1em;
+        }
+        .mapa {
+            padding: 0 1em;
+        }
+    }
 }
