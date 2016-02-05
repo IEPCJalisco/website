@@ -95,7 +95,8 @@
     display: block;
     background-color: #757575;
     left: 0;
-    z-index: 20000;
+    z-index: 19999;
+    opacity: 0.9;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.5s 0.15s ease-out;
@@ -103,6 +104,8 @@
 #mainMenu li:hover > ul {
     display: block;
     max-height: 600px;
+    opacity: 1;
+    z-index: 20000;
 }
 #mainMenu li > ul li {
     display: block !important;

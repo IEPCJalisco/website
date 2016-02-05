@@ -1,4 +1,0 @@
-services:
-#    iepc_sesion.example:
-#        class: IEPC\SesionBundle\Example
-#        arguments: ["@service_id", "plain_value", %parameter%]

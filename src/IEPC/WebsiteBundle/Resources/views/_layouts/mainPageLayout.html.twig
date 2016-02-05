@@ -116,7 +116,7 @@
                 </column>
                 <column cols="6">
                     <row>
-                        <column cols="8" class="mapa">
+                        <column cols="8" class="map hideTablet">
                             <a href="https://www.google.com.mx/maps/place/Instituto+Electoral+y+de+Participaci%C3%B3n+Ciudana+del+Estado+de+Jalisco/@20.6916996,-103.3760411,15z/data=!4m2!3m1!1s0x8428ae3ea966b0ed:0xded589bd795d099e" target="_blank">
                                 {% image '@IEPCWebsiteBundle/Resources/images/mapa.png' %}
                                     <img src="{{ asset_url }}" alt="Esquina Florencia y López Mateos">
@@ -127,10 +127,13 @@
                             {% image '@IEPCWebsiteBundle/Resources/images/iepc_white.png' %}
                                 <img class="logo" src="{{ asset_url }}" alt="IEPC">
                             {% endimage %}
-                            Florencia #2370, Colonia Italia Providencia<br>
+                            <a href="https://www.google.com.mx/maps/place/Instituto+Electoral+y+de+Participaci%C3%B3n+Ciudana+del+Estado+de+Jalisco/@20.6916996,-103.3760411,15z/data=!4m2!3m1!1s0x8428ae3ea966b0ed:0xded589bd795d099e" target="_blank">
+                                Florencia #2370, Colonia Italia Providencia
+                            </a>
+                            <br>
                             CP. 44648, Guadalajara, Jalisco, México<br>
                             <i class="fa-phone"></i> 01 33 36 41 45 07/09/18 y 01 800 7017 881<br>
-                            <a href="http://www.iepcjalisco.org.mx">http://www.iepcjalisco.org.mx</a>
+                            <a href="{{ url('iepc_website_homepage') }}">www.iepcjalisco.org.mx</a>
                         </column>
                     </row>
                     <div class="aviso">

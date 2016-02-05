@@ -1,3 +1,0 @@
-iepc_cms_homepage:
-    path:     /
-    defaults: { _controller: IEPCCMSBundle:Default:index }

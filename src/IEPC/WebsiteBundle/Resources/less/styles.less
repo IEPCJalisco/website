@@ -88,12 +88,14 @@ body > footer {
         margin-top: 1em;
         background-color: #FAFAFA;
     }
+    @media @notmaxwidth {
+        .map {
+            display: none;
+        }
+    }
     @media @tabletview {
         .sitemap {
             padding-left: 1em;
-        }
-        .mapa {
-            padding: 0 1em;
         }
     }
 }

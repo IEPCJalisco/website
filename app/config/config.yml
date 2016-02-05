@@ -3,6 +3,8 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: assetic.yml }
+    - { resource: "@IEPCContentBundle/Resources/config/services.yml" }
+    - { resource: "@IEPCDocumentBundle/Resources/config/services.yml" }
 #    - { resource: "@IEPCCMSBundle/Resources/config/services.yml" }
 #    - { resource: "@IEPCFilesBundle/Resources/config/services.yml" }
 #    - { resource: "@IEPCGeographyBundle/Resources/config/services.yml" }

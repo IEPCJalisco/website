@@ -17,11 +17,10 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new IEPC\FilesBundle\IEPCFilesBundle(),
-            new IEPC\PageBundle\IEPCPageBundle(),
             new IEPC\WebsiteBundle\IEPCWebsiteBundle(),
-            new IEPC\CMSBundle\IEPCCMSBundle(),
             new IEPC\GeographyBundle\IEPCGeographyBundle(),
-            new IEPC\SesionBundle\IEPCSesionBundle(),
+            new IEPC\ContentBundle\IEPCContentBundle(),
+            new IEPC\DocumentBundle\IEPCDocumentBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {
