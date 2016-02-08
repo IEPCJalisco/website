@@ -1,4 +1,74 @@
+@import "kube/kube.less";
+@import "variables";
+@import "mixins";
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
+}
+
+body > footer {
+    & > div {
+        .container;
+        .row;
+    }
+    .sitemap {
+        .col(6);
+        .links {
+            .media-grid(3);
+            & > div {
+                margin-bottom: 1em;
+            }
+        }
+    }
+    .map {
+        .col(6);
+        & > div {
+            .row;
+            .gmaps {
+                .col(8);
+                padding: 1em;
+                .vertical-align;
+            }
+            .address {
+                .col(4);
+            }
+        }
+    }
+
+    @media @notmaxwidth {
+        .sitemap {
+            .col(5);
+            .links {
+                .media-grid(2);
+            }
+        }
+        .map {
+            .col(7);
+            & > div {
+                .gmaps {
+                    .col(6);
+                }
+                .address {
+                    .col(6);
+                }
+            }
+        }
+    }
+    @media @tabletview {
+        .sitemap {
+            display: none;
+        }
+        .map {
+            .col(12);
+            & > div {
+                .gmaps {
+                    display: none;
+                }
+                .address {
+                    .col(12);
+                }
+            }
+        }
+    }
 }

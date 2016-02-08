@@ -85,20 +85,27 @@ body > footer {
     .sitemap {
         text-align: left;
         font-size: 0.9em;
+        .links {
+            a {
+                display: block;
+            }
+        }
     }
     .aviso {
         font-weight: bold;
         margin-top: 1em;
+        text-align: center;
         background-color: #FAFAFA;
-    }
-    @media @notmaxwidth {
-        .map {
-            display: none;
+        a {
+            display: block;
+            margin: 0 auto;
         }
     }
     @media @tabletview {
         .sitemap {
-            padding-left: 1em;
+            .links {
+                padding-left: 1em;
+            }
         }
     }
 }
