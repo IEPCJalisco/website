@@ -23,6 +23,27 @@ class Section
      */
     protected $id;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(length=255)
+     */
+    protected $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(length=32)
+     */
+    protected $path;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(length=32)
+     */
+    protected $layout;
+
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Relations">
@@ -90,18 +111,86 @@ class Section
         return $this;
     }
 
+    /**
+     * @return string
+     */
+    public function getName() {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     * @return Section
+     */
+    public function setName($name) {
+        $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPath() {
+        return $this->path;
+    }
+
+    /**
+     * @param string $path
+     * @return Section
+     */
+    public function setPath($path) {
+        $this->path = $path;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLayout() {
+        return $this->layout;
+    }
+
+    /**
+     * @param string $layout
+     * @return Section
+     */
+    public function setLayout($layout) {
+        $this->layout = $layout;
+        return $this;
+    }
+
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Functions">
 
-    public function __construct()
+    public function __construct($name = null)
     {
+        if ($name) {
+            $this->setName($name);
+        }
+
         $this->setChildren(new ArrayCollection());
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
-        return '';
+        return $this->getName();
+    }
+
+    /**
+     * @return string
+     */
+    public function getFullPath()
+    {
+        if ($this->getParent()) {
+            return $this->getParent()->getFullPath() . $this->getPath();
+        }
+        else {
+            return $this->getPath();
+        }
     }
 
     // </editor-fold>

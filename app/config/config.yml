@@ -68,6 +68,8 @@ doctrine:
         auto_generate_proxy_classes: "%kernel.debug%"
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
+        resolve_target_entities:
+            IEPC\ContentBundle\Model\ContentInterface: IEPC\ContentBundle\Entity\Content
 
 # Swiftmailer Configuration
 swiftmailer:

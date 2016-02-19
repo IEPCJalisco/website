@@ -6,10 +6,23 @@
  */
 interface ContentInterface
 {
-    // <editor-fold defaultstate="collapsed" desc="Getter and Setters"
-    // </editor-fold>
+    /**
+     * @return string
+     */
+    public function getContent();
 
-    // <editor-fold defaultstate="collapsed" desc="Functions">
-    // </editor-fold>
+    /**
+     * Renders the html representantion of content
+     *
+     * @return string
+     */
+    public function renderHtml();
+
+    /**
+     * Renders the json object representing the object
+     *
+     * @return string
+     */
+    public function renderJson();
 }
 
