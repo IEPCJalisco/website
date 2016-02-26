@@ -29,11 +29,11 @@ class Sections extends AbstractFixture implements OrderedFixtureInterface, Conta
     public function load(ObjectManager $em)
     {
         $front = new Section('Front');
-        $front->setPath('/');
+        $front->setPath('');
         $front->setLayout('');
 
         $transparencia = new Section('Transparencia');
-        $transparencia->setPath('transparencia/');
+        $transparencia->setPath('transparencia');
         $transparencia->setParent($front);
         $transparencia->setLayout('');
 
@@ -43,7 +43,7 @@ class Sections extends AbstractFixture implements OrderedFixtureInterface, Conta
         $sesionesDeConsejo->setLayout('');
 
         $participacion = new Section('Participación Ciudadana');
-        $participacion->setPath('participacion-ciudadana/');
+        $participacion->setPath('participacion-ciudadana');
         $participacion->setParent($front);
         $participacion->setLayout('');
 

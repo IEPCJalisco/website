@@ -10,6 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 class Section
 {
     // <editor-fold defaultstate="collapsed" desc="Constants">
+
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Properties">
@@ -52,16 +53,22 @@ class Section
      * @var Section
      *
      * @ORM\ManyToOne(targetEntity="Section", inversedBy="children")
-     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
      */
     protected $parent;
 
     /**
-     * @var  ArrayCollection
+     * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="Section", mappedBy="parent")
      */
     protected $children;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="IEPC\ContentBundle\Entity\WebPage", mappedBy="section")
+     */
+    protected $webPages;
 
     // </editor-fold>
 

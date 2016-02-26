@@ -3,7 +3,6 @@
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use IEPC\ContentBundle\Entity\Section;
 use IEPC\ContentBundle\Entity\WebPage;
 use IEPC\WebsiteBundle\Entity\Page;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
@@ -52,6 +51,7 @@ class Pages extends AbstractFixture implements OrderedFixtureInterface, Containe
         $em->persist($transparenciaPage);
         $em->persist($participacion01);
         $em->persist($participacionPage);
+
         $em->flush();
     }
 }

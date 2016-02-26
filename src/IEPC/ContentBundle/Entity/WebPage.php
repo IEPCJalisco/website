@@ -46,14 +46,14 @@ class WebPage
     /**
      * @var Section
      *
-     * @ORM\ManyToOne(targetEntity="IEPC\ContentBundle\Entity\Section", inversedBy="WebPages");
+     * @ORM\ManyToOne(targetEntity="IEPC\ContentBundle\Entity\Section", inversedBy="webPages");
      */
     protected $section;
 
     /**
      * @var Content
      *
-     * @ORM\ManyToOne(targetEntity="IEPC\ContentBundle\Model\ContentInterface", inversedBy="WebPages")
+     * @ORM\ManyToOne(targetEntity="IEPC\ContentBundle\Model\ContentInterface", inversedBy="webPages")
      */
     protected $content;
 

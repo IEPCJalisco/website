@@ -2,6 +2,7 @@
 
 use Doctrine\ORM\Mapping as ORM;
 use IEPC\ContentBundle\Model\ContentInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\MappedSuperclass()
@@ -38,6 +39,14 @@ abstract class Content implements ContentInterface
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Relations">
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="IEPC\ContentBundle\Entity\WebPage", mappedBy="content")
+     */
+    protected $webPages;
+
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Getter and setters">
