@@ -1,9 +1,9 @@
 iepc_website_homepage:
     path:     /
-    defaults: { _controller: IEPCWebsiteBundle:Website:index }
+    defaults: { _controller: IEPCContentBundle:WebPage:renderPath }
 
 iepc_website_content:
     path:     /{path}
-    defaults: { _controller: IEPCWebsiteBundle:Website:content }
+    defaults: { _controller: IEPCContentBundle:WebPage:renderPath }
     requirements:
         path: .+

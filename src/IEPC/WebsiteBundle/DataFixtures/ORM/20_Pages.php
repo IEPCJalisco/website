@@ -29,29 +29,23 @@ class Pages extends AbstractFixture implements OrderedFixtureInterface, Containe
 
     public function load(ObjectManager $em)
     {
-        $mainSection          = $this->getReference('section-front');
-        $transparenciaSection = $this->getReference('section-transparencia');
-        $participacionSection = $this->getReference('section-participacion');
+        $frontPage = new Page();
+        $frontPage->setContent('<main><h1>Frontpage</h1></main>');
 
-        $transparencia01 = new Page();
-        $transparencia01->setContent('<main><h1>Transparencia</h1></main>');
-        $transparenciaPage = new WebPage();
-        $transparenciaPage->setContent($transparencia01);
-        $transparenciaPage->setSection($transparenciaSection);
-        $transparenciaPage->setPath('');
+        $transparenciaFrontPage = new Page();
+        $transparenciaFrontPage->setContent('<main><h1>Transparencia placeholder</h1></main>');
 
-        $participacion01 = new Page();
-        $participacion01->setContent('<main><h1>Transparencia</h1></main>');
-        $participacionPage = new WebPage();
-        $participacionPage->setContent($participacion01);
-        $participacionPage->setSection($participacionSection);
-        $participacionPage->setPath('');
+        $participacionFrontPage = new Page();
+        $participacionFrontPage->setContent('<main><h1>Participación Ciudadana</h1></main>');
 
-        $em->persist($transparencia01);
-        $em->persist($transparenciaPage);
-        $em->persist($participacion01);
-        $em->persist($participacionPage);
+        $em->persist($frontPage);
+        $em->persist($transparenciaFrontPage);
+        $em->persist($participacionFrontPage);
 
         $em->flush();
+
+        $this->addReference('page-front',         $frontPage);
+        $this->addReference('page-transparencia', $transparenciaFrontPage);
+        $this->addReference('page-participacion', $participacionFrontPage);
     }
 }

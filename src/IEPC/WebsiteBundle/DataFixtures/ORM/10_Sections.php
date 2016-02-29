@@ -30,22 +30,15 @@ class Sections extends AbstractFixture implements OrderedFixtureInterface, Conta
     {
         $front = new Section('Front');
         $front->setPath('');
-        $front->setLayout('');
 
         $transparencia = new Section('Transparencia');
-        $transparencia->setPath('transparencia');
-        $transparencia->setParent($front);
-        $transparencia->setLayout('');
-
-        $sesionesDeConsejo = new Section('Sesiones de Consejo');
-        $sesionesDeConsejo->setPath('sesiones-de-consejo');
-        $sesionesDeConsejo->setParent($transparencia);
-        $sesionesDeConsejo->setLayout('');
+        $transparencia->setPath('transparencia')
+                      ->setParent($front);
 
         $participacion = new Section('Participación Ciudadana');
-        $participacion->setPath('participacion-ciudadana');
-        $participacion->setParent($front);
-        $participacion->setLayout('');
+        $participacion->setPath('participacion-ciudadana')
+                      ->setLayout('participacion-ciudadana')
+                      ->setParent($front);
 
         $em->persist($front);
         $em->persist($transparencia);
@@ -54,7 +47,6 @@ class Sections extends AbstractFixture implements OrderedFixtureInterface, Conta
 
         $this->addReference('section-front',         $front);
         $this->addReference('section-transparencia', $transparencia);
-        $this->addReference('section-sesiones',      $sesionesDeConsejo);
         $this->addReference('section-participacion', $participacion);
     }
 }

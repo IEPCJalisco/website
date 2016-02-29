@@ -1,0 +1,79 @@
+<nav id="mainMenu">
+    <div class="openMenu">
+        {% image '@IEPCWebsiteBundle/Resources/images/icons/menu.svg' %}
+            <img src="{{ asset_url }}" alt="Menu">
+        {% endimage %}
+    </div>
+    <div class="overlay" onclick="$('#mainMenu').removeClass('open');"></div>
+
+    <div class="menuContainer">
+        <ul class="container">
+            <li class="header">
+                <div>
+                    {% image '@IEPCWebsiteBundle/Resources/images/iepc.png' %}
+                        <img src="{{ asset_url }}" alt="IEPC">
+                    {% endimage %}
+                </div>
+            </li>
+            {#<li>#}
+                {#<a href="/">#}
+                    {#Instituto Electoral#}
+                {#</a>#}
+            {#</li>#}
+            <li>
+                <a href="/participacion-ciudadana">
+                    <strong>Participación ciudadana</strong>
+                </a>
+            </li>
+            <li>
+                <span>Democracia directa</span>
+                <ul>
+                    <li><a href="#">Plebiscito</a></li>
+                    <li><a href="#">Referéndum</a></li>
+                    <li><a href="#">Iniciativa popular</a></li>
+                    <li><a href="#">Reforma participación ciudadana</a></li>
+                </ul>
+            </li>
+            <li>
+                <span>Vinculación</span>
+                <ul>
+                    <li><a href="#">Red por la participación ciudadana</a></li>
+                    <li><a href="#">Directorio de las ONGs y OSCs inscritas</a></li>
+                    <li><a href="#">Las OSC en la FIL</a></li>
+                    <li><a href="#">Galería</a></li>
+                </ul>
+            </li>
+            <li>
+                <span>Programas</span>
+                <ul>
+                    <li><a href="#">Promoción del voto informado</a></li>
+                    <li><a href="#">Democracia, ciudadanía y participación ciudadana</a></li>
+                    <li><a href="#">Programas con perspectiva de género</a></li>
+                    <li><a href="#">Ciudadanos por la calidad democrática</a></li>
+                    <li><a href="#">Formatos de solicitud para talleres</a></li>
+                </ul>
+            </li>
+            <li>
+                <span>Difusión</span>
+                <ul>
+                    <li><a href="#">Eventos de la dirección</a></li>
+                    <li><a href="#">Eventos de las ONGs</a></li>
+                    <li><a href="#">Agenda</a></li>
+                    <li><a href="#">Talleres en línea</a></li>
+                    <li><a href="#">Infográficos</a></li>
+                    <li><a href="#">Videos</a></li>
+                </ul>
+            </li>
+            <li>
+                <span>Divulgación</span>
+                <ul>
+                    <li><a href="#">Documentos de participación ciudadana</a></li>
+                    <li><a href="#">Libros sobre participación ciudadana</a></li>
+                    <li><a href="#">Documentales sobre participación ciudadana</a></li>
+                    <li><a href="#">Películas sobre participación ciudadana</a></li>
+                    <li><a href="#">Artículos relacionados con participación ciudadana</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>

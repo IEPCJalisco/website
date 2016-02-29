@@ -1,0 +1,61 @@
+@import (reference) "../kube/kube";
+@import "../variables";
+@import "../mixins";
+
+#frontpage {
+    .mainBanner {
+        background: transparent url('/bundles/iepcwebsite/images/participacion-ciudadana/banner-frontpage.png') top left no-repeat;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        min-height: 18em;
+        text-align: center;
+        font-family: Raleway, sans-serif;
+        position: relative;
+        blockquote {
+            .vertical-center;
+            padding: 0 2em;
+            border: none;
+            font-style: normal;
+            display: block;
+            p {
+                font-size: 1.25em;
+                margin: 0;
+                strong {
+                    color: @mainHL;
+                }
+            }
+            cite {
+                display: block;
+                font-weight: bold;
+                text-align: right;
+            }
+        }
+        @media @mobileview {
+            min-height: 14em;
+            font-size: 0.8em;
+        }
+    }
+    .banner {
+        background-color: #F5F5F5;
+    }
+    .textBanner {
+        font-family: Raleway, sans-serif;
+        position: relative;
+        min-height: 8em;
+        p {
+            .vertical-center;
+            display: block;
+            width: 100%;
+            text-align: center;
+            font-size: 1.25em;
+            a {
+                color: black;
+                strong {
+                    color: @mainHL;
+                }
+            }
+        }
+    }
+}

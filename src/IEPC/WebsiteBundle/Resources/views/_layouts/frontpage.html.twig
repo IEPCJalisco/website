@@ -1,0 +1,28 @@
+{% extends 'IEPCWebsiteBundle::base.html.twig' %}
+
+{% block bodyClass 'frontpage' %}
+
+{% block layout %}
+    <header>
+        {% block header %}
+            {% include '@IEPCWebsite/_shared/header-default.html.twig' %}
+        {% endblock header %}
+    </header>
+
+    {% block mainMenu %}
+        {{  render(controller('IEPCWebsiteBundle:Menu:main')) }}
+    {% endblock mainMenu %}
+
+    <main class="container">
+        <div>
+            {{  render(controller('IEPCWebsiteBundle:Slider:mainSlider')) }}
+        </div>
+        {% block content '' %}
+    </main>
+
+    <footer>
+        {% block footer %}
+            {% include '@IEPCWebsite/_shared/footer-default.html.twig' %}
+        {% endblock footer %}
+    </footer>
+{% endblock layout %}

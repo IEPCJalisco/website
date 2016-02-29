@@ -7,8 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Table(name="section")
  * @ORM\Entity(repositoryClass="IEPC\ContentBundle\Repository\SectionRepository")
  */
-class Section
-{
+class Section {
     // <editor-fold defaultstate="collapsed" desc="Constants">
 
     // </editor-fold>
@@ -41,7 +40,7 @@ class Section
     /**
      * @var string
      *
-     * @ORM\Column(length=32)
+     * @ORM\Column(length=128, nullable=true)
      */
     protected $layout;
 
@@ -121,7 +120,8 @@ class Section
     /**
      * @return string
      */
-    public function getName() {
+    public function getName()
+    {
         return $this->name;
     }
 
@@ -129,7 +129,8 @@ class Section
      * @param string $name
      * @return Section
      */
-    public function setName($name) {
+    public function setName($name)
+    {
         $this->name = $name;
         return $this;
     }
@@ -145,7 +146,8 @@ class Section
      * @param string $path
      * @return Section
      */
-    public function setPath($path) {
+    public function setPath($path)
+    {
         $this->path = $path;
         return $this;
     }
@@ -153,7 +155,11 @@ class Section
     /**
      * @return string
      */
-    public function getLayout() {
+    public function getLayout()
+    {
+        if (!$this->layout && $this->getParent()) {
+            return $this->getParent()->getLayout();
+        }
         return $this->layout;
     }
 
@@ -161,7 +167,8 @@ class Section
      * @param string $layout
      * @return Section
      */
-    public function setLayout($layout) {
+    public function setLayout($layout)
+    {
         $this->layout = $layout;
         return $this;
     }

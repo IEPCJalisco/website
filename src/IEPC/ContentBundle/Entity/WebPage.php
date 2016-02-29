@@ -1,6 +1,7 @@
 <?php namespace IEPC\ContentBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="IEPC\ContentBundle\Repository\WebPageRepository")
@@ -39,6 +40,20 @@ class WebPage
      */
     protected $fullPath;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(type="boolean")
+     */
+    protected $showOnMenu;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(length=128, nullable=true)
+     */
+    protected $layout;
+
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Relations">
@@ -57,6 +72,20 @@ class WebPage
      */
     protected $content;
 
+    /**
+     * @var Section
+     *
+     * @ORM\ManyToOne(targetEntity="WebPage", inversedBy="children")
+     */
+    protected $parent;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="WebPage", mappedBy="parent")
+     */
+    protected $children;
+
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Getter and setters">
@@ -72,7 +101,8 @@ class WebPage
     /**
      * @return string
      */
-    public function getPath() {
+    public function getPath()
+    {
         return $this->path;
     }
 
@@ -80,7 +110,8 @@ class WebPage
      * @param string $path
      * @return WebPage
      */
-    public function setPath($path) {
+    public function setPath($path)
+    {
         $this->path = $path;
         return $this;
     }
@@ -88,22 +119,69 @@ class WebPage
     /**
      * @return string
      */
-    public function getFullPath() {
+    public function getFullPath()
+    {
         return $this->fullPath;
     }
 
     /**
      * @return WebPage
      */
-    public function setFullPath() {
+    public function setFullPath()
+    {
         $this->fullPath = $this->getSection()->getFullPath() . $this->getPath();
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isShowOnMenu()
+    {
+        return $this->showOnMenu;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function showsOnMenu()
+    {
+        return $this->isShowOnMenu();
+    }
+
+    /**
+     * @param boolean $showOnMenu
+     * @return WebPage
+     */
+    public function setShowOnMenu($showOnMenu)
+    {
+        $this->showOnMenu = $showOnMenu;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLayout()
+    {
+        return $this->layout ?: $this->getSection()->getLayout();
+    }
+
+    /**
+     * @param string $layout
+     * @return WebPage
+     */
+    public function setLayout($layout)
+    {
+        $this->layout = $layout;
         return $this;
     }
 
     /**
      * @return Section
      */
-    public function getSection() {
+    public function getSection()
+    {
         return $this->section;
     }
 
@@ -111,7 +189,8 @@ class WebPage
      * @param Section $section
      * @return WebPage
      */
-    public function setSection(Section $section) {
+    public function setSection(Section $section)
+    {
         $this->section = $section;
         return $this;
     }
@@ -119,7 +198,8 @@ class WebPage
     /**
      * @return Content
      */
-    public function getContent() {
+    public function getContent()
+    {
         return $this->content;
     }
 
@@ -127,12 +207,47 @@ class WebPage
      * @param Content $content
      * @return WebPage
      */
-    public function setContent($content) {
+    public function setContent($content)
+    {
         $this->content = $content;
         return $this;
     }
 
+    /**
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getChildren()
+    {
+        return $this->children;
+    }
 
+    /**
+     * @param \Doctrine\Common\Collections\ArrayCollection $children
+     * @return WebPage
+     */
+    public function setChildren(ArrayCollection $children)
+    {
+        $this->children = $children;
+        return $this;
+    }
+
+    /**
+     * @return \IEPC\ContentBundle\Entity\Section
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * @param \IEPC\ContentBundle\Entity\WebPage $parent
+     * @return WebPage
+     */
+    public function setParent(WebPage $parent)
+    {
+        $this->parent = $parent;
+        return $this;
+    }
 
     // </editor-fold>
 
@@ -140,6 +255,7 @@ class WebPage
 
     public function __construct()
     {
+        $this->setShowOnMenu(false);
     }
 
     /**

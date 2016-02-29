@@ -1,0 +1,15 @@
+<row class="container">
+    <column cols="3" class="left">
+        <a href="{{ path('iepc_website_homepage') }}">
+            {% image '@IEPCWebsiteBundle/Resources/images/iepc.png' %}
+            <img src="{{ asset_url }}" alt="IEPC">
+            {% endimage %}
+        </a>
+    </column>
+    <column cols="7" class="hideMobile hideTablet center">
+        {% block headerCenter '&nbsp;' %}
+    </column>
+    <column cols="2" class="right">
+        {% include '@IEPCWebsite/_shared/social-links-default.html.twig' %}
+    </column>
+</row>

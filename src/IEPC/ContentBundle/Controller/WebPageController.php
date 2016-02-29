@@ -1,20 +1,34 @@
 <?php namespace IEPC\ContentBundle\Controller;
 
+use IEPC\ContentBundle\Entity\WebPage;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 
 class WebPageController extends Controller
 {
-    public function indexAction($path)
-    {
+    public function renderPathAction($path = '/') {
         $em = $this->getDoctrine()->getManager();
 
-        $page = $em->getRepository('IEPCContentBundle:Page')->find($path);
-        //@todo if not found the redirect to site search, replace the '/'s with spaces
+        try {
+            $webPage = $em->getRepository('IEPCContentBundle:WebPage')
+                ->findByPath($path);
+        } catch (NoResultException $e) {
+            throw $this->createNotFoundException('La página no existe');
+        } catch (NonUniqueResultException $e) {
+            throw $this->createNotFoundException('Hay más de una página con la misma ruta');
+        }
 
-        $page->getLayout();
+        return $this->RenderWebPage($webPage);
+    }
 
-        return $this->render('IEPCContentBundle:Default:index.html.twig', array(
-            'content' => $page->getContent
-        ));
+    public function RenderWebPage(WebPage $webPage)
+    {
+        $layout  = $webPage->getLayout() ?: $this->getParameter('default_layout');
+
+        return $this->render('IEPCContentBundle:WebPage:index.html.twig', [
+            'content' => $webPage->getContent()->renderHtml(),
+            'layout'  => $layout
+        ]);
     }
 }

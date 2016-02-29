@@ -28,18 +28,31 @@ class WebPages extends AbstractFixture implements OrderedFixtureInterface, Conta
 
     public function load(ObjectManager $em)
     {
-//        $page01 = new WebPage();
-//        $page02 = new WebPage();
-//        $page03 = new WebPage();
-//
-//        $page01->setSection($this->getReference('section-participacion'));
-//        $page02->setSection($this->getReference('section-participacion'));
-//        $page03->setSection($this->getReference('section-transparencia'));
-//
-//        $page01->setContent();
-//        $page02->setContent();
-//        $page03->setContent();
-//
-//        $em->flush();
+        $mainSection          = $this->getReference('section-front');
+        $transparenciaSection = $this->getReference('section-transparencia');
+        $participacionSection = $this->getReference('section-participacion');
+
+        $frontPagePage = new WebPage();
+        $frontPagePage->setContent($this->getReference('page-front'))
+                      ->setSection($mainSection)
+                      ->setLayout('frontpage')
+                      ->setPath('/');
+
+        $transparenciaPage = new WebPage();
+        $transparenciaPage->setContent($this->getReference('page-transparencia'))
+                          ->setSection($transparenciaSection)
+                          ->setPath('');
+
+        $participacionPage = new WebPage();
+        $participacionPage->setContent($this->getReference('page-participacion'))
+                          ->setSection($participacionSection)
+                          ->setLayout('participacion-ciudadana-frontpage')
+                          ->setPath('');
+
+        $em->persist($frontPagePage);
+        $em->persist($transparenciaPage);
+        $em->persist($participacionPage);
+
+        $em->flush();
     }
 }

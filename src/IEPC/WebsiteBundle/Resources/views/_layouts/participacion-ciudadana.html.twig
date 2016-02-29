@@ -1,0 +1,31 @@
+{% extends 'IEPCWebsiteBundle::base.html.twig' %}
+
+{% block bodyClass 'participacion-ciudadana' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    {% stylesheets output='css/iepcjalisco.css' filter='?yui_css'
+        '@IEPCWebsiteBundle/Resources/less/sections/participacion-ciudadana.less'
+    %}
+    <link rel="stylesheet" href="{{ asset_url }}">
+    {% endstylesheets %}
+{% endblock stylesheets %}
+
+{% block layout %}
+    <header>
+        {% block header %}
+            {% include '@IEPCWebsite/_shared/header-participacion-ciudadana.html.twig' %}
+        {% endblock header %}
+    </header>
+
+    {% block mainMenu %}
+        {{  render(controller('IEPCWebsiteBundle:Menu:participacionCiudadana')) }}
+    {% endblock mainMenu %}
+
+    {% block mainContainer %}
+        <main class="container">
+            {% block content '' %}
+        </main>
+    {% endblock mainContainer %}
+{% endblock layout %}

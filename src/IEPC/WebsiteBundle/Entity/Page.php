@@ -41,7 +41,8 @@ class Page extends Content
     /**
      * @return string
      */
-    public function getContent() {
+    public function getContent()
+    {
         return $this->content;
     }
 
@@ -49,7 +50,8 @@ class Page extends Content
      * @param string $content
      * @return Page
      */
-    public function setContent($content) {
+    public function setContent($content)
+    {
         $this->content = $content;
         return $this;
     }
@@ -60,10 +62,12 @@ class Page extends Content
 
     public function __construct()
     {
+        parent::__construct();
+        $this->setContent('');
     }
 
     public function renderHtml() {
-        // TODO: Implement renderHtml() method.
+        return $this->getContent();
     }
 
     public function renderJson() {
