@@ -59,12 +59,29 @@ abstract class Content implements ContentInterface
         return $this->id;
     }
 
+    /**
+     * @return ArrayCollection
+     */
+    public function getWebPages() {
+        return $this->webPages;
+    }
+
+    /**
+     * @param ArrayCollection $webPages
+     * @return Content
+     */
+    public function setWebPages(ArrayCollection $webPages) {
+        $this->webPages = $webPages;
+        return $this;
+    }
+
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Functions">
 
     public function __construct()
     {
+        $this->setWebPages(new ArrayCollection());
     }
 
     public function renderJson() {

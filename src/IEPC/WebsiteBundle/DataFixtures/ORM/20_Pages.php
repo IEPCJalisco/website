@@ -30,22 +30,35 @@ class Pages extends AbstractFixture implements OrderedFixtureInterface, Containe
     public function load(ObjectManager $em)
     {
         $frontPage = new Page();
-        $frontPage->setContent('<main><h1>Frontpage</h1></main>');
+        $frontPage->setContent('<h1>Frontpage</h1>');
 
         $transparenciaFrontPage = new Page();
-        $transparenciaFrontPage->setContent('<main><h1>Transparencia placeholder</h1></main>');
+        $transparenciaFrontPage->setContent('<h1>Transparencia placeholder</h1>');
 
         $participacionFrontPage = new Page();
-        $participacionFrontPage->setContent('<main><h1>Participación Ciudadana</h1></main>');
+        $participacionFrontPage->setContent('<h1>Participación Ciudadana</h1>');
+
+
+        $participacionFrontPage = new Page();
+        $participacionFrontPage->setContent('<h1>Participación Ciudadana</h1>');
+
+
+        $participacionFrontPlebiscito = new Page();
+        $participacionFrontPlebiscito->setContent('<article><h1>Plebiscito</h1></article>');
+
 
         $em->persist($frontPage);
         $em->persist($transparenciaFrontPage);
+
         $em->persist($participacionFrontPage);
+        $em->persist($participacionFrontPlebiscito);
 
         $em->flush();
 
         $this->addReference('page-front',         $frontPage);
         $this->addReference('page-transparencia', $transparenciaFrontPage);
-        $this->addReference('page-participacion', $participacionFrontPage);
+
+        $this->addReference('page-participacion',            $participacionFrontPage);
+        $this->addReference('page-participacion-plebiscito', $participacionFrontPlebiscito);
     }
 }

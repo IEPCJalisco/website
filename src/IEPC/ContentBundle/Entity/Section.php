@@ -6,8 +6,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * @ORM\Table(name="section")
  * @ORM\Entity(repositoryClass="IEPC\ContentBundle\Repository\SectionRepository")
+ *
+ * @TODO Make option to disable/unpublish entire section
  */
-class Section {
+class Section
+{
     // <editor-fold defaultstate="collapsed" desc="Constants">
 
     // </editor-fold>

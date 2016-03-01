@@ -2,6 +2,7 @@
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="IEPC\ContentBundle\Repository\WebPageRepository")
@@ -9,6 +10,11 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Table(indexes={
  *     @ORM\Index(name="idx_fullPath", columns={"full_path"})
  * })
+ *  @UniqueEntity("full_path")
+ *
+ * @TODO Make fields for meta tags for social sharing
+ * @TODO Make option to publish/unpublish
+ * @TODO Make Uniqueness only for publishced pages (repositoryMethod)
  */
 class WebPage
 {
@@ -256,6 +262,10 @@ class WebPage
     public function __construct()
     {
         $this->setShowOnMenu(false);
+    }
+
+    public function __toString() {
+        return $this->getFullPath();
     }
 
     /**

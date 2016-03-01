@@ -1,7 +1,7 @@
 assetic:
     debug: '%kernel.debug%'
     use_controller: true
-    bundles: ['IEPCWebsiteBundle']
+    bundles: ['IEPCWebsiteBundle', 'IEPCContentAdminBundle']
     java: %java_dir%
     filters:
         cssrewrite: ~

@@ -1,0 +1,10 @@
+{% extends '@IEPCContentAdmin/_layouts/default.html.twig' %}
+
+{% block content %}
+    <h1>Secciones</h1>
+    <ul>
+        {% for section in sections %}
+            <li>[editar] {{ section }} [<a href="/{{ section.fullPath }}" target="_blank">/{{ section.fullPath }}</a>]</li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

@@ -1,4 +1,6 @@
-<?php namespace IEPC\GeographyBundle\Tests\Controller;
+<?php
+
+namespace IEPC\ContentAdminBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

@@ -74,5 +74,9 @@ class Page extends Content
         // TODO: Implement renderJson() method.
     }
 
+    public function __toString() {
+        return self::class;
+    }
+
     // </editor-fold>
 }

@@ -1,0 +1,36 @@
+{% extends 'IEPCWebsiteBundle::base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/default.min.css">
+{% endblock stylesheets %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {#<script src="//cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>#}
+    {% javascripts output='js/iepcjaliscoadmin.js' filter='?yui_js'
+        '@IEPCContentAdminBundle/Resources/javascript/admincontent.js'
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock javascripts %}
+
+{% block layout %}
+    <header>
+        <h1><a href="{{ path('iepc_content_admin_homepage') }}">Administración</a></h1>
+    </header>
+
+    {% block mainMenu %}
+        {#{{  render(controller('IEPCWebsiteBundle:Menu:main')) }}#}
+    {% endblock mainMenu %}
+
+    <main class="container">
+        {% block content '' %}
+    </main>
+
+    <footer>
+        --Footer--
+        {#{% block footer %}#}
+            {#{% include '@IEPCWebsite/_shared/footer-default.html.twig' %}#}
+        {#{% endblock footer %}#}
+    </footer>
+{% endblock layout %}

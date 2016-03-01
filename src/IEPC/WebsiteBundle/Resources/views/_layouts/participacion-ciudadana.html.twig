@@ -25,7 +25,14 @@
 
     {% block mainContainer %}
         <main class="container">
-            {% block content '' %}
+            <row end>
+                <column cols="9">
+                    {% block content '' %}
+                </column>
+                <column cols="3">
+                    <h1>Sidebars</h1>
+                </column>
+            </row>
         </main>
     {% endblock mainContainer %}
 {% endblock layout %}

@@ -1,0 +1,11 @@
+{% extends '@IEPCContentAdmin/_layouts/default.html.twig' %}
+
+{% block content %}
+    <h1>Editar {{ content }}</h1>
+
+    <article data-id="{{ content.id }}">
+        <textarea rows="10">{{ content.content }}</textarea>
+        <button onclick="saveContent.apply(this)">Guardar</button>
+    </article>
+
+{% endblock content %}

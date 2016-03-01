@@ -24,5 +24,12 @@ interface ContentInterface
      * @return string
      */
     public function renderJson();
+
+    /**
+     * Prints the string version of content object
+     *
+     * @return string
+     */
+    public function __toString();
 }
 
