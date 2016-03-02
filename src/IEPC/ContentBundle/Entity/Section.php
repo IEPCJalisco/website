@@ -2,10 +2,14 @@
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Table(name="section")
  * @ORM\Entity(repositoryClass="IEPC\ContentBundle\Repository\SectionRepository")
+ *
+ * @UniqueEntity({"path", "parent"})
  *
  * @TODO Make option to disable/unpublish entire section
  */
@@ -30,13 +34,15 @@ class Section
      * @var string
      *
      * @ORM\Column(length=255)
+     * @Assert\NotBlank()
      */
     protected $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(length=32)
+     * @ORM\Column(length=128)
+     * @Assert\Regex("/^[a-z0-9_-]{0,128}$/")
      */
     protected $path;
 
@@ -160,9 +166,6 @@ class Section
      */
     public function getLayout()
     {
-        if (!$this->layout && $this->getParent()) {
-            return $this->getParent()->getLayout();
-        }
         return $this->layout;
     }
 
@@ -195,6 +198,14 @@ class Section
     public function __toString()
     {
         return $this->getName();
+    }
+
+    public function getActiveLayout()
+    {
+        if (!$this->layout && $this->getParent()) {
+            return $this->getParent()->getLayout();
+        }
+        return $this->layout;
     }
 
     /**

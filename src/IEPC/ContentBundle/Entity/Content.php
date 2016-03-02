@@ -12,7 +12,8 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\DiscriminatorColumn(name="discr", type="string")
  * @ORM\DiscriminatorMap({
  *     "content" = "Content",
- *     "page"    = "IEPC\WebsiteBundle\Entity\Page"
+ *     "page"    = "IEPC\WebsiteBundle\Entity\Page",
+ *     "event"   = "IEPC\WebsiteBundle\Entity\Event"
  * })
  * @ORM\Table(indexes={
  *     @ORM\Index(name="idx_discr", columns={"discr"})}
@@ -36,6 +37,13 @@ abstract class Content implements ContentInterface
      */
     protected $id;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(length=128)
+     */
+    protected $name;
+
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Relations">
@@ -57,6 +65,24 @@ abstract class Content implements ContentInterface
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     * @return Content
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+        return $this;
     }
 
     /**
@@ -84,15 +110,22 @@ abstract class Content implements ContentInterface
         $this->setWebPages(new ArrayCollection());
     }
 
-    public function renderJson() {
-        return json_encode(array(
+    public function renderJson()
+    {
+        return json_encode([
             'id' => $this->getId()
-        ));
+        ]);
     }
 
-    public function renderHtml() {
+    public function renderHtml()
+    {
         $id = $this->getId();
         return "<article>Content Id: <strong>{ $id }</strong> </article>";
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
     }
 
     // </editor-fold>

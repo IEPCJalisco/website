@@ -2,9 +2,14 @@
 
 {% block content %}
     <h1>Secciones</h1>
+    [<a href="{{ path('iepc_content_admin_section_edit') }}">nueva</a>]
     <ul>
         {% for section in sections %}
-            <li>[editar] {{ section }} [<a href="/{{ section.fullPath }}" target="_blank">/{{ section.fullPath }}</a>]</li>
+            <li>
+                [<a href="{{ path('iepc_content_admin_section_edit', {id: section.id}) }}">editar</a>]
+                {{ section }}
+                [<i>{{ section.fullPath }}</i>]
+            </li>
         {% endfor %}
     </ul>
 {% endblock content %}

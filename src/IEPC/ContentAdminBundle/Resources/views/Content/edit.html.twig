@@ -4,8 +4,15 @@
     <h1>Editar {{ content }}</h1>
 
     <article data-id="{{ content.id }}">
-        <textarea rows="10">{{ content.content }}</textarea>
+        <textarea id="contentEdit" rows="10">{{ content.content }}</textarea>
         <button onclick="saveContent.apply(this)">Guardar</button>
     </article>
 
 {% endblock content %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        CKEDITOR.replace('contentEdit');
+    </script>
+{% endblock javascripts %}

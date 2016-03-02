@@ -24,7 +24,7 @@ class WebPageController extends Controller
 
     public function RenderWebPage(WebPage $webPage)
     {
-        $layout  = $webPage->getLayout() ?: $this->getParameter('default_layout');
+        $layout  = $webPage->getActiveLayout() ?: $this->getParameter('default_layout');
 
         return $this->render('IEPCContentBundle:WebPage:index.html.twig', [
             'content' => $webPage->getContent()->renderHtml(),

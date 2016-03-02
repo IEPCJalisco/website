@@ -1,12 +1,15 @@
-/* TEAM */
+Instituto Electoral y de Participación Ciudadana del Estado de Jalisco
+
+Sitio web hecho a mano
+
+/* EQUIPO */
 
 Webmaster/Programador: Ismael Barragan <izma@mabkil.com>
 Twitter: izambl
 Location: Zapopan, México
 
 
+/* SITIO */
 
-/* SITE */
-
-Last update: 2016/01
+Last update: 2016/03
 Standards: HTML5, CSS3

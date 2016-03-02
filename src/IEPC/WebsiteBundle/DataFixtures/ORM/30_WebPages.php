@@ -54,11 +54,18 @@ class WebPages extends AbstractFixture implements OrderedFixtureInterface, Conta
             ->setSection($participacionSection)
             ->setPath('/plebiscito');
 
+        $participacionPlebiscitoPage2 = new WebPage();
+        $participacionPlebiscitoPage2->setContent($this->getReference('page-participacion-plebiscito'))
+            ->setSection($participacionSection)
+            ->setLayout('participacion-ciudadana-alter')
+            ->setPath('/referendum');
+
         $em->persist($frontPagePage);
         $em->persist($transparenciaPage);
 
         $em->persist($participacionPage);
         $em->persist($participacionPlebiscitoPage);
+        $em->persist($participacionPlebiscitoPage2);
 
         $em->flush();
     }

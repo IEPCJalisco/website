@@ -30,28 +30,31 @@ class Pages extends AbstractFixture implements OrderedFixtureInterface, Containe
     public function load(ObjectManager $em)
     {
         $frontPage = new Page();
-        $frontPage->setContent('<h1>Frontpage</h1>');
+        $frontPage->setContent('<h1>Frontpage</h1>')
+                  ->setName('FrontPage');
 
         $transparenciaFrontPage = new Page();
-        $transparenciaFrontPage->setContent('<h1>Transparencia placeholder</h1>');
+        $transparenciaFrontPage->setContent('<h1>Transparencia placeholder</h1>')
+            ->setName('Transparencia frontpage');
 
         $participacionFrontPage = new Page();
-        $participacionFrontPage->setContent('<h1>Participación Ciudadana</h1>');
-
-
-        $participacionFrontPage = new Page();
-        $participacionFrontPage->setContent('<h1>Participación Ciudadana</h1>');
-
+        $participacionFrontPage->setContent('<h1>Participación Ciudadana</h1>')
+            ->setName('Participación frontpage');
 
         $participacionFrontPlebiscito = new Page();
-        $participacionFrontPlebiscito->setContent('<article><h1>Plebiscito</h1></article>');
+        $participacionFrontPlebiscito->setContent('<article><h1>Plebiscito</h1></article>')
+            ->setName('Participación: Plebiscito');
 
+        $participacionReferendum = new Page();
+        $participacionReferendum->setContent('<article><h1>Referéndum</h1></article>')
+            ->setName('Participación: Referéndum');
 
         $em->persist($frontPage);
         $em->persist($transparenciaFrontPage);
 
         $em->persist($participacionFrontPage);
         $em->persist($participacionFrontPlebiscito);
+        $em->persist($participacionReferendum);
 
         $em->flush();
 
@@ -60,5 +63,6 @@ class Pages extends AbstractFixture implements OrderedFixtureInterface, Containe
 
         $this->addReference('page-participacion',            $participacionFrontPage);
         $this->addReference('page-participacion-plebiscito', $participacionFrontPlebiscito);
+        $this->addReference('page-participacion-referendum', $participacionReferendum);
     }
 }

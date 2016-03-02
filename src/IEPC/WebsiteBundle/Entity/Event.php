@@ -5,11 +5,11 @@ use IEPC\ContentBundle\Entity\Content;
 
 /**
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="IEPC\WebsiteBundle\Repository\PageRepository")
+ * @ORM\Entity(repositoryClass="IEPC\WebsiteBundle\Repository\EventRepository")
  *
  * @package IEPCWebsiteBundle
  */
-class Page extends Content
+class Event extends Content
 {
     // <editor-fold defaultstate="collapsed" desc="Constants">
     // </editor-fold>
@@ -72,6 +72,10 @@ class Page extends Content
 
     public function renderJson() {
         // TODO: Implement renderJson() method.
+    }
+
+    public function __toString() {
+        return self::class;
     }
 
     // </editor-fold>

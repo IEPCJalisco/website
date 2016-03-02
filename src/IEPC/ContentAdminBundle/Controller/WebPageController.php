@@ -2,6 +2,8 @@
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use IEPC\ContentBundle\Entity\WebPage;
+use IEPC\ContentAdminBundle\Form\Type\WebPageType;
 
 class WebPageController extends Controller
 {
@@ -15,13 +17,42 @@ class WebPageController extends Controller
         ]);
     }
 
-    public function editAction($id)
+    public function editAction($id = null, Request $request)
     {
+        if ($id !== null) {
+            $em = $this->getDoctrine()->getManager();
 
+            if (null === ($webpage = $em->getRepository('IEPCContentBundle:WebPage')->find($id))) {
+                throw new EntityNotFoundException();
+            };
+        }
+        else {
+            $webpage = new WebPage();
+        }
+
+        $form = $this->getForm($webpage);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            if (!isset($em)) {
+                $em = $this->getDoctrine()->getManager();
+            }
+
+            $em->persist($webpage);
+            $em->flush();
+
+            return $this->redirectToRoute('iepc_content_admin_webpage');
+        }
+
+        return $this->render('@IEPCContentAdmin/WebPage/edit.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
-    public function saveAction($id = null, Request $request)
+    private function getForm($webpage)
     {
-
+        return $this->createForm(WebPageType::class, $webpage, [
+            'method' => 'POST'
+        ]);
     }
 }

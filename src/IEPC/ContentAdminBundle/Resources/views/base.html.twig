@@ -1,0 +1,17 @@
+{% extends 'IEPCWebsiteBundle::base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/default.min.css">
+{% endblock stylesheets %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="//cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
+    {% javascripts output='js/iepcjaliscoadmin.js' filter='?yui_js'
+    '@IEPCContentAdminBundle/Resources/javascript/admincontent.js'
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock javascripts %}
+
+{% block layout '' %}

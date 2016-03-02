@@ -10,11 +10,13 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Table(indexes={
  *     @ORM\Index(name="idx_fullPath", columns={"full_path"})
  * })
- *  @UniqueEntity("full_path")
+ *  @UniqueEntity("fullPath")
  *
  * @TODO Make fields for meta tags for social sharing
  * @TODO Make option to publish/unpublish
  * @TODO Make Uniqueness only for publishced pages (repositoryMethod)
+ *
+ * @TODO Make Interface to make webpages searchables by elasticsearch api
  */
 class WebPage
 {
@@ -170,7 +172,7 @@ class WebPage
      */
     public function getLayout()
     {
-        return $this->layout ?: $this->getSection()->getLayout();
+        return $this->layout;
     }
 
     /**
@@ -266,6 +268,11 @@ class WebPage
 
     public function __toString() {
         return $this->getFullPath();
+    }
+
+    public function getActiveLayout()
+    {
+        return $this->getLayout() ?: $this->getSection()->getActiveLayout();
     }
 
     /**
