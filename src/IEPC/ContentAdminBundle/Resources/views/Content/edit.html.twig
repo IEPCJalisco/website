@@ -9,7 +9,11 @@
 {% block javascripts %}
     {{ parent() }}
     <script>
-        CKEDITOR.replace('page_content');
+        CKEDITOR.replace('page_content', {
+            extraPlugins: 'uploadimage',
+            height       : '300'
+        });
+
         $('#page_Guardar').on('click', function(){
             saveContent.apply(this);
         });
