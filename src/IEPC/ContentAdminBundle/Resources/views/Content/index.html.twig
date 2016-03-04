@@ -11,7 +11,7 @@
                     <ul>
                         {% for webpage in content.webpages %}
                             <li>
-                                <a href="/{{ webpage }}" target="_blank">/{{ webpage }}</a>
+                                <a href="{{ webpage }}" target="_blank">{{ webpage }}</a>
                             </li>
                         {% endfor %}
                     </ul>

@@ -245,7 +245,7 @@ class Section
     public function getFullPath()
     {
         if ($this->getParent()) {
-            return $this->getParent()->getFullPath() . $this->getPath();
+            return ($this->getParent()->getFullPath() != '/'?$this->getParent()->getFullPath():'') . '/' . $this->getPath();
         }
         else {
             return $this->getPath();

@@ -10,6 +10,10 @@ class WebPageController extends Controller
     public function renderPathAction($path = '/') {
         $em = $this->getDoctrine()->getManager();
 
+        if (substr($path, 0, 1) != '/') {
+            $path = "/{$path}";
+        }
+
         try {
             $webPage = $em->getRepository('IEPCContentBundle:WebPage')
                 ->findByPath($path);

@@ -36,7 +36,7 @@ class WebPages extends AbstractFixture implements OrderedFixtureInterface, Conta
         $frontPagePage->setContent($this->getReference('page-front'))
                       ->setSection($mainSection)
                       ->setLayout('frontpage')
-                      ->setPath('/');
+                      ->setPath('');
 
         $transparenciaPage = new WebPage();
         $transparenciaPage->setContent($this->getReference('page-transparencia'))
@@ -52,7 +52,7 @@ class WebPages extends AbstractFixture implements OrderedFixtureInterface, Conta
         $participacionPlebiscitoPage = new WebPage();
         $participacionPlebiscitoPage->setContent($this->getReference('page-participacion-plebiscito'))
             ->setSection($participacionSection)
-            ->setPath('/plebiscito');
+            ->setPath('plebiscito');
 
         $em->persist($frontPagePage);
         $em->persist($transparenciaPage);

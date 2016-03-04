@@ -29,7 +29,7 @@ class Sections extends AbstractFixture implements OrderedFixtureInterface, Conta
     public function load(ObjectManager $em)
     {
         $front = new Section('Front');
-        $front->setPath('');
+        $front->setPath('/');
 
         $transparencia = new Section('Transparencia');
         $transparencia->setPath('transparencia')

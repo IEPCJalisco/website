@@ -137,7 +137,13 @@ class WebPage
      */
     public function setFullPath()
     {
-        $this->fullPath = $this->getSection()->getFullPath() . $this->getPath();
+        if (strlen($this->getPath()) == 0 ) {
+            $this->fullPath = $this->getSection()->getFullPath();
+        }
+        else {
+            $this->fullPath = $this->getSection()->getFullPath() . '/' . $this->getPath();
+        }
+
         return $this;
     }
 
