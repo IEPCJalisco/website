@@ -1,18 +1,17 @@
 {% extends '@IEPCContentAdmin/_layouts/default.html.twig' %}
 
 {% block content %}
-    <h1>Editar {{ content }}</h1>
 
-    <article data-id="{{ content.id }}">
-        <textarea id="contentEdit" rows="10">{{ content.content }}</textarea>
-        <button onclick="saveContent.apply(this)">Guardar</button>
-    </article>
+    {{ form(form) }}
 
 {% endblock content %}
 
 {% block javascripts %}
     {{ parent() }}
     <script>
-        CKEDITOR.replace('contentEdit');
+        CKEDITOR.replace('page_content');
+        $('#page_Guardar').on('click', function(){
+            saveContent.apply(this);
+        });
     </script>
 {% endblock javascripts %}

@@ -50,11 +50,31 @@ class SectionController extends Controller
         ]);
     }
 
+    public function deleteAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        if (null === ($section = $em->getRepository('IEPCContentBundle:Section')->find($id))) {
+            throw new EntityNotFoundException();
+        };
+
+        if ($section->getWebPages()->count() > 0) {
+            throw new \Exception("Can't delete sections with webpages");
+        }
+        if ($section->getChildren()->count() > 0) {
+            throw new \Exception("Can't delete sections with childrens");
+        }
+
+        $em->remove($section);
+        $em->flush();
+
+        return $this->redirectToRoute('iepc_content_admin_section');
+    }
+
     private function getForm($section)
     {
         return $this->createForm(SectionType::class, $section, [
             'method' => 'POST'
         ]);
     }
-
 }

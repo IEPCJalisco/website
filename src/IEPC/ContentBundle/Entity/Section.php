@@ -4,6 +4,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
+use IEPC\ContentBundle\Entity\WebPage;
 
 /**
  * @ORM\Table(name="section")
@@ -85,16 +86,14 @@ class Section
     /**
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
     /**
      * @return \Doctrine\Common\Collections\ArrayCollection
      */
-    public function getChildren()
-    {
+    public function getChildren() {
         return $this->children;
     }
 
@@ -102,8 +101,7 @@ class Section
      * @param \Doctrine\Common\Collections\ArrayCollection $children
      * @return Section
      */
-    public function setChildren(ArrayCollection $children)
-    {
+    public function setChildren(ArrayCollection $children) {
         $this->children = $children;
         return $this;
     }
@@ -111,8 +109,7 @@ class Section
     /**
      * @return \IEPC\ContentBundle\Entity\Section
      */
-    public function getParent()
-    {
+    public function getParent() {
         return $this->parent;
     }
 
@@ -120,8 +117,7 @@ class Section
      * @param \IEPC\ContentBundle\Entity\Section $parent
      * @return Section
      */
-    public function setParent(Section $parent)
-    {
+    public function setParent(Section $parent) {
         $this->parent = $parent;
         return $this;
     }
@@ -129,8 +125,7 @@ class Section
     /**
      * @return string
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
 
@@ -138,8 +133,7 @@ class Section
      * @param string $name
      * @return Section
      */
-    public function setName($name)
-    {
+    public function setName($name) {
         $this->name = $name;
         return $this;
     }
@@ -155,8 +149,7 @@ class Section
      * @param string $path
      * @return Section
      */
-    public function setPath($path)
-    {
+    public function setPath($path) {
         $this->path = $path;
         return $this;
     }
@@ -164,8 +157,7 @@ class Section
     /**
      * @return string
      */
-    public function getLayout()
-    {
+    public function getLayout() {
         return $this->layout;
     }
 
@@ -173,9 +165,47 @@ class Section
      * @param string $layout
      * @return Section
      */
-    public function setLayout($layout)
-    {
+    public function setLayout($layout) {
         $this->layout = $layout;
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getWebPages() {
+        return $this->webPages;
+    }
+
+    /**
+     * @param ArrayCollection $webPages
+     * @return Section
+     */
+    public function setWebPages($webPages) {
+        $this->webPages = $webPages;
+        return $this;
+    }
+
+    /**
+     * @param WebPage $webPage
+     * @return Section
+     */
+    public function addWebPage(WebPage $webPage)
+    {
+        if (!$this->getWebPages()->contains($webPage)) {
+            $this->getWebPages()->add($webPage);
+            $webPage->setSection($this);
+        }
+        return $this;
+    }
+
+    /**
+     * @param \IEPC\ContentBundle\Entity\WebPage $webPage
+     * @return Section
+     */
+    public function removeWebPage(WebPage $webPage)
+    {
+        $this->getWebPages()->removeElement($webPage);
         return $this;
     }
 
@@ -190,6 +220,7 @@ class Section
         }
 
         $this->setChildren(new ArrayCollection());
+        $this->setWebPages(new ArrayCollection());
     }
 
     /**

@@ -16,6 +16,11 @@ iepc_content_admin_section_edit:
         _controller: IEPCContentAdminBundle:Section:edit
         id: null
 
+iepc_content_admin_section_delete:
+    path:     /section/delete/{id}
+    defaults:
+        _controller: IEPCContentAdminBundle:Section:delete
+
 
 
 iepc_content_admin_webpage:
@@ -29,6 +34,11 @@ iepc_content_admin_webpage_edit:
         _controller: IEPCContentAdminBundle:WebPage:edit
         id: null
 
+iepc_content_admin_webpage_delete:
+    path:     /webpage/delete/{id}
+    defaults:
+        _controller: IEPCContentAdminBundle:WebPage:delete
+
 
 iepc_content_admin_content:
     path:     /content
@@ -39,10 +49,4 @@ iepc_content_admin_content_edit:
     path:     /content/edit/{id}
     defaults:
         _controller: IEPCContentAdminBundle:Content:edit
-    methods: [GET]
-
-iepc_content_admin_content_edit_save:
-    path:     /content/edit/{id}
-    defaults:
-        _controller: IEPCContentAdminBundle:Content:save
-    methods: [POST]
+        id: null

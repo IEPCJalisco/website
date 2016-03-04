@@ -1,9 +1,12 @@
-<?php  namespace IEPC\ContentAdminBundle\Controller;
+<?php namespace IEPC\ContentAdminBundle\Controller;
 
+use IEPC\WebsiteBundle\Entity\Page;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Request;
+use IEPC\WebsiteBundle\Form\Type\PageType;
+use Doctrine\ORM\EntityNotFoundException;
 
 class ContentController extends Controller
 {
@@ -20,32 +23,44 @@ class ContentController extends Controller
         ]);
     }
 
-    public function editAction($id)
+    public function editAction($id = null, Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
+        //@TODO Use content manager
 
-        if (null === ($content = $em->getRepository('IEPCContentBundle:Content')->find($id))){
-            throw new NotFoundHttpException();
+        if ($id !== null) {
+            $em = $this->getDoctrine()->getManager();
+
+            if (null === ($page = $em->getRepository('IEPCWebsiteBundle:Page')->find($id))) {
+                throw new EntityNotFoundException();
+            };
+        }
+        else {
+            $page = new Page();
         }
 
-        return $this->render('IEPCContentAdminBundle:Content:edit.html.twig', [
-            'content' => $content
+        $form = $this->getForm($page);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            if (!isset($em)) {
+                $em = $this->getDoctrine()->getManager();
+            }
+
+            $em->persist($page);
+            $em->flush();
+
+            return $this->redirectToRoute('iepc_content_admin_content');
+        }
+
+        return $this->render('@IEPCContentAdmin/Content/edit.html.twig', [
+            'form' => $form->createView(),
         ]);
     }
 
-    public function saveAction($id = null, Request $request)
+    private function getForm($section)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        if (null === ($content = $em->getRepository('IEPCContentBundle:Content')->find($id))){
-            throw new NotFoundHttpException();
-        }
-
-        $content->setContent($request->request->get('content'));
-
-        $em->persist($content);
-        $em->flush();
-
-        return new JsonResponse(['status' => 'ok']);
+        return $this->createForm(PageType::class, $section, [
+            'method' => 'POST'
+        ]);
     }
 }

@@ -49,6 +49,24 @@ class WebPageController extends Controller
         ]);
     }
 
+    public function deleteAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        if (null === ($webPage = $em->getRepository('IEPCContentBundle:WebPage')->find($id))) {
+            throw new EntityNotFoundException();
+        };
+
+        if ($webPage->getChildren()->count() > 0) {
+            throw new \Exception("Can't delete webpages with childrens");
+        }
+
+        $em->remove($webPage);
+        $em->flush();
+
+        return $this->redirectToRoute('iepc_content_admin_webpage');
+    }
+
     private function getForm($webpage)
     {
         return $this->createForm(WebPageType::class, $webpage, [
