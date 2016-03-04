@@ -3,15 +3,8 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: assetic.yml }
+    - { resource: content.yml }
     - { resource: "@IEPCContentBundle/Resources/config/services.yml" }
-    - { resource: "@IEPCDocumentBundle/Resources/config/services.yml" }
-    - { resource: "@IEPCContentAdminBundle/Resources/config/services.yml" }
-#    - { resource: "@IEPCCMSBundle/Resources/config/services.yml" }
-#    - { resource: "@IEPCFilesBundle/Resources/config/services.yml" }
-#    - { resource: "@IEPCGeographyBundle/Resources/config/services.yml" }
-#    - { resource: "@IEPCPageBundle/Resources/config/services.yml" }
-#    - { resource: "@IEPCWebsiteBundle/Resources/config/services.yml" }
-#    - { resource: "@IEPCSesionBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration

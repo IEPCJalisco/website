@@ -21,4 +21,5 @@ parameters:
     secret:            ThisTokenIsNotSoSecretChangeIt
 
     #CMS
-    default_layout: 'default'
+    default_layout: default
+    documents_dir: documents

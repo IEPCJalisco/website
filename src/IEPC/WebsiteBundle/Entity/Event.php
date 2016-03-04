@@ -33,16 +33,14 @@ class Event extends Content
     /**
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
     /**
      * @return string
      */
-    public function getContent()
-    {
+    public function getContent() {
         return $this->content;
     }
 
@@ -50,8 +48,7 @@ class Event extends Content
      * @param string $content
      * @return Page
      */
-    public function setContent($content)
-    {
+    public function setContent($content) {
         $this->content = $content;
         return $this;
     }
@@ -60,8 +57,7 @@ class Event extends Content
 
     // <editor-fold defaultstate="collapsed" desc="Functions">
 
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
         $this->setContent('');
     }
@@ -76,6 +72,20 @@ class Event extends Content
 
     public function __toString() {
         return self::class;
+    }
+
+    // </editor-fold>
+
+    // <editor-fold defaultstate="collapsed" desc="Static Functions">
+
+    public static function getEntityName()
+    {
+        return 'Evento';
+    }
+
+    public static function getEntityNamePlural()
+    {
+        return 'Eventos';
     }
 
     // </editor-fold>

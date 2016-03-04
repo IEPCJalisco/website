@@ -1,0 +1,4 @@
+parameters:
+    content_types:
+        - Page: IEPC\WebsiteBundle\Entity\Page
+        - Event: IEPC\WebsiteBundle\Entity\Event

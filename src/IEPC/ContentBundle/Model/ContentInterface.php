@@ -31,5 +31,15 @@ interface ContentInterface
      * @return string
      */
     public function __toString();
+
+    /**
+     * @return string
+     */
+    public static function getEntityName();
+
+    /**
+     * @return string
+     */
+    public static function getEntityNamePlural();
 }
 

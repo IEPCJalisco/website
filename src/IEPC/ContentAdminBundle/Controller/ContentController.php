@@ -10,6 +10,9 @@ class ContentController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
+
+        $ct = $this->get('iepc.content_manager')->getContentTypes();
+
         $contents = $em->getRepository('IEPCContentBundle:Content')->findAll();
 
         return $this->render('IEPCContentAdminBundle:Content:index.html.twig', [

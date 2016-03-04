@@ -4,8 +4,7 @@
 
 {% block stylesheets %}
     {{ parent() }}
-
-    {% stylesheets output='css/iepcjalisco.css' filter='?yui_css'
+    {% stylesheets output='css/participacion-ciudadana.css' filter='?yui_css'
         '@IEPCWebsiteBundle/Resources/less/sections/participacion-ciudadana.less'
     %}
     <link rel="stylesheet" href="{{ asset_url }}">
