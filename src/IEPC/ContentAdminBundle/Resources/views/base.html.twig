@@ -6,7 +6,7 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('assets/vendor/ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ asset('assets/vendor/tinymce/tinymce.js') }}"></script>
     {% javascripts output='js/iepcjaliscoadmin.js' filter='?yui_js'
     '@IEPCContentAdminBundle/Resources/javascript/admincontent.js'
     %}

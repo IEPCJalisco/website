@@ -4,6 +4,15 @@ iepc_content_admin_homepage:
         _controller: IEPCContentAdminBundle:ContentAdmin:index
 
 
+iepc_admin_tinymce_upload:
+    path: /tinymce/upload
+    defaults:
+        _controller: IEPCContentAdminBundle:TinyMCE:upload
+
+iepc_admin_tinymcer_browse:
+    path: /tinymce/browse
+    defaults:
+        _controller: IEPCContentAdminBundle:TinyMCE:browse
 
 iepc_content_admin_section:
     path:     /section
