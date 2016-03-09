@@ -18,11 +18,14 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
 
+            new FOS\UserBundle\FOSUserBundle(),
+
             new IEPC\FilesBundle\IEPCFilesBundle(),
             new IEPC\WebsiteBundle\IEPCWebsiteBundle(),
             new IEPC\ContentBundle\IEPCContentBundle(),
             new IEPC\DocumentBundle\IEPCDocumentBundle(),
             new IEPC\ContentAdminBundle\IEPCContentAdminBundle(),
+            new IEPC\SecurityBundle\IEPCSecurityBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

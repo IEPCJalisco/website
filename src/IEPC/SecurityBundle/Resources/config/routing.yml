@@ -1,0 +1,3 @@
+iepc_security_homepage:
+    path:     /
+    defaults: { _controller: IEPCSecurityBundle:Default:index }
