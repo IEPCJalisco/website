@@ -2,16 +2,46 @@
 
 {% block content %}
     {{ form(form) }}
-    <input id="file_uploader" type="file" onchange="$('#my_form').submit(); this.value='';">
+    <input id="file_uploader" type="file" class="hidden">
 {% endblock content %}
 
 {% block javascripts %}
     {{ parent() }}
     <script>
+        function uploadFile(file, fileInput)
+        {
+            var url = '/admin/tinymce/upload',
+                xhr = new XMLHttpRequest(),
+                fd  = new FormData();
+
+            xhr.open('POST', url, true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var response = JSON.parse(xhr.responseText);
+
+                    fileInput.callback.call(null, response.location, {alt: response.fileName, text: response.fileName});
+
+                    //callback('mypage.html', {text: 'My text'});
+                    //callback('myimage.jpg', {alt: 'My alt text'});
+                    //callback('movie.mp4', {source2: 'alt.ogg', poster: 'image.jpg'});
+                }
+            };
+            fd.append('upload_file', file);
+            xhr.send(fd);
+        }
+
+        document.getElementById('file_uploader').addEventListener('change', function () {
+            var file = this.files[0];
+
+                uploadFile(file, this);
+        }, false);
+
         tinymce.init({
             selector: '#page_content',
             height: 400,
-            plugins : 'code, media, contextmenu, advlist, autosave, colorpicker, save, template, paste, preview, image, link, autolink, insertdatetime, hr, pagebreak, wordcount, textcolor, table, imagetools',
+            plugins : ['code, media, contextmenu, advlist, autosave, save, template, paste',
+                'colorpicker, preview, image, link, autolink, insertdatetime, hr, pagebreak',
+                'wordcount, textcolor, table, imagetools'],
             images_upload_base_path: '/',
             images_upload_credentials: true,
             images_upload_url: '/admin/tinymce/upload',
@@ -20,25 +50,15 @@
             file_picker_types: 'file image media',
             paste_data_images: true,
             file_picker_callback : function(callback, value, meta) {
-                //console.log(callback, value, meta);
+                var file_uploader = document.getElementById('file_uploader');
 
-                $('#file_uploader').click();
-
-                if (meta.filetype == 'file') {
-                    callback('mypage.html', {text: 'My text'});
-                }
-
-                if (meta.filetype == 'image') {
-                    callback('myimage.jpg', {alt: 'My alt text'});
-                }
-
-                if (meta.filetype == 'media') {
-                    callback('movie.mp4', {source2: 'alt.ogg', poster: 'image.jpg'});
-                }
+                file_uploader.callback = callback;
+                file_uploader.fileType = meta.filetype;
+                file_uploader.click();
             }
         });
 
-        $('#page_Guardar').on('click', function(){
+        $('#page_Guardar').on('click', function() {
             saveContent.apply(this);
         });
     </script>

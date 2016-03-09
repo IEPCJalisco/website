@@ -17,5 +17,7 @@
 /web/assets/vendor
 /web/css/*
 /web/js/*
+/web/media/*
+!web/media/.gitkeep
 
 /.idea/workspace.xml
