@@ -1,0 +1,28 @@
+{% extends '@IEPCWebsite/base.html.twig' %}
+
+{% block layout %}
+    <main class="container">
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <div>
+                Logueado como: {{ app.user.username }}
+                <br>
+                <a href="{{ path('fos_user_security_logout') }}">
+                    Salir
+                </a>
+            </div>
+        {% endif %}
+
+        {% for type, messages in app.session.flashBag.all %}
+            {% for message in messages %}
+                <div class="{{ type }} alert alert-warning">
+                    {{ message|trans({}, 'FOSUserBundle') }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        <div>
+            {% block fos_user_content %}
+            {% endblock fos_user_content %}
+        </div>
+    </main>
+{% endblock %}
