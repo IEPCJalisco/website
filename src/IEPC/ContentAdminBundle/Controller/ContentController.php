@@ -14,8 +14,6 @@ class ContentController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $ct = $this->get('iepc.content_manager')->getContentTypes();
-
         $contents = $em->getRepository('IEPCContentBundle:Content')->findAll();
 
         return $this->render('IEPCContentAdminBundle:Content:index.html.twig', [
@@ -23,44 +21,10 @@ class ContentController extends Controller
         ]);
     }
 
-    public function editAction($id = null, Request $request)
+    public function editAction($id)
     {
-        //@TODO Use content manager
+        $contentManager = $this->get('iepc.content_manager');
 
-        if ($id !== null) {
-            $em = $this->getDoctrine()->getManager();
-
-            if (null === ($page = $em->getRepository('IEPCWebsiteBundle:Page')->find($id))) {
-                throw new EntityNotFoundException();
-            };
-        }
-        else {
-            $page = new Page();
-        }
-
-        $form = $this->getForm($page);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            if (!isset($em)) {
-                $em = $this->getDoctrine()->getManager();
-            }
-
-            $em->persist($page);
-            $em->flush();
-
-            return $this->redirectToRoute('iepc_content_admin_content');
-        }
-
-        return $this->render('@IEPCContentAdmin/Content/edit.html.twig', [
-            'form' => $form->createView(),
-        ]);
-    }
-
-    private function getForm($section)
-    {
-        return $this->createForm(PageType::class, $section, [
-            'method' => 'POST'
-        ]);
+        return $this->redirectToRoute($contentManager->getContentEditRoute($id), ['id' => $id]);
     }
 }

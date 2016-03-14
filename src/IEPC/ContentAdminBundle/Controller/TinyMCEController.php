@@ -17,6 +17,8 @@ class TinyMCEController extends Controller
         }
         else {
             $file = $files->get('upload_file');
+
+            $this->getParameter('content')['tmp_dir'];
             $tempUpload = $this->get('kernel')->getRootDir() . '/../web/media/_tmp';
 
             $guesser = ExtensionGuesser::getInstance();
@@ -25,7 +27,7 @@ class TinyMCEController extends Controller
             $filename = uniqid('iepc') . '.' . $extension;
             touch("{$tempUpload}/{$filename}");
 
-            $file->move($tempUpload, $filename);
+          $file->move($tempUpload, $filename);
         }
 
         /**
@@ -40,8 +42,13 @@ class TinyMCEController extends Controller
          */
 
         return new JsonResponse([
-            'location' => '/media/_tmp/' . $filename,
+            'location' => '/media/_tmp/' . $filename . '?iepc_tmp',
             'fileName' => 'filename'
         ]);
+    }
+
+    public function cleanTempFiles()
+    {
+        // Search uploadFiles directory and clear files
     }
 }

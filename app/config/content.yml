@@ -1,4 +1,9 @@
 parameters:
-    content_types:
-        - Page: IEPC\WebsiteBundle\Entity\Page
-        - Event: IEPC\WebsiteBundle\Entity\Event
+    content:
+        types:
+            'IEPC\WebsiteBundle\Entity\Event':
+                edit_route: iepc_website_admin_content_event
+            'IEPC\WebsiteBundle\Entity\Page':
+                edit_route: iepc_website_admin_content_page
+        tmp_dir:   'media/_tmp'
+        files_dir: 'media/content/{type}/{id}'

@@ -5,6 +5,10 @@ iepc_content_admin:
     resource: "@IEPCContentAdminBundle/Resources/config/routing.yml"
     prefix:   /admin
 
+iepc_admin_website:
+    resource: "@IEPCWebsiteBundle/Resources/config/adminRouting.yml"
+    prefix:   /admin
+
 iepc_website:
     resource: "@IEPCWebsiteBundle/Resources/config/routing.yml"
     prefix:   /

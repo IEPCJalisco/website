@@ -1,7 +1,7 @@
 <?php namespace IEPC\WebsiteBundle\Repository;
 
-use Doctrine\ORM\EntityRepository;
+use IEPC\ContentBundle\Repository\ContentRepository;
 
-class EventRepository extends EntityRepository
+class EventRepository extends ContentRepository
 {
 }

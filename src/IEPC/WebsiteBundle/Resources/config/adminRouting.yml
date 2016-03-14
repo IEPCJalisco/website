@@ -1,0 +1,4 @@
+iepc_website_admin_content_page:
+    path:     /content/page/edit/{id}
+    defaults: { _controller: IEPCWebsiteBundle:Page:edit }
+

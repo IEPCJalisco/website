@@ -19,11 +19,15 @@
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     var response = JSON.parse(xhr.responseText);
 
-                    fileInput.callback.call(null, response.location, {alt: response.fileName, text: response.fileName});
-
+                    if (response.fileName) {
+                        fileInput.callback.call(null, response.location, {alt: response.fileName, text: response.fileName});
+                    }
+                    else {
+                        alert('error');
+                    }
                     //callback('mypage.html', {text: 'My text'});
                     //callback('myimage.jpg', {alt: 'My alt text'});
-                    //callback('movie.mp4', {source2: 'alt.ogg', poster: 'image.jpg'});
+                    //callback('movie.mp4',   {source2: 'alt.ogg', poster: 'image.jpg'});
                 }
             };
             fd.append('upload_file', file);
@@ -57,22 +61,22 @@
                 file_uploader.callback = callback;
                 file_uploader.fileType = meta.filetype;
                 file_uploader.click();
-            },
-            font_formats: 'Arial=arial,helvetica,sans-serif;Courier New=courier new,courier,monospace;AkrutiKndPadmini=Akpdmi-n',
-            formats: {
-                p: { wrapper: 'p'},
-                alignleft: {selector : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes : 'left'},
-                aligncenter: {selector : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes : 'center'},
-                alignright: {selector : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes : 'right'},
-                alignfull: {selector : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes : 'full'},
-                bold: {inline : 'span', 'classes' : 'bold'},
-                italic: {inline : 'span', 'classes' : 'italic'},
-                underline: {inline : 'span', 'classes' : 'underline', exact : true},
-                strikethrough: {inline : 'del'},
-                forecolor: {inline : 'span', classes : 'forecolor', styles : {color : '%value'}},
-                hilitecolor: {inline : 'span', classes : 'hilitecolor', styles : {backgroundColor : '%value'}},
-                custom_format: {block : 'h1', attributes : {title : 'Header'}, styles : {color : 'red'}}
             }
+//            font_formats: 'Arial=arial,helvetica,sans-serif;Courier New=courier new,courier,monospace;AkrutiKndPadmini=Akpdmi-n',
+//            formats: {
+//                p: { wrapper: 'p'},
+//                alignleft: {selector : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes : 'left'},
+//                aligncenter: {selector : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes : 'center'},
+//                alignright: {selector : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes : 'right'},
+//                alignfull: {selector : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes : 'full'},
+//                bold: {inline : 'span', 'classes' : 'bold'},
+//                italic: {inline : 'span', 'classes' : 'italic'},
+//                underline: {inline : 'span', 'classes' : 'underline', exact : true},
+//                strikethrough: {inline : 'del'},
+//                forecolor: {inline : 'span', classes : 'forecolor', styles : {color : '%value'}},
+//                hilitecolor: {inline : 'span', classes : 'hilitecolor', styles : {backgroundColor : '%value'}},
+//                custom_format: {block : 'h1', attributes : {title : 'Header'}, styles : {color : 'red'}}
+//            }
         });
 
         $('#page_Guardar').on('click', function() {
