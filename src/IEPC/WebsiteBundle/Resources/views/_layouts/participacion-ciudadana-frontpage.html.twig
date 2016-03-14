@@ -4,10 +4,10 @@
     <main class="container" id="frontpage">
         <row>
             <column cols="9" class="mainBanner">
-                <blockquote>
-                    <p>"La <strong>participación ciudadana</strong> es una acción clave para un desarrollo humano sensible"</p>
+                <blockquote id="citesRotator">
+                    <p>Nunca dudes que un pequeño grupo de ciudadanos pensantes y comprometidos pueden cambiar el mundo, porque en el fondo es lo único que siempre lo ha cambiado.</p>
                     <footer>
-                        <cite>Martin Luther King</cite>
+                        <cite>Margaret Mead</cite>
                     </footer>
                 </blockquote>
             </column>
@@ -40,3 +40,43 @@
         </row>
     </main>
 {% endblock mainContainer %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        (function(){
+            var citess = [
+                {cite: 'Nunca dudes que un pequeño grupo de ciudadanos pensantes y comprometidos pueden cambiar el mundo, porque en el fondo es lo único que siempre lo ha cambiado.', author: 'Margaret Mead'},
+                {cite: 'No existe la libertad, sino la búsqueda de la libertad, y esa búsqueda es la que nos hace libres.', author: 'Carlos Fuentes'},
+                {cite: 'El egoísta, lo mismo que el esclavo, no tiene patria ni honor. Amigo de su bien privado y ciego tributario de sus propias pasiones, no atiende al bien de los demás.', author: 'Benito Juárez'},
+                {cite: 'Libre, y para mi sagrado, es el derecho de pensar.  La instrucción pública es el fundamento de la felicidad social, es el principio en que descansan la libertad y el engrandecimiento de los pueblos.', author: 'Benito Juárez'},
+                {cite: 'Sin instrucción no hay libertad, y, cuanto más difundida esté aquélla, tanto más sólida se hallará esta', author: 'Lucas Alamán'},
+                {cite: 'No estudio por saber más, sino por ignorar menos', author: 'Sor Juana Inés de la Cruz'},
+                {cite: 'Las masas humanas más peligrosas son aquellas en cuyas venas ha sido inyectado el veneno del miedo... del miedo al cambio', author: 'Octavio Paz'},
+                {cite: 'No sé si la modernidad es una bendición, una maldición o las dos cosas. Sé que es un destino: Si México quiere ser, tendrá que ser moderno', author: 'Octavio Paz'},
+                {cite: 'Toda dictadura, sea de un hombre o de un partido, desemboca en las dos formas predilectas de la esquizofrenia: el monólogo y el mausoleo.', author: 'Octavio Paz'},
+                {cite: 'Sin democracia la libertad es una quimera.', author: 'Octavio Paz'},
+                {cite: 'El cargo político más importante en una democracia es el de ciudadano.', author: 'Juez Louis D. Brandeis'},
+                {cite: 'La política debe ser la profesión de tiempo parcial de cada ciudadano comprometido a proteger los derechos y privilegios de los hombres libres.', author: 'Eisenhower'},
+                {cite: 'Un gobierno democrático que no proporciona información o los medios para adquirirla no es sino un prólogo a una farsa o tragedia o quizá ambas. El conocimiento gobernará por siempre sobre la ignorancia, por lo que el pueblo que aspire a ser su propio gobernante debe armarse con el poder que el conocimiento otorga.', author: 'ames Madison.'},
+                {cite: 'Como ciudadanos de esta democracia, ustedes son los gobernantes y los gobernados, los legisladores y los súbditos de la ley, el principio y el fin.', author: 'Adlai Stevenson'},
+                {cite: 'La libertad no puede ser preservada sin el conocimiento general entre la gente que tiene un derecho y un deseo a saber.', author: 'John Adams'},
+                {cite: 'Piense usted lo que quiera, pero piénselo.', author: 'Fernando Savater'},
+                {cite: 'Tanto para la nación como el individuo el único requisito indispensable es el carácter.', author: 'T. Roosevelt'},
+                {cite: 'La vida de la República descansa en la energía, virtud e inteligencia de sus ciudadanos.', author: 'Andrew Johnson'},
+                {cite: 'La gente normalmente opina que, en una democracia, las decisiones son tomadas por una mayoría o quienes se hacen escuchar y votan—una cosa muy diferente.', author: 'Walter Judd'},
+                {cite: 'La democracia no puede triunfar a menos que aquellos que expresan su alternativa se encuentren preparados para escoger inteligentemente. La educación es, por tanto, la verdadera salvaguarda de la democracia.', author: 'F.D. Roosevelt'},
+                {cite: 'La democracia nunca es un logro definitivo, sino el llamado a un esfuerzo infatigable.', author: 'Kennedy'},
+                {cite: 'Democracy is never a final achievement. It is a call to an untiring effort.', author: 'John F. Kennedy'},
+                {cite: 'Lo que verdaderamente importa desde el punto de vista del capital social y el compromiso cívico no es la membresía meramente nominal, sino una membresía activa y comprometida.', author: 'Robert D. Putnmam'}
+            ],
+            citesRotator = setInterval(function() {
+                var $citesRotator = $('#citesRotator'),
+                    cite          = citess[Math.floor(Math.random() * citess.length)];
+
+                $citesRotator.find('p').text('"' + cite.cite + '"');
+                $citesRotator.find('footer cite').text(cite.author);
+            }, 10000);
+        })();
+    </script>
+{% endblock %}
