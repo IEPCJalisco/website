@@ -53,6 +53,10 @@
         position: relative;
         min-height: 8em;
         text-align: center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
         p {
             .vertical-center;
             display: block;
@@ -70,34 +74,18 @@
             min-height: 4em;
         }
         &.ongs {
-            background: transparent url('/bundles/iepcwebsite/images/participacion-ciudadana/banner-ongs.jpeg') center center no-repeat;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
+            background: #F5F5F5 url('/bundles/iepcwebsite/images/participacion-ciudadana/banner-ongs.jpeg') center center no-repeat;
         }
         &.eventos {
-            background: transparent url('/bundles/iepcwebsite/images/participacion-ciudadana/banner-eventos-box.jpeg') center center no-repeat;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
+            background: #F5F5F5 url('/bundles/iepcwebsite/images/participacion-ciudadana/banner-eventos-box.jpeg') center center no-repeat;
         }
         &.mujeres {
-            background: transparent url('/bundles/iepcwebsite/images/participacion-ciudadana/banner-mujeres.jpeg') center center no-repeat;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
+            background: #F5F5F5 url('/bundles/iepcwebsite/images/participacion-ciudadana/banner-mujeres.jpeg') center center no-repeat;
         }
         &.pensamiento {
-            background: transparent url('/bundles/iepcwebsite/images/participacion-ciudadana/banner-pensamiento.jpeg') center center no-repeat;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
+            background: #F5F5F5 url('/bundles/iepcwebsite/images/participacion-ciudadana/banner-pensamiento.jpeg') center center no-repeat;
             p {
-                top: 1em;
+                top: 1.5em;
             }
             blockquote {
                 font-size: 0.85em;
@@ -106,28 +94,35 @@
                 position: absolute;
                 width: 100%;
                 font-style: normal;
-                line-height: 1.1em;
+                line-height: 1.25em;
                 height: auto;
+                padding: 0 1.5em;
+                margin: 0;
                 p {
                     display: block;
                     position: relative;
                     margin: 0;
+                    &:after {
+                        content: '"';
+                    }
+                    &:before {
+                        content: '"';
+                    }
                 }
                 footer {
                     display: block;
                     position: relative;
                     text-align: right;
-                    margin-right: 2em;
+                    margin: 1em 15% 0 0;
+                    cite {
+                        font-weight: bold;
+                    }
                 }
             }
             @media @mobileview {
                 height: 9em;
             }
         }
-    }
-
-    #citesRotator {
-
     }
 }
 
