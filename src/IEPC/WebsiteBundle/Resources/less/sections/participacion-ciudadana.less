@@ -19,17 +19,25 @@
             border: none;
             font-style: normal;
             display: block;
+            width: 100%;
             p {
                 font-size: 1.25em;
                 margin: 0;
                 strong {
                     color: @mainHL;
                 }
+                &:after {
+                    content: '"';
+                }
+                &:before {
+                    content: '"';
+                }
             }
             cite {
                 display: block;
                 font-weight: bold;
                 text-align: right;
+                margin-right: 2em;
             }
         }
         @media @mobileview {
@@ -98,4 +106,8 @@ article.organizacion {
         line-height: 20px;
         background: transparent url("images/twitter.png") 0 3px no-repeat;
     }
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: @mainHL;
 }
