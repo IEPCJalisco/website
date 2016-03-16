@@ -12,37 +12,25 @@
     {% endstylesheets %}
 {% endblock stylesheets %}
 
-{% block layout %}
-    <header>
-        {% block header %}
-            {% include '@IEPCWebsite/_shared/header-participacion-ciudadana.html.twig' %}
-        {% endblock header %}
-    </header>
-
-    {% block mainMenu %}
-        {{  render(controller('IEPCWebsiteBundle:Menu:participacionCiudadana')) }}
-    {% endblock mainMenu %}
-
-    {% block mainContainer %}
-        <main class="container">
-            <row end>
-                <column cols="9">
-                    {% block content '' %}
-                </column>
-                <column cols="3" class="hideMobile sidebar">
-                    <a href="/participacion-ciudadana/programas/programas-con-perspectiva-de-genero">Programas con perspectiva de género</a>
-                    <hr>
-                    <a href="/participacion-ciudadana/difusion/eventos-de-la-direccion">Eventos de participación ciudadana</a>
-                    <hr>
-                    Cronología de una lucha por la equidad
-                    <hr>
-                    Mujeres que no debemos olvidar
-                    <hr>
-                    Organizaciones comprometidas con la lucha por los derechos de la mujer
-                    <hr>
-                    ¿Por qué la equidad?
-                </column>
-            </row>
-        </main>
-    {% endblock mainContainer %}
-{% endblock layout %}
+{% block mainContainer %}
+    <main class="container">
+        <row end>
+            <column cols="9">
+                {% block content '' %}
+            </column>
+            <column cols="3" class="hideMobile sidebar">
+                <a href="/participacion-ciudadana/programas/programas-con-perspectiva-de-genero">Programas con perspectiva de género</a>
+                <hr>
+                <a href="/participacion-ciudadana/difusion/eventos-de-la-direccion">Eventos de participación ciudadana</a>
+                <hr>
+                Cronología de una lucha por la equidad
+                <hr>
+                Mujeres que no debemos olvidar
+                <hr>
+                Organizaciones comprometidas con la lucha por los derechos de la mujer
+                <hr>
+                ¿Por qué la equidad?
+            </column>
+        </row>
+    </main>
+{% endblock mainContainer %}
