@@ -807,7 +807,7 @@
     animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
   }
 
-  0% {
+  from {
     opacity: 0;
     -webkit-transform: translate3d(-3000px, 0, 0);
     transform: translate3d(-3000px, 0, 0);
@@ -841,7 +841,7 @@
     animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
   }
 
-  0% {
+  from {
     opacity: 0;
     -webkit-transform: translate3d(-3000px, 0, 0);
     transform: translate3d(-3000px, 0, 0);
