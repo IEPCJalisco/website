@@ -20,10 +20,17 @@ class ContentManager implements ContainerAwareInterface
     {
         $em = $this->container->get('doctrine')->getManager();
 
-        $entity = $em->getRepository('IEPCContentBundle:Content')->find($id);
-        $class = get_class($entity);
+        // @todo fix harcode route
+        if (null !== $id) {
+            $entity = $em->getRepository('IEPCContentBundle:Content')
+                ->find($id);
+            $class = get_class($entity);
 
-        $contents= $this->getContentTypes();
+            $contents = $this->getContentTypes();
+        }
+        else {
+            return 'iepc_website_admin_content_page';
+        }
 
         return $contents[$class]['edit_route'];
     }
