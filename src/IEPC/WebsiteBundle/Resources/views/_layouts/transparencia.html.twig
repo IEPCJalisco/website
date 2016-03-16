@@ -1,0 +1,43 @@
+{% extends 'IEPCWebsiteBundle::base.html.twig' %}
+
+{% block bodyClass 'participacion-ciudadana' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets output='css/participacion-ciudadana.css' filter='?yui_css'
+        '@IEPCWebsiteBundle/Resources/less/sections/transparencia.less'
+    %}
+    <link rel="stylesheet" href="{{ asset_url }}">
+    {% endstylesheets %}
+{% endblock stylesheets %}
+
+{% block layout %}
+    <header>
+        {% block header %}
+            {% include '@IEPCWebsite/_shared/header-default.html.twig' %}
+        {% endblock header %}
+    </header>
+
+    {% block mainMenu %}
+        {{  render(controller('IEPCWebsiteBundle:Menu:transparencia')) }}
+    {% endblock mainMenu %}
+
+    {% block mainContainer %}
+        <main class="container">
+            <row end>
+                <column cols="9">
+                    {% block content '' %}
+                </column>
+                <column cols="3" class="hideMobile sidebar">
+                    &nbsp;
+                </column>
+            </row>
+        </main>
+    {% endblock mainContainer %}
+
+    <footer>
+        {% block footer %}
+            {% include '@IEPCWebsite/_shared/footer-default.html.twig' %}
+        {% endblock footer %}
+    </footer>
+{% endblock layout %}

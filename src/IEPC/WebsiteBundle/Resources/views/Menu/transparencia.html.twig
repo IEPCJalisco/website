@@ -1,0 +1,61 @@
+<nav id="mainMenu">
+    <div class="openMenu">
+        {% image '@IEPCWebsiteBundle/Resources/images/icons/menu.svg' %}
+            <img src="{{ asset_url }}" alt="Menu">
+        {% endimage %}
+    </div>
+    <div class="overlay" onclick="$('#mainMenu').removeClass('open');"></div>
+
+    <div class="menuContainer">
+        <ul class="container">
+            <li class="header">
+                <div>
+                    {% image '@IEPCWebsiteBundle/Resources/images/iepc.png' %}
+                        <img src="{{ asset_url }}" alt="IEPC">
+                    {% endimage %}
+                </div>
+            </li>
+            {#<li>#}
+                {#<a href="/">#}
+                    {#Instituto Electoral#}
+                {#</a>#}
+            {#</li>#}
+            <li>
+                <a href="/transparencia">
+                    <strong>Inicio</strong>
+                </a>
+            </li>
+            <li>
+                <span>Información fundamental</span>
+                <ul>
+                    <li><a href="#">Artículo 8</a></li>
+                    <li><a href="#">Artículo 14</a></li>
+                </ul>
+            </li>
+            <li>
+                <span>Transparencia focalizada</span>
+            </li>
+            <li>
+                <span>Sesiones</span>
+                <ul>
+                    <li><a href="#">Del consejo general</a></li>
+                    <li><a href="#">Comisiones y comités</a></li>
+                    <li><a href="#">Consejos distritales</a></li>
+                </ul>
+            </li>
+            <li>
+                <span><strong>Solicitud de información</strong></span>
+                <ul>
+                    <li><a href="#">Vía electrónica - SERS</a></li>
+                    <li><a href="#">Formatos de solicitud</a></li>
+                </ul>
+            </li>
+            <li>
+                <span>Protección de datos personales</span>
+            </li>
+            <li>
+                <span>Actas y acuerdos</span>
+            </li>
+        </ul>
+    </div>
+</nav>

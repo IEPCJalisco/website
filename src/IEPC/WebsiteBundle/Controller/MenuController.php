@@ -13,4 +13,9 @@ class MenuController extends Controller
     {
         return $this->render('IEPCWebsiteBundle:Menu:participacion-ciudadana.html.twig');
     }
+
+    public function transparenciaAction()
+    {
+        return $this->render('IEPCWebsiteBundle:Menu:transparencia.html.twig');
+    }
 }
