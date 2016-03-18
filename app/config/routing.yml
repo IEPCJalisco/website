@@ -12,3 +12,9 @@ iepc_admin_website:
 iepc_website:
     resource: "@IEPCWebsiteBundle/Resources/config/routing.yml"
     prefix:   /
+
+
+# @todo Use subdomain cdn.iepcjalisco.org.mx
+iepc_files:
+    resource: "@IEPCFilesBundle/Resources/config/routing.yml"
+    prefix:   /files

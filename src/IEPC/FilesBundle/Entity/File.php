@@ -4,6 +4,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 
+use IEPC\ContentBundle\Entity\Section;
+
 /**
  * @ORM\Entity(repositoryClass="IEPC\FilesBundle\Repository\FileRepository")
  * @ORM\HasLifecycleCallbacks()
@@ -36,14 +38,35 @@ class File
     /**
      * @var string
      *
-     * @ORM\Column(length=255)
+     * @ORM\Column(length=8)
+     */
+    protected $extension;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(length=128)
+     */
+    protected $mime;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(length=256)
      */
     protected $path;
 
     /**
      * @var string
      *
-     * @ORM\Column(length=255)
+     * @ORM\Column(length=40)
+     */
+    protected $checksum;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(length=256)
      */
     protected $type;
 
@@ -54,9 +77,6 @@ class File
      */
     protected $uploadDate;
 
-    /**
-     * @Assert\File(maxSize="6000000")
-     */
     protected $file;
 
     protected $temp;
@@ -64,6 +84,13 @@ class File
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Relations">
+
+    /**
+     * @var Section
+     *
+     * @ORM\ManyToOne(targetEntity="IEPC\ContentBundle\Entity\Section");
+     */
+    protected $section;
 
     // </editor-fold>
 
@@ -94,6 +121,61 @@ class File
         $this->name = $name;
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function getExtension()
+    {
+        return $this->extension;
+    }
+
+    /**
+     * @param string $extension
+     * @return File
+     */
+    public function setExtension($extension)
+    {
+        $this->extension = $extension;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMime()
+    {
+        return $this->mime;
+    }
+
+    /**
+     * @param string $mime
+     * @return File
+     */
+    public function setMime($mime)
+    {
+        $this->mime = $mime;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getChecksum()
+    {
+        return $this->checksum;
+    }
+
+    /**
+     * @param string $checksum
+     * @return File
+     */
+    public function setChecksum($checksum)
+    {
+        $this->checksum = $checksum;
+        return $this;
+    }
+
 
     /**
      * @return string
@@ -141,7 +223,7 @@ class File
 
         if ($file) {
             if (is_file($this->getAbsolutePath())) {
-                $this->setTempFile($this->getAbsolutePath());
+                $this->setTemp($this->getAbsolutePath());
             }
 
             $extension = $file->guessClientExtension()?: $file->getClientOriginalExtension();
@@ -152,6 +234,7 @@ class File
                 ->setName($file->getClientOriginalName())
                 ->setType($file->getType());
         }
+
         return $this;
     }
 
@@ -164,19 +247,19 @@ class File
     }
 
     /**
-     * @param $tempFile
+     * @param $temp
      * @return File
      */
-    public function setTempFile($tempFile)
+    public function setTemp($temp)
     {
-        $this->temp = $tempFile;
+        $this->temp = $temp;
         return $this;
     }
 
     /**
      * @return mixed
      */
-    public function getTempFile()
+    public function getTemp()
     {
         return $this->temp;
     }
@@ -196,6 +279,22 @@ class File
     public function setUploadDate($uploadDate)
     {
         $this->uploadDate = $uploadDate;
+        return $this;
+    }
+
+    /**
+     * @return Section
+     */
+    public function getSection() {
+        return $this->section;
+    }
+
+    /**
+     * @param Section $section
+     * @return File
+     */
+    public function setSection($section) {
+        $this->section = $section;
         return $this;
     }
 
@@ -257,9 +356,9 @@ class File
             return;
         }
 
-        if ($this->getTempFile()) {
-            unlink($this->getTempFile());
-            $this->setTempFile(null);
+        if ($this->getTemp()) {
+            unlink($this->getTemp());
+            $this->setTemp(null);
         }
 
         $extension = $this->getFile()->guessClientExtension()?: $this->getFile()->getClientOriginalExtension();
@@ -268,7 +367,7 @@ class File
             $this->getUploadRootDir(), "{$this->getId()}.{$extension}"
         );
 
-        //chmod($localFile->getPathname(), 0664);
+        chmod($localFile->getPathname(), 0660);
         $this->setFile(null);
     }
 
@@ -277,8 +376,8 @@ class File
      */
     public function removeUpload()
     {
-        if ($this->getTempFile()) {
-            unlink($this->getTempFile());
+        if ($this->getTemp()) {
+            unlink($this->getTemp());
         }
     }
 
@@ -287,7 +386,7 @@ class File
      */
     public function storeFilenameForRemove()
     {
-        $this->setTempFile($this->getAbsolutePath());
+        $this->setTemp($this->getAbsolutePath());
     }
 
     // </editor-fold>
