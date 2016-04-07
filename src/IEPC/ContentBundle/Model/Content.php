@@ -1,26 +1,8 @@
-<?php namespace IEPC\ContentBundle\Entity;
+<?php namespace IEPC\ContentBundle\Model;
 
 use Doctrine\ORM\Mapping as ORM;
-use IEPC\ContentBundle\Model\ContentInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 
-/**
- * @ORM\MappedSuperclass()
- *
- * @ORM\InheritanceType("JOINED")
- * @ORM\Entity(repositoryClass="IEPC\ContentBundle\Repository\ContentRepository")
- * @ORM\DiscriminatorColumn(name="discr", type="string")
- * @ORM\DiscriminatorMap({
- *     "content" = "Content",
- *     "page"    = "IEPC\WebsiteBundle\Entity\Page",
- *     "event"   = "IEPC\WebsiteBundle\Entity\Event"
- * })
- * @ORM\Table(indexes={
- *     @ORM\Index(name="idx_discr", columns={"discr"})}
- * )
- *
- * @package IEPCContentBundle
- */
 abstract class Content implements ContentInterface
 {
     // <editor-fold defaultstate="collapsed" desc="Constants">

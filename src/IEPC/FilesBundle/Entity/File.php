@@ -1,13 +1,17 @@
 <?php namespace IEPC\FilesBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\File\File as HttpFile;
 use Symfony\Component\Validator\Constraints as Assert;
-
-use IEPC\ContentBundle\Entity\Section;
 
 /**
  * @ORM\Entity(repositoryClass="IEPC\FilesBundle\Repository\FileRepository")
+ * @ORM\InheritanceType("JOINED")
+ * @ORM\DiscriminatorColumn(name="discr", type="string")
+ * @ORM\DiscriminatorMap({
+ *     "file"  = "File",
+ *     "image" = "Image"
+ * })
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Table()
  */
@@ -59,38 +63,24 @@ class File
     /**
      * @var string
      *
-     * @ORM\Column(length=40)
+     * @ORM\Column(length=64)
      */
     protected $checksum;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(length=256)
-     */
-    protected $type;
 
     /**
      * @var \Datetime
      *
      * @ORM\Column(type="datetime", nullable=true);
      */
-    protected $uploadDate;
+    protected $date;
 
     protected $file;
 
-    protected $temp;
+    protected $fileToDelete;
 
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Relations">
-
-    /**
-     * @var Section
-     *
-     * @ORM\ManyToOne(targetEntity="IEPC\ContentBundle\Entity\Section");
-     */
-    protected $section;
 
     // </editor-fold>
 
@@ -196,50 +186,32 @@ class File
     }
 
     /**
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * @param string $type
-     * @return File
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-        return $this;
-    }
-
-    /**
-     * @param \Symfony\Component\HttpFoundation\File\UploadedFile $file
+     * @param \Symfony\Component\HttpFoundation\File\File $file
      * @return file
      */
-    public function setFile(UploadedFile $file = null)
+    public function setFile(HttpFile $file = null)
     {
         $this->file = $file;
 
         if ($file) {
             if (is_file($this->getAbsolutePath())) {
-                $this->setTemp($this->getAbsolutePath());
+                $this->setFileToDelete($this->getAbsolutePath());
             }
 
-            $extension = $file->guessClientExtension()?: $file->getClientOriginalExtension();
+            $extension = $file->guessExtension() ?: $file->getExtension();
 
-            $this->setUploadDate((new \DateTime('now')));
-
-            $this->setPath($extension)
-                ->setName($file->getClientOriginalName())
-                ->setType($file->getType());
+            $this->setExtension($extension)
+                ->setName($file->getFilename())
+                ->setMime($file->getMimeType())
+                ->setDate((new \DateTime('now')))
+                ->setChecksum(hash_file('sha256', $file));
         }
 
         return $this;
     }
 
     /**
-     * @return UploadedFile
+     * @return HttpFile
      */
     public function getFile()
     {
@@ -247,66 +219,56 @@ class File
     }
 
     /**
-     * @param $temp
+     * @param $fileToDelete
      * @return File
      */
-    public function setTemp($temp)
+    public function setFileToDelete($fileToDelete)
     {
-        $this->temp = $temp;
+        $this->fileToDelete = $fileToDelete;
         return $this;
     }
 
     /**
      * @return mixed
      */
-    public function getTemp()
+    public function getFileToDelete()
     {
-        return $this->temp;
+        return $this->fileToDelete;
     }
 
     /**
      * @return \Datetime
      */
-    public function getUploadDate()
+    public function getDate()
     {
-        return $this->uploadDate;
+        return $this->date;
     }
 
     /**
-     * @param $uploadDate
+     * @param $date
      * @return File
      */
-    public function setUploadDate($uploadDate)
+    public function setDate($date)
     {
-        $this->uploadDate = $uploadDate;
+        $this->date = $date;
         return $this;
     }
-
-    /**
-     * @return Section
-     */
-    public function getSection() {
-        return $this->section;
-    }
-
-    /**
-     * @param Section $section
-     * @return File
-     */
-    public function setSection($section) {
-        $this->section = $section;
-        return $this;
-    }
-
+    
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Functions">
 
-    public function __construct(UploadedFile $file = null)
+    /**
+     * File constructor.
+     * @param \Symfony\Component\HttpFoundation\File\File $file
+     * @param $path - Relative to KernelRoot
+     *
+     *
+     */
+    public function __construct(HttpFile $file, $path)
     {
-        if ($file) {
-            $this->setFile($file);
-        }
+        $this->setPath($path)
+            ->setFile($file);
     }
 
     public function __toString()
@@ -316,26 +278,32 @@ class File
 
     public function getAbsolutePath()
     {
-        return null === $this->path
-            ? null
-            : $this->getUploadRootDir() . '/' . $this->getId() . '.' . $this->getPath();
+        return $this->getRootDir() . 'web/files/' . $this->getPath() . '/' . $this->getFileSystemName();
     }
 
     public function getWebPath()
     {
-        return null === $this->path
-            ? null
-            : '/' . $this->getUploadDir() . '/' . $this->getId() . '.' . $this->getPath();
+        return '/files/' . $this->getPath() . '/' . $this->getFileSystemName();
     }
 
-    protected function getUploadRootDir()
+    protected function getUploadBaseDir()
     {
-        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+        return $this->getRootDir() . 'web/files/' . $this->getPath();
     }
 
-    protected function getUploadDir()
+    protected function getFileSystemName()
     {
-        return 'files';
+        if ($this->getExtension()) {
+            return "{$this->getId()}.{$this->getExtension()}";
+        }
+        else {
+            return "{$this->getId()}";
+        }
+    }
+
+    protected final function getRootDir()
+    {
+        return __DIR__ . '/../../../../';
     }
 
     /**
@@ -356,37 +324,34 @@ class File
             return;
         }
 
-        if ($this->getTemp()) {
-            unlink($this->getTemp());
-            $this->setTemp(null);
-        }
-
-        $extension = $this->getFile()->guessClientExtension()?: $this->getFile()->getClientOriginalExtension();
+        $this->removeFile();
 
         $localFile = $this->getFile()->move(
-            $this->getUploadRootDir(), "{$this->getId()}.{$extension}"
+            $this->getUploadBaseDir(), $this->getFileSystemName()
         );
 
         chmod($localFile->getPathname(), 0660);
+
         $this->setFile(null);
     }
 
     /**
      * @ORM\PostRemove()
      */
-    public function removeUpload()
+    public function removeFile()
     {
-        if ($this->getTemp()) {
-            unlink($this->getTemp());
+        if ($this->getFileToDelete()) {
+            unlink($this->getFileToDelete());
+            $this->setFileToDelete(null);
         }
     }
 
     /**
      * @ORM\PreRemove()
      */
-    public function storeFilenameForRemove()
+    public function setFileToRemove()
     {
-        $this->setTemp($this->getAbsolutePath());
+        $this->setFileToDelete($this->getAbsolutePath());
     }
 
     // </editor-fold>

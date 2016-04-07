@@ -1,7 +1,6 @@
 <?php namespace IEPC\WebsiteBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use IEPC\ContentBundle\Entity\Content;
 
 /**
  * @ORM\Table()

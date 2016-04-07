@@ -1,7 +1,6 @@
 <?php namespace IEPC\WebsiteBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use IEPC\ContentBundle\Entity\Content;
 
 /**
  * @ORM\Table()
@@ -21,7 +20,27 @@ class Event extends Content
      *
      * @ORM\Column(type="text")
      */
-    protected $content;
+    protected $title;
+
+    /**
+     * @var \DateTime
+     */
+    protected $dateStart;
+
+    /**
+     * @var \DateTime
+     */
+    protected $dateEnd;
+
+    /**
+     * @var string
+     */
+    protected $place;
+
+    /**
+     * @var string
+     */
+    protected $description;
 
     // </editor-fold>
 
@@ -41,16 +60,7 @@ class Event extends Content
      * @return string
      */
     public function getContent() {
-        return $this->content;
-    }
-
-    /**
-     * @param string $content
-     * @return Page
-     */
-    public function setContent($content) {
-        $this->content = $content;
-        return $this;
+        return $this->description;
     }
 
     // </editor-fold>
