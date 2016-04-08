@@ -1,4 +1,4 @@
-<?php namespace IEPC\DocumentBundle\Repository;
+<?php namespace IEPC\FilesBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 

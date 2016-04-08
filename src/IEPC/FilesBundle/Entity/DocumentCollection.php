@@ -1,18 +1,18 @@
-<?php namespace IEPC\DocumentBundle\Entity;
+<?php namespace IEPC\FilesBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use IEPC\WebsiteBundle\Entity\Content;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
+use IEPC\WebsiteBundle\Entity\Content;
 
 use IEPC\ContentBundle\Entity\Section;
 
 /**
- * @ORM\Entity(repositoryClass="IEPC\DocumentBundle\Repository\DocumentRepository")
+ * @ORM\Entity(repositoryClass="IEPC\FilesBundle\Repository\DocumentCollectionRepository")
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Table()
  */
-class Document extends Content
+class DocumentCollection extends Content
 {
     // <editor-fold defaultstate="collapsed" desc="Constants">
 
@@ -75,39 +75,33 @@ class Document extends Content
 
     // <editor-fold defaultstate="collapsed" desc="Functions">
 
-    public function __construct(UploadedFile $file = null)
-    {
+    public function __construct(UploadedFile $file = NULL) {
         if ($file) {
             $this->setFile($file);
         }
     }
 
-    public function __toString()
-    {
+    public function __toString() {
         return $this->getWebPath();
     }
 
-    public function getAbsolutePath()
-    {
-        return null === $this->path
-            ? null
+    public function getAbsolutePath() {
+        return NULL === $this->path
+            ? NULL
             : $this->getUploadRootDir() . '/' . $this->getId() . '.' . $this->getPath();
     }
 
-    public function getWebPath()
-    {
-        return null === $this->path
-            ? null
+    public function getWebPath() {
+        return NULL === $this->path
+            ? NULL
             : '/' . $this->getUploadDir() . '/' . $this->getId() . '.' . $this->getPath();
     }
 
-    protected function getUploadRootDir()
-    {
-        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    protected function getUploadRootDir() {
+        return __DIR__ . '/../../../../web/' . $this->getUploadDir();
     }
 
-    protected function getUploadDir()
-    {
+    protected function getUploadDir() {
         return 'files';
     }
 
@@ -115,40 +109,39 @@ class Document extends Content
      * @ORM\PrePersist()
      * @ORM\PreUpdate()
      */
-    public function preUpload()
-    {
+    public function preUpload() {
     }
 
     /**
      * @ORM\PostPersist()
      * @ORM\PostUpdate()
      */
-    public function upload()
-    {
-        if (null === $this->getFile()) {
+    public function upload() {
+        if (NULL === $this->getFile()) {
             return;
         }
 
         if ($this->getTemp()) {
             unlink($this->getTemp());
-            $this->setTemp(null);
+            $this->setTemp(NULL);
         }
 
-        $extension = $this->getFile()->guessClientExtension()?: $this->getFile()->getClientOriginalExtension();
+        $extension = $this->getFile()
+            ->guessClientExtension() ?: $this->getFile()
+            ->getClientOriginalExtension();
 
         $localFile = $this->getFile()->move(
             $this->getUploadRootDir(), "{$this->getId()}.{$extension}"
         );
 
         chmod($localFile->getPathname(), 0660);
-        $this->setFile(null);
+        $this->setFile(NULL);
     }
 
     /**
      * @ORM\PostRemove()
      */
-    public function removeUpload()
-    {
+    public function removeUpload() {
         if ($this->getTemp()) {
             unlink($this->getTemp());
         }
@@ -157,13 +150,13 @@ class Document extends Content
     /**
      * @ORM\PreRemove()
      */
-    public function storeFilenameForRemove()
-    {
+    public function storeFilenameForRemove() {
         $this->setTemp($this->getAbsolutePath());
     }
 
-    public function getContent() {
-        // TODO: Implement getContent() method.
+    public function getContent()
+    {
+
     }
 
     // </editor-fold>

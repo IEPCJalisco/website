@@ -1,14 +1,13 @@
-<?php namespace IEPC\DocumentBundle\Entity;
+<?php namespace IEPC\FilesBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use IEPC\ContentBundle\Model\ContentInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 
 use IEPC\ContentBundle\Entity\Section;
 
 /**
- * @ORM\Entity(repositoryClass="IEPC\DocumentBundle\Repository\DocumentRepository")
+ * @ORM\Entity(repositoryClass="IEPC\FilesBundle\Repository\DocumentVersionRepository")
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Table()
  */
@@ -29,9 +28,12 @@ class DocumentVersion
      */
     protected $id;
 
-    protected $title;
-
-    protected $content; // Elastic Search
+    /**
+     * @var string
+     *
+     * @ORM\Column(length=10)
+     */
+    protected $version;
 
     // </editor-fold>
 
@@ -40,34 +42,73 @@ class DocumentVersion
     /**
      * @var Section
      *
-     * @ORM\ManyToOne(targetEntity="IEPC\ContentBundle\Entity\Section");
-     */
-    protected $section;
-
-    /**
-     * @var Section
-     *
-     * @ORM\ManyToOne(targetEntity="IEPC\ContentBundle\Entity\Section");
+     * @ORM\ManyToOne(targetEntity="IEPC\FilesBundle\Entity\File");
      */
     protected $file;
+
+    /**
+     * @var Document
+     *
+     * @ORM\ManyToOne(targetEntity="IEPC\DocumentBundle\Entity\Document", inversedBy="versions")
+     */
+    protected $document;
 
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Getter and setters">
 
     /**
-     * @return Section
+     * @return int
      */
-    public function getSection() {
-        return $this->section;
+    public function getId() {
+        return $this->id;
     }
 
     /**
-     * @param Section $section
-     * @return File
+     * @return string
      */
-    public function setSection($section) {
-        $this->section = $section;
+    public function getVersion() {
+        return $this->version;
+    }
+
+    /**
+     * @param string $version
+     * @return DocumentVersion
+     */
+    public function setVersion($version) {
+        $this->version = $version;
+        return $this;
+    }
+
+    /**
+     * @return Section
+     */
+    public function getFile() {
+        return $this->file;
+    }
+
+    /**
+     * @param Section $file
+     * @return DocumentVersion
+     */
+    public function setFile($file) {
+        $this->file = $file;
+        return $this;
+    }
+
+    /**
+     * @return Document
+     */
+    public function getDocument() {
+        return $this->document;
+    }
+
+    /**
+     * @param Document $document
+     * @return DocumentVersion
+     */
+    public function setDocument($document) {
+        $this->document = $document;
         return $this;
     }
 

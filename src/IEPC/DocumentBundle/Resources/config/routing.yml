@@ -1,3 +1,0 @@
-iepc_document_homepage:
-    path:     /
-    defaults: { _controller: IEPCDocumentBundle:Default:index }

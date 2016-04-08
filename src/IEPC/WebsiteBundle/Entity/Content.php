@@ -13,6 +13,9 @@ use IEPC\ContentBundle\Model\Content as ContentBase;
  *     "content"            = "Content",
  *     "page"               = "IEPC\WebsiteBundle\Entity\Page",
  *     "event"              = "IEPC\WebsiteBundle\Entity\Event",
+ *     "bulletin"           = "IEPC\WebsiteBundle\Entity\Bulletin",
+ *     "news"               = "IEPC\WebsiteBundle\Entity\News",
+ *     "gallery"            = "IEPC\WebsiteBundle\Entity\Gallery",
  *     "document"           = "IEPC\DocumentBundle\Entity\Document",
  *     "documentcollection" = "IEPC\DocumentBundle\Entity\DocumentCollection"
  * })

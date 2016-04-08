@@ -9,8 +9,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="discr", type="string")
  * @ORM\DiscriminatorMap({
- *     "file"  = "File",
- *     "image" = "Image"
+ *     "file"     = "File",
+ *     "image"    = "Image"
  * })
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Table()
