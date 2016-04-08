@@ -16,8 +16,8 @@ use IEPC\ContentBundle\Model\Content as ContentBase;
  *     "bulletin"           = "IEPC\WebsiteBundle\Entity\Bulletin",
  *     "news"               = "IEPC\WebsiteBundle\Entity\News",
  *     "gallery"            = "IEPC\WebsiteBundle\Entity\Gallery",
- *     "document"           = "IEPC\DocumentBundle\Entity\Document",
- *     "documentcollection" = "IEPC\DocumentBundle\Entity\DocumentCollection"
+ *     "document"           = "IEPC\FilesBundle\Entity\Document",
+ *     "documentcollection" = "IEPC\FilesBundle\Entity\DocumentCollection"
  * })
  * @ORM\Table(indexes={
  *     @ORM\Index(name="idx_discr", columns={"discr"})}

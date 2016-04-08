@@ -49,7 +49,7 @@ class DocumentVersion
     /**
      * @var Document
      *
-     * @ORM\ManyToOne(targetEntity="IEPC\DocumentBundle\Entity\Document", inversedBy="versions")
+     * @ORM\ManyToOne(targetEntity="IEPC\FilesBundle\Entity\Document", inversedBy="versions")
      */
     protected $document;
 

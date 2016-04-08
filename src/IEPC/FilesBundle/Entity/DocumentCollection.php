@@ -29,9 +29,12 @@ class DocumentCollection extends Content
      */
     protected $id;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(length=256)
+     */
     protected $title;
-
-    protected $content; // Elastic Search
 
     // </editor-fold>
 
@@ -40,16 +43,13 @@ class DocumentCollection extends Content
     /**
      * @var Section
      *
-     * @ORM\ManyToOne(targetEntity="IEPC\ContentBundle\Entity\Section");
+     * @ORM\ManyToMany(targetEntity="Document")
+     * @ORM\JoinTable(name="document_document_collection",
+     *      joinColumns={@ORM\JoinColumn(name="document_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="document_collection_id", referencedColumnName="id")}
+     *      )
      */
-    protected $section;
-
-    /**
-     * @var Section
-     *
-     * @ORM\ManyToOne(targetEntity="IEPC\ContentBundle\Entity\Section");
-     */
-    protected $file;
+    protected $documents;
 
     // </editor-fold>
 

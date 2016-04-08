@@ -14,7 +14,7 @@ class ContentController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $contents = $em->getRepository('IEPCContentBundle:Content')->findAll();
+        $contents = $em->getRepository('IEPCWebsiteBundle:Content')->findAll();
 
         return $this->render('IEPCContentAdminBundle:Content:index.html.twig', [
             'contents' => $contents

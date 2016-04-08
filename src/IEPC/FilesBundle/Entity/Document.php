@@ -35,7 +35,7 @@ class Document extends Content
      *
      * @ORM\Column(length=256)
      */
-    protected $title;
+    protected $title; // Elastic Search
 
     /**
      * @var string
@@ -63,16 +63,9 @@ class Document extends Content
     // <editor-fold defaultstate="collapsed" desc="Relations">
 
     /**
-     * @var Section
-     *
-     * @ORM\ManyToOne(targetEntity="IEPC\ContentBundle\Entity\Section");
-     */
-    protected $section;
-
-    /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="IEPC\DocumentBundle\Entity\DocumentVersion", mappedBy="document")
+     * @ORM\OneToMany(targetEntity="IEPC\FilesBundle\Entity\DocumentVersion", mappedBy="document")
      */
     protected $versions;
 
@@ -139,25 +132,6 @@ class Document extends Content
     public function setDate($date)
     {
         $this->date = $date;
-        return $this;
-    }
-
-
-    /**
-     * @return Section
-     */
-    public function getSection()
-    {
-        return $this->section;
-    }
-
-    /**
-     * @param Section $section
-     * @return File
-     */
-    public function setSection($section)
-    {
-        $this->section = $section;
         return $this;
     }
 
