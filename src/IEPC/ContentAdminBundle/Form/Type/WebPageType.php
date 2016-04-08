@@ -18,6 +18,7 @@ class WebPageType extends AbstractType
         ]);
     }
 
+    // @TODO Remove hardocded Content reference
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -39,7 +40,7 @@ class WebPageType extends AbstractType
                 'required' => true
             ])
             ->add('content', EntityType::class, [
-                'class' => 'IEPC\ContentBundle\Entity\Content',
+                'class' => 'IEPC\WebsiteBundle\Entity\Content',
                 'label' => 'Contenido',
                 'required' => true
             ])

@@ -1,4 +1,4 @@
-<?php  namespace IEPC\ContentAdminBundle\Controller;
+<?php namespace IEPC\ContentAdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 

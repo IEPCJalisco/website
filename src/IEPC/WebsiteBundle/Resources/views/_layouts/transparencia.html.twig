@@ -25,12 +25,24 @@
     {% block mainContainer %}
         <main class="container">
             <row end>
-                <column cols="9">
+                <column cols="8">
                     {% block content '' %}
                 </column>
-                <column cols="3" class="hideMobile sidebar">
-                    &nbsp;
-                </column>
+                <column cols="4" class="hideMobile sidebar">
+                    <aside>
+                        <h2>Lo que tienes que saber</h2>
+                        <strong>Un dato personal es cualquier información relacionada contigo</strong>
+                        <p>Constituyen datos personales tu nombre, teléfono, domicilio, fotografía, o huellas dactilares, así como cualquier otro dato que pueda identificarte.​</p>
+                        <hr>
+                        <strong>Tú eres dueño de tus datos personales y solo tú decides cómo, cuándo, a quién y para qué entregas tu información personal, salvo las excepciones que marquen las leyes</strong>
+                        <p>Es muy importante que cuides estos datos por razones de seguridad y porque es tu derecho. Tus datos deben ser protegidos contra el mal uso como robo de identidad, transmisiones indebidas o ilícitas o accesos no autorizados.​</p>
+                        <hr>
+                        <strong>Existen datos que se consideran sensibles y por lo tanto requieren de mayor protección</strong>
+                        <p>Por ejemplo: origen racial o étnico, estado de salud, información genética, creencias religiosas, filosóficas y morales, afiliación sindical, opiniones políticas y preferencias sexuales.​</p>
+                        <hr>
+
+                        <h2><a href="#">Solicitud de protección de información confidencial</a></h2>
+                    </aside>
             </row>
         </main>
     {% endblock mainContainer %}

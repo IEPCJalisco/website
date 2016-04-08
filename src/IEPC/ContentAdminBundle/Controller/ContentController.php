@@ -1,12 +1,6 @@
 <?php namespace IEPC\ContentAdminBundle\Controller;
 
-use IEPC\WebsiteBundle\Entity\Page;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\HttpFoundation\Request;
-use IEPC\WebsiteBundle\Form\Type\PageType;
-use Doctrine\ORM\EntityNotFoundException;
 
 class ContentController extends Controller
 {
@@ -14,7 +8,7 @@ class ContentController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $contents = $em->getRepository('IEPCWebsiteBundle:Content')->findAll();
+        $contents = $em->getRepository('IEPC\ContentBundle\Model\ContentInterface')->findAll();
 
         return $this->render('IEPCContentAdminBundle:Content:index.html.twig', [
             'contents' => $contents

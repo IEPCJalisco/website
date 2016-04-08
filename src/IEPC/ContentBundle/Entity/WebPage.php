@@ -3,6 +3,7 @@
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use IEPC\WebsiteBundle\Entity\Content;
 
 /**
  * @ORM\Entity(repositoryClass="IEPC\ContentBundle\Repository\WebPageRepository")

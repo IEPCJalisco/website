@@ -1,7 +1,7 @@
-<?php
+<?php namespace IEPC\ContentBundle\Repository;
 
-namespace IEPC\ContentBundle\Repository;
+use Doctrine\ORM\EntityRepository;
 
-class ContentRepository extends \Doctrine\ORM\EntityRepository
+class ContentRepository extends EntityRepository
 {
 }

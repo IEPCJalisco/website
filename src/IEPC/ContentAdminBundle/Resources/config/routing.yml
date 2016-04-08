@@ -9,10 +9,10 @@ iepc_admin_tinymce_upload:
     defaults:
         _controller: IEPCContentAdminBundle:TinyMCE:upload
 
-iepc_admin_tinymcer_browse:
-    path: /tinymce/browse
-    defaults:
-        _controller: IEPCContentAdminBundle:TinyMCE:browse
+#iepc_admin_tinymcer_browse:
+#    path: /tinymce/browse
+#    defaults:
+#        _controller: IEPCContentAdminBundle:TinyMCE:browse
 
 iepc_content_admin_section:
     path:     /section
