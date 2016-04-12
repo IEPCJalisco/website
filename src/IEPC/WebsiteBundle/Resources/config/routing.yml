@@ -1,12 +1,7 @@
-iepc_website_homepage:
-    path:     /
-    defaults: { _controller: IEPCContentBundle:WebPage:renderPath }
-
-iepc_website_content:
+iepc_website_page:
     path:     /{path}
-    defaults: { _controller: IEPCContentBundle:WebPage:renderPath }
+    defaults:
+        _controller: IEPCContentBundle:WebPage:renderPath
+        path: '/'
     requirements:
         path: .+
-
-#iepc_website_admin_content_page:
-#    path:   /admin/content/{page}/{id}
