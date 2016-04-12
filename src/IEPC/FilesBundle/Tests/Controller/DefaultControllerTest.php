@@ -2,6 +2,9 @@
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * @package IEPC\FilesBundle\Tests\Controller
+ */
 class DefaultControllerTest extends WebTestCase
 {
     public function testIndex()

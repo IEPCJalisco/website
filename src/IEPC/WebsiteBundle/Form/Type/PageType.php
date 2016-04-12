@@ -7,6 +7,9 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
+/**
+ * @package IEPC\WebsiteBundle\Form\Type
+ */
 class PageType extends AbstractType
 {
     public function configureOptions(OptionsResolver $resolver)

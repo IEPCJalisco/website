@@ -7,6 +7,8 @@ use FOS\UserBundle\Model\User as BaseUser;
  * @ORM\Entity
  * @ORM\Table(name="iepc_user")
  * @ORM\Entity(repositoryClass="IEPC\SecurityBundle\Repository\UserRepository")
+ *
+ * @package IEPC\SecurityBundle\Entity
  */
 class User extends BaseUser
 {

@@ -12,6 +12,8 @@ use IEPC\ContentBundle\Entity\WebPage;
  *
  * @UniqueEntity({"path", "parent"})
  *
+ * @package IEPC\ContentBundle\Entity
+ *
  * @TODO Make option to disable/unpublish entire section
  */
 class Section

@@ -2,6 +2,9 @@
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+/**
+ * @package IEPC\WebsiteBundle\Controller}
+ */
 class SliderController extends Controller
 {
     public function mainSliderAction()

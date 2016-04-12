@@ -6,6 +6,9 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * @package IEPC\ContentAdminBundle\Controller
+ */
 class TinyMCEController extends Controller
 {
     public function uploadAction(Request $request)

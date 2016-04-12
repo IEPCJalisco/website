@@ -5,6 +5,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 
+/**
+ * @package IEPC\ContentBundle\Controller
+ */
 class WebPageController extends Controller
 {
     public function renderPathAction($path = '/')

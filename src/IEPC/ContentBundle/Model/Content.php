@@ -4,8 +4,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Class Content
- *
  * @package IEPC\ContentBundle\Model
  */
 abstract class Content implements ContentInterface

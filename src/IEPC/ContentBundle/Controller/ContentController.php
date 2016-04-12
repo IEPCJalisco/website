@@ -3,9 +3,11 @@
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * @package IEPC\ContentBundle\Controller
+ */
 abstract class ContentController extends Controller
 {
     public function renderContentAction($contentName)

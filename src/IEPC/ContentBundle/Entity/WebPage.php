@@ -13,6 +13,8 @@ use IEPC\WebsiteBundle\Entity\Content;
  * })
  * @UniqueEntity("fullPath")
  *
+ * @package IEPC\ContentBundle\Entity
+ * 
  * @TODO Make fields for meta tags for social sharing
  * @TODO Make option to publish/unpublish
  * @TODO Make Uniqueness only for published pages (repositoryMethod)

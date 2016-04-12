@@ -6,6 +6,9 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface as Container;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+/**
+ * @package IEPC\ContentBundle\Service
+ */
 class ContentManager implements ContainerAwareInterface
 {
     private $container;

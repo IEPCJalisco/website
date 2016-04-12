@@ -14,6 +14,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * })
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Table()
+ *
+ * @package IEPC\FilesBundle\Entity
  */
 class File
 {

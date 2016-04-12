@@ -6,6 +6,9 @@ use Symfony\Component\HttpFoundation\Request;
 use IEPC\ContentBundle\Entity\Section;
 use IEPC\ContentAdminBundle\Form\Type\SectionType;
 
+/**
+ * @package IEPC\ContentAdminBundle\Controller
+ */
 class SectionController extends Controller
 {
     public function indexAction()

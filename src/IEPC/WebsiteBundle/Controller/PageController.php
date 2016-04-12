@@ -1,12 +1,14 @@
 <?php namespace IEPC\WebsiteBundle\Controller;
 
-use IEPC\ContentAdminBundle\Controller\TinyMCEController;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use IEPC\WebsiteBundle\Entity\Page;
 use Doctrine\ORM\EntityNotFoundException;
 use IEPC\WebsiteBundle\Form\Type\PageType;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * @package IEPC\WebsiteBundle\Controller
+ */
 class PageController extends Controller
 {
     public function editAction($id = null, Request $request)

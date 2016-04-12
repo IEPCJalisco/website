@@ -8,9 +8,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use IEPC\ContentBundle\Entity\Section;
 
 /**
- *
- * @package IEPCWebsiteBundle
- * @version 0.1
+ * @package IEPC\WebsiteBundle\DataFixtures\ORM
  */
 class Sections extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {

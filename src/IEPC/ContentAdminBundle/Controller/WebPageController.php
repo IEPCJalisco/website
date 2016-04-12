@@ -5,6 +5,9 @@ use Symfony\Component\HttpFoundation\Request;
 use IEPC\ContentBundle\Entity\WebPage;
 use IEPC\ContentAdminBundle\Form\Type\WebPageType;
 
+/**
+ * @package IEPC\ContentAdminBundle\Controller
+ */
 class WebPageController extends Controller
 {
     public function indexAction()

@@ -1,8 +1,7 @@
 <?php namespace IEPC\ContentBundle\Model;
 
 /**
- * @author iZam b. <izma@mabkil.com>
- * @package IEPCContentBundle
+ * @package IEPC\ContentBundle\Model
  */
 interface ContentInterface
 {

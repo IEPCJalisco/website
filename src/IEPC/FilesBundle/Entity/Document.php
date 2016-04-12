@@ -12,6 +12,8 @@ use IEPC\ContentBundle\Entity\Section;
  * @ORM\Entity(repositoryClass="IEPC\FilesBundle\Repository\DocumentRepository")
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Table()
+ *
+ * @package IEPC\FilesBundle\Entity
  */
 class Document extends Content
 {

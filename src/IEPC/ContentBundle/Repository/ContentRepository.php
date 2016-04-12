@@ -3,6 +3,9 @@
 use Doctrine\ORM\EntityRepository;
 use IEPC\ContentBundle\Model\ContentInterface;
 
+/**
+ * @package IEPC\ContentBundle\Repository
+ */
 class ContentRepository extends EntityRepository
 {
     /**

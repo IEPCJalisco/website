@@ -2,6 +2,9 @@
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+/**
+ * @package IEPC\WebsiteBundle\Controller
+ */
 class MenuController extends Controller
 {
     public function mainAction()

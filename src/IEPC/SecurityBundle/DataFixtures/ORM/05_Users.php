@@ -7,6 +7,9 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use IEPC\SecurityBundle\Entity\User;
 
+/**
+ * @package IEPC\SecurityBundle\DataFixtures\ORM
+ */
 class Users extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
     private $container;

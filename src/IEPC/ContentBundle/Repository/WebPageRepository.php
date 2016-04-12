@@ -3,6 +3,9 @@
 use Doctrine\ORM\EntityRepository;
 use IEPC\ContentBundle\Entity\WebPage;
 
+/**
+ * @package IEPC\ContentBundle\Repository
+ */
 class WebPageRepository extends EntityRepository
 {
     /**

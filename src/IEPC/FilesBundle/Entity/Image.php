@@ -7,6 +7,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="IEPC\FilesBundle\Repository\ImageRepository")
  * @ORM\Table()
+ *
+ * @package IEPC\FilesBundle\Entity
  */
 class Image extends File
 {

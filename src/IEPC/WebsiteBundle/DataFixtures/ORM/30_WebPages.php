@@ -8,9 +8,7 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- *
- * @package IEPCWebsiteBundle
- * @version 0.1
+ * @package IEPC\WebsiteBundle\DataFixtures\ORM
  */
 class WebPages extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {

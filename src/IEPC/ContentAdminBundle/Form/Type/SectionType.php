@@ -8,6 +8,9 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
+/**
+ * @package IEPC\ContentAdminBundle\Form\Type
+ */
 class SectionType extends AbstractType
 {
     public function configureOptions(OptionsResolver $resolver)

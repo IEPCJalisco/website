@@ -2,6 +2,9 @@
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+/**
+ * @package IEPC\ContentAdminBundle\Controller
+ */
 class ContentController extends Controller
 {
     public function indexAction()

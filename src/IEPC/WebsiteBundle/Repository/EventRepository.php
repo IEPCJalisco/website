@@ -2,6 +2,9 @@
 
 use IEPC\ContentBundle\Repository\ContentRepository;
 
+/**
+ * @package IEPC\WebsiteBundle\Repository
+ */
 class EventRepository extends ContentRepository
 {
 }
