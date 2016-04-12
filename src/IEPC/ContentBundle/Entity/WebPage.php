@@ -15,7 +15,7 @@ use IEPC\WebsiteBundle\Entity\Content;
  *
  * @TODO Make fields for meta tags for social sharing
  * @TODO Make option to publish/unpublish
- * @TODO Make Uniqueness only for publishced pages (repositoryMethod)
+ * @TODO Make Uniqueness only for published pages (repositoryMethod)
  *
  * @TODO Make Interface to make webpages searchables by elasticsearch api
  */
@@ -62,6 +62,8 @@ class WebPage
      * @ORM\Column(length=128, nullable=true)
      */
     protected $layout;
+
+    protected $internalName;
 
     // </editor-fold>
 

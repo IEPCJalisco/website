@@ -66,12 +66,19 @@ class Page extends Content
         $this->setContent('');
     }
 
-    public function renderHtml() {
+    public function renderHtml()
+    {
         return $this->getContent();
     }
 
-    public function renderJson() {
+    public function renderJson()
+    {
         // TODO: Implement renderJson() method.
+    }
+
+    public function __toString()
+    {
+        return $this->renderHtml();
     }
 
     /**

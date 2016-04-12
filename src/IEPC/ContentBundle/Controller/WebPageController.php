@@ -7,16 +7,12 @@ use Doctrine\ORM\NoResultException;
 
 class WebPageController extends Controller
 {
-    public function renderPathAction($path = '/') {
+    public function renderPathAction($path = '/')
+    {
         $em = $this->getDoctrine()->getManager();
 
-        if (substr($path, 0, 1) != '/') {
-            $path = "/{$path}";
-        }
-
         try {
-            $webPage = $em->getRepository('IEPCContentBundle:WebPage')
-                ->findByPath($path);
+            $webPage = $em->getRepository('IEPCContentBundle:WebPage')->findByPath($path);
         } catch (NoResultException $e) {
             throw $this->createNotFoundException('La página no existe');
         } catch (NonUniqueResultException $e) {
@@ -28,10 +24,10 @@ class WebPageController extends Controller
 
     public function RenderWebPage(WebPage $webPage)
     {
-        $layout  = $webPage->getActiveLayout() ?: $this->getParameter('default_layout');
+        $layout = $webPage->getActiveLayout() ?: $this->getParameter('default_layout');
 
         return $this->render('IEPCContentBundle:WebPage:index.html.twig', [
-            'content' => $webPage->getContent()->renderHtml(),
+            'webpage' => $webPage,
             'layout'  => $layout
         ]);
     }

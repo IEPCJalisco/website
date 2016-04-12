@@ -12,12 +12,19 @@
                 </blockquote>
             </column>
             <column cols="3" class="textBanner animated zoomInUp">
-                <a href="/participacion-ciudadana/democracia-directa/reforma-participacion-ciudadana">
-                    <img src="{{ asset('bundles/iepcwebsite/images/participacion-ciudadana/banner-consulta.jpeg') }}">
-                </a>
-                <a href="/participacion-ciudadana/difusion/eventos-de-la-direccion">
-                    <img src="{{ asset('bundles/iepcwebsite/images/participacion-ciudadana/banner-eventos.jpeg') }}">
-                </a>
+                <div id="uno">
+                    <a href="/participacion-ciudadana/democracia-directa/reforma-participacion-ciudadana">
+                        <img src="{{ asset('bundles/iepcwebsite/images/participacion-ciudadana/banner-consulta.jpeg') }}">
+                    </a>
+                    <a href="/participacion-ciudadana/difusion/eventos-de-la-direccion">
+                        <img src="{{ asset('bundles/iepcwebsite/images/participacion-ciudadana/banner-eventos.jpeg') }}">
+                    </a>
+                </div>
+                <div id="dos" style="display: none;">
+                    <a href="/participacion-ciudadana/democracia-directa/reforma-participacion-ciudadana">
+                        <img src="{{ asset('bundles/iepcwebsite/images/participacion-ciudadana/banner-libros.png') }}">
+                    </a>
+                </div>
             </column>
         </row>
         <row>
@@ -52,19 +59,34 @@
     <script>
         (function(){
             var citess = [
-                {cite: 'No estudio por <strong>saber más</strong>, sino por <strong>ignorar menos</strong>.', author: 'Sor Juana Inés de la Cruz'},
-                {cite: 'Sin <strong>democracia</strong> la libertad es una <strong>quimera</strong>.', author: 'Octavio Paz'},
-                {cite: 'El cargo político <strong>más importante</strong> en una democracia es <strong>el de ciudadano</strong>.', author: 'Juez Louis D. Brandeis'},
-                {cite: 'Piense <strong>usted</strong> lo que quiera, pero <strong>piénselo</strong>.', author: 'Fernando Savater'},
-                {cite: 'La vida de <strong>la República</strong> descansa en la energía, <strong>virtud e inteligencia</strong> de sus ciudadanos.', author: 'Andrew Johnson'}
-            ],
-            citesRotator = setInterval(function() {
-                var $citesRotator = $('#citesRotator'),
-                    cite          = citess[Math.floor(Math.random() * citess.length)];
+                        {cite: 'No estudio por <strong>saber más</strong>, sino por <strong>ignorar menos</strong>.', author: 'Sor Juana Inés de la Cruz'},
+                        {cite: 'Sin <strong>democracia</strong> la libertad es una <strong>quimera</strong>.', author: 'Octavio Paz'},
+                        {cite: 'El cargo político <strong>más importante</strong> en una democracia es <strong>el de ciudadano</strong>.', author: 'Juez Louis D. Brandeis'},
+                        {cite: 'Piense <strong>usted</strong> lo que quiera, pero <strong>piénselo</strong>.', author: 'Fernando Savater'},
+                        {cite: 'La vida de <strong>la República</strong> descansa en la energía, <strong>virtud e inteligencia</strong> de sus ciudadanos.', author: 'Andrew Johnson'}
+                    ],
+                    citesRotator = setInterval(function() {
+                        var $citesRotator = $('#citesRotator'),
+                                cite          = citess[Math.floor(Math.random() * citess.length)];
 
-                $citesRotator.find('p').html(cite.cite);
-                $citesRotator.find('footer cite').text(cite.author);
-            }, 10000);
+                        $citesRotator.find('p').html(cite.cite);
+                        $citesRotator.find('footer cite').text(cite.author);
+                    }, 10000);
         })();
+
+        setInterval(function(){
+            var $uno = $('#uno');
+            var $dos = $('#dos');
+
+            if ($uno.is(':hidden')) {
+                $uno.show();
+                $dos.hide();
+            }
+            else {
+                $dos.show();
+                $uno.hide();
+            }
+        }, 4000);
+
     </script>
 {% endblock %}

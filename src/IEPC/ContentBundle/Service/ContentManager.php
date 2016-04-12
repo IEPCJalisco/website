@@ -1,6 +1,7 @@
 <?php namespace IEPC\ContentBundle\Service;
 
 use IEPC\ContentBundle\Model\ContentInterface;
+use IEPC\WebsiteBundle\Entity\Content;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface as Container;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -34,6 +35,24 @@ class ContentManager implements ContainerAwareInterface
         }
 
         return $contents[$class]['edit_route'];
+    }
+
+    /**
+     * @param \IEPC\ContentBundle\Model\ContentInterface $content
+     * @param string $type
+     * @param string $layout
+     *
+     * @return mixed
+     */
+    public function render(ContentInterface $content, $type = 'html', $layout = 'default')
+    {
+        $templating = $this->container->get('templating');
+
+        $layout = $this->getContentLayout($content, $type, $layout);
+
+        return $templating->render($layout, [
+            'content' => $content
+        ]);
     }
 
     /**
@@ -94,6 +113,18 @@ class ContentManager implements ContainerAwareInterface
     public function __construct(Container $container)
     {
         $this->setContainer($container);
+    }
+
+    private function getContentLayout(ContentInterface $content, $type = 'html', $layout = 'default')
+    {
+        $classNameArray = explode('\\', preg_replace('/\\\\/', '', get_class($content), 1));
+
+        $bundleDir = $classNameArray[0];
+        $entityName = strtolower(array_pop($classNameArray));
+
+        $layoutName = "{$bundleDir}:_content/{$entityName}:{$layout}.{$type}.twig";
+
+        return $layoutName;
     }
 
     private function endsWith($haystack, $needle) {
