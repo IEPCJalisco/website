@@ -1,13 +1,14 @@
 <?php namespace IEPC\WebsiteBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use IEPC\ContentBundle\Model\Content as ContentBase;
 
 /**
  * @ORM\MappedSuperclass()
  *
  * @ORM\InheritanceType("JOINED")
- * @ORM\Entity(repositoryClass="IEPC\ContentBundle\Repository\ContentRepository")
+ * @ORM\Entity(repositoryClass="IEPC\WebsiteBundle\Repository\ContentRepository")
  * @ORM\DiscriminatorColumn(name="discr", type="string")
  * @ORM\DiscriminatorMap({
  *     "content"            = "Content",
@@ -19,11 +20,13 @@ use IEPC\ContentBundle\Model\Content as ContentBase;
  *     "document"           = "IEPC\FilesBundle\Entity\Document",
  *     "documentcollection" = "IEPC\FilesBundle\Entity\DocumentCollection"
  * })
- * @ORM\Table(indexes={
- *     @ORM\Index(name="idx_discr", columns={"discr"})}
+ * @ORM\Table(
+ *     indexes={@ORM\Index(name="idx_discr", columns={"discr"})},
+ *     uniqueConstraints={@ORM\UniqueConstraint(name="idx_name", columns={"name"})}
  * )
+ * @UniqueEntity("name")
  *
- * @package IEPCContentBundle
+ * @package IEPCWebsiteBundle
  */
 abstract class Content extends ContentBase
 {

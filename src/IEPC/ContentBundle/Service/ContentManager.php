@@ -124,6 +124,9 @@ class ContentManager implements ContainerAwareInterface
 
         $layoutName = "{$bundleDir}:_content/{$entityName}:{$layout}.{$type}.twig";
 
+        // @todo If no file then look for default layout
+        // @todo If no default layout aim for default on contentbundle
+
         return $layoutName;
     }
 

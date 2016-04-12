@@ -11,7 +11,7 @@ use IEPC\WebsiteBundle\Entity\Content;
  * @ORM\Table(indexes={
  *     @ORM\Index(name="idx_fullPath", columns={"full_path"})
  * })
- *  @UniqueEntity("fullPath")
+ * @UniqueEntity("fullPath")
  *
  * @TODO Make fields for meta tags for social sharing
  * @TODO Make option to publish/unpublish
