@@ -1,3 +1,11 @@
+
+iepc_website_admin_content_page:
+    path:     /admin/content/page/edit/{id}
+    defaults:
+        _controller: IEPCWebsiteBundle:Page:edit
+        id: null
+
+
 iepc_website_page:
     path:     /{path}
     defaults:

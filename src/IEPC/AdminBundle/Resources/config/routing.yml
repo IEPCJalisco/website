@@ -11,7 +11,7 @@ iepc_admin_tinymce_upload:
 #iepc_admin_tinymcer_browse:
 #    path: /tinymce/browse
 #    defaults:
-#        _controller: IEPCContentAdminBundle:TinyMCE:browse
+#        _controller: IEPCAdminBundle:TinyMCE:browse
 
 iepc_content_admin_section:
     path:     /section

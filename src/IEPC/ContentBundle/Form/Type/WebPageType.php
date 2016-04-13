@@ -45,6 +45,7 @@ class WebPageType extends AbstractType
             ->add('content', EntityType::class, [
                 'class' => 'IEPC\WebsiteBundle\Entity\Content',
                 'label' => 'Contenido',
+                'choice_label' => 'name',
                 'required' => true
             ])
             ->add('parent', EntityType::class, [

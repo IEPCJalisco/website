@@ -49,7 +49,7 @@ class PageController extends Controller
             return $this->redirectToRoute('iepc_content_admin_content');
         }
 
-        return $this->render('@IEPCContentAdmin/Content/edit.html.twig', [
+        return $this->render('@IEPCAdmin/Content/edit.html.twig', [
             'form' => $form->createView(),
         ]);
     }

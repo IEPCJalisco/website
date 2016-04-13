@@ -6,7 +6,7 @@
     <ul>
         {% for content in contents %}
             <li>
-                [<a href="{{ path('iepc_content_admin_content_edit', {id: content.id}) }}">editar</a>] <strong>{{ content }}</strong>
+                [<a href="{{ path('iepc_content_admin_content_edit', {id: content.id}) }}">editar</a>] <strong>{{ content.name }}</strong>
                 {% if content.webpages %}
                     <ul>
                         {% for webpage in content.webpages %}

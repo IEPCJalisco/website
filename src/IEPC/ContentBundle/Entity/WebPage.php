@@ -146,7 +146,7 @@ class WebPage
             $this->fullPath = $this->getSection()->getFullPath();
         }
         else {
-            $this->fullPath = $this->getSection()->getFullPath() . '/' . $this->getPath();
+            $this->fullPath = ($this->getSection()->getFullPath() != '/'?$this->getParent()->getFullPath():'') . '/' . $this->getPath();
         }
 
         return $this;

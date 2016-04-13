@@ -9,6 +9,6 @@ class ContentAdminController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('IEPCAdminBundle:ContentAdmin:index.html.twig');
+        return $this->render('IEPCAdminBundle:Admin:index.html.twig');
     }
 }
