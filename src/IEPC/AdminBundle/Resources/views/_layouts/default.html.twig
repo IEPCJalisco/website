@@ -1,0 +1,22 @@
+{% extends '@IEPCAdmin/base.html.twig' %}
+
+{% block layout %}
+    <header>
+        <h1><a href="{{ path('iepc_content_admin_homepage') }}">Administración</a></h1>
+    </header>
+
+    {% block mainMenu %}
+        {#{{  render(controller('IEPCWebsiteBundle:Menu:main')) }}#}
+    {% endblock mainMenu %}
+
+    <main class="container">
+        {% block content '' %}
+    </main>
+
+    <footer>
+        -- Admin Footer--
+        {#{% block footer %}#}
+            {#{% include '@IEPCWebsite/_shared/footer-default.html.twig' %}#}
+        {#{% endblock footer %}#}
+    </footer>
+{% endblock layout %}

@@ -1,0 +1,86 @@
+{% extends '@IEPCAdmin/_layouts/default.html.twig' %}
+
+{% block content %}
+    {{ form(form) }}
+    <input id="file_uploader" type="file" class="hidden">
+{% endblock content %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        function uploadFile(file, fileInput)
+        {
+            var url = '/admin/tinymce/upload',
+                xhr = new XMLHttpRequest(),
+                fd  = new FormData();
+
+            xhr.open('POST', url, true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var response = JSON.parse(xhr.responseText);
+
+                    if (response.fileName) {
+                        fileInput.callback.call(null, response.location, {alt: response.fileName, text: response.fileName});
+                    }
+                    else {
+                        alert('error');
+                    }
+                    //callback('mypage.html', {text: 'My text'});
+                    //callback('myimage.jpg', {alt: 'My alt text'});
+                    //callback('movie.mp4',   {source2: 'alt.ogg', poster: 'image.jpg'});
+                }
+            };
+            fd.append('upload_file', file);
+            xhr.send(fd);
+        }
+
+        document.getElementById('file_uploader').addEventListener('change', function () {
+            var file = this.files[0];
+
+                uploadFile(file, this);
+        }, false);
+
+        tinymce.init({
+            selector: '#page_content',
+            height: 400,
+            plugins : ['code, media, contextmenu, advlist, autosave, save, template, paste',
+                'colorpicker, preview, image, link, autolink, insertdatetime, hr, pagebreak',
+                'wordcount, textcolor, table, imagetools'],
+            images_upload_base_path: '/',
+            images_upload_credentials: true,
+            images_upload_url: '/admin/tinymce/upload',
+            schema: 'html5-strict',
+            automatic_uploads: false,
+            file_picker_types: 'file image media',
+            paste_data_images: true,
+            toolbar: 'undo redo styleselect bold italic alignleft aligncenter alignright bullist numlist outdent indent link media image code',
+            content_css  : 'iepc.css',
+            file_picker_callback : function(callback, value, meta) {
+                var file_uploader = document.getElementById('file_uploader');
+
+                file_uploader.callback = callback;
+                file_uploader.fileType = meta.filetype;
+                file_uploader.click();
+            }
+//            font_formats: 'Arial=arial,helvetica,sans-serif;Courier New=courier new,courier,monospace;AkrutiKndPadmini=Akpdmi-n',
+//            formats: {
+//                p: { wrapper: 'p'},
+//                alignleft: {selector : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes : 'left'},
+//                aligncenter: {selector : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes : 'center'},
+//                alignright: {selector : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes : 'right'},
+//                alignfull: {selector : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes : 'full'},
+//                bold: {inline : 'span', 'classes' : 'bold'},
+//                italic: {inline : 'span', 'classes' : 'italic'},
+//                underline: {inline : 'span', 'classes' : 'underline', exact : true},
+//                strikethrough: {inline : 'del'},
+//                forecolor: {inline : 'span', classes : 'forecolor', styles : {color : '%value'}},
+//                hilitecolor: {inline : 'span', classes : 'hilitecolor', styles : {backgroundColor : '%value'}},
+//                custom_format: {block : 'h1', attributes : {title : 'Header'}, styles : {color : 'red'}}
+//            }
+        });
+
+        $('#page_Guardar').on('click', function() {
+            saveContent.apply(this);
+        });
+    </script>
+{% endblock javascripts %}

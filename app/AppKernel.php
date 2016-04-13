@@ -23,7 +23,7 @@ class AppKernel extends Kernel
             new IEPC\FilesBundle\IEPCFilesBundle(),
             new IEPC\WebsiteBundle\IEPCWebsiteBundle(),
             new IEPC\ContentBundle\IEPCContentBundle(),
-            new IEPC\ContentAdminBundle\IEPCContentAdminBundle(),
+            new IEPC\AdminBundle\IEPCAdminBundle(),
             new IEPC\SecurityBundle\IEPCSecurityBundle(),
         );
 

@@ -1,0 +1,22 @@
+{% extends '@IEPCAdmin/_layouts/default.html.twig' %}
+
+{% block content %}
+    <h1>Contenidos</h1>
+    [<a href="{{ path('iepc_content_admin_content_edit') }}">nuevo</a>]
+    <ul>
+        {% for content in contents %}
+            <li>
+                [<a href="{{ path('iepc_content_admin_content_edit', {id: content.id}) }}">editar</a>] <strong>{{ content }}</strong>
+                {% if content.webpages %}
+                    <ul>
+                        {% for webpage in content.webpages %}
+                            <li>
+                                <a href="{{ webpage }}" target="_blank">{{ webpage }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

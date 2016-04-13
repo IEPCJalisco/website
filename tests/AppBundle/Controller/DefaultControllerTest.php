@@ -1,9 +1,10 @@
-<?php
-
-namespace Tests\AppBundle\Controller;
+<?php namespace Tests\AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * @package Tests\AppBundle\Controller
+ */
 class DefaultControllerTest extends WebTestCase
 {
     public function testIndex()

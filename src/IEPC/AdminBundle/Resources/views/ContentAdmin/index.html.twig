@@ -1,0 +1,14 @@
+{% extends '@IEPCAdmin/_layouts/default.html.twig' %}
+
+{% block content %}
+    <a href="{{ path('iepc_content_admin_section') }}">
+        <button>Secciones</button>
+    </a>
+    <a href="{{ path('iepc_content_admin_content') }}">
+        <button>Contenidos</button>
+    </a>
+    <a href="{{ path('iepc_content_admin_webpage') }}">
+        <button>Páginas web</button>
+    </a>
+{% endblock content %}
+

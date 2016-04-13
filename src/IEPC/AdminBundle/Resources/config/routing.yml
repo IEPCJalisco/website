@@ -1,0 +1,57 @@
+iepc_content_admin_homepage:
+    path:     /
+    defaults:
+        _controller: IEPCAdminBundle:ContentAdmin:index
+
+iepc_admin_tinymce_upload:
+    path: /tinymce/upload
+    defaults:
+        _controller: IEPCAdminBundle:TinyMCE:upload
+
+#iepc_admin_tinymcer_browse:
+#    path: /tinymce/browse
+#    defaults:
+#        _controller: IEPCContentAdminBundle:TinyMCE:browse
+
+iepc_content_admin_section:
+    path:     /section
+    defaults:
+        _controller: IEPCAdminBundle:Section:index
+
+iepc_content_admin_section_edit:
+    path:     /section/edit/{id}
+    defaults:
+        _controller: IEPCAdminBundle:Section:edit
+        id: null
+
+iepc_content_admin_section_delete:
+    path:     /section/delete/{id}
+    defaults:
+        _controller: IEPCAdminBundle:Section:delete
+
+iepc_content_admin_webpage:
+    path:     /webpage
+    defaults:
+        _controller: IEPCAdminBundle:WebPage:index
+
+iepc_content_admin_webpage_edit:
+    path:     /webpage/edit/{id}
+    defaults:
+        _controller: IEPCAdminBundle:WebPage:edit
+        id: null
+
+iepc_content_admin_webpage_delete:
+    path:     /webpage/delete/{id}
+    defaults:
+        _controller: IEPCAdminBundle:WebPage:delete
+
+iepc_content_admin_content:
+    path:     /content
+    defaults:
+        _controller: IEPCAdminBundle:Content:index
+
+iepc_content_admin_content_edit:
+    path:     /content/edit/{id}
+    defaults:
+        _controller: IEPCAdminBundle:Content:edit
+        id: null

@@ -1,18 +1,14 @@
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
+# @todo Use subdomain admin.iepcjalisco.org.mx
 iepc_content_admin:
-    resource: "@IEPCContentAdminBundle/Resources/config/routing.yml"
-    prefix:   /admin
-
-iepc_admin_website:
-    resource: "@IEPCWebsiteBundle/Resources/config/adminRouting.yml"
+    resource: "@IEPCAdminBundle/Resources/config/routing.yml"
     prefix:   /admin
 
 iepc_website:
     resource: "@IEPCWebsiteBundle/Resources/config/routing.yml"
     prefix:   /
-
 
 # @todo Use subdomain cdn.iepcjalisco.org.mx
 iepc_files:

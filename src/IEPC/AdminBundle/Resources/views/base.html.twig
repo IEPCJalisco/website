@@ -1,0 +1,23 @@
+{% extends 'IEPCWebsiteBundle::base.html.twig' %}
+
+{% block stylesheets %}
+    {#<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/default.min.css">#}
+    {% stylesheets output='css/iepcjalisco.css' filter='?yui_css'
+        '@IEPCAdminBundle/Resources/less/iepcjaliscoadmin.less'
+    %}
+    <link rel="stylesheet" href="{{ asset_url }}">
+    {% endstylesheets %}
+{% endblock stylesheets %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/vendor/angular/angular.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/tinymce/tinymce.min.js') }}"></script>
+    {% javascripts output='js/iepcjaliscoadmin.js' filter='?yui_js'
+    '@IEPCAdminBundle/Resources/javascript/admincontent.js'
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock javascripts %}
+
+{% block layout '' %}
