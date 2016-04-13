@@ -40,14 +40,14 @@ class WebPage
     /**
      * @var string
      *
-     * @ORM\Column(length=48)
+     * @ORM\Column(length=128)
      */
     protected $path;
 
     /**
      * @var string
      *
-     * @ORM\Column(length=255)
+     * @ORM\Column(length=256)
      */
     protected $fullPath;
 
@@ -89,6 +89,7 @@ class WebPage
      * @var Section
      *
      * @ORM\ManyToOne(targetEntity="WebPage", inversedBy="children")
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", nullable=true)
      */
     protected $parent;
 
@@ -146,7 +147,14 @@ class WebPage
             $this->fullPath = $this->getSection()->getFullPath();
         }
         else {
-            $this->fullPath = ($this->getSection()->getFullPath() != '/'?$this->getParent()->getFullPath():'') . '/' . $this->getPath();
+            if ($this->getParent()) {
+                $this->fullPath = $this->getParent()->getFullPath() != '/' ? $this->getParent()->getFullPath() : '';
+            }
+            else {
+                $this->fullPath  = $this->getSection()->getFullPath() != '/' ? $this->getSection()->getFullPath() : '';
+            }
+
+            $this->fullPath .= '/' . $this->getPath();
         }
 
         return $this;
@@ -259,10 +267,10 @@ class WebPage
     }
 
     /**
-     * @param \IEPC\ContentBundle\Entity\WebPage $parent
+     * @param $parent
      * @return WebPage
      */
-    public function setParent(WebPage $parent)
+    public function setParent($parent)
     {
         $this->parent = $parent;
         return $this;

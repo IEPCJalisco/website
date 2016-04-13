@@ -49,9 +49,11 @@ class WebPageType extends AbstractType
                 'required' => true
             ])
             ->add('parent', EntityType::class, [
-                'class' => 'IEPC\ContentBundle\Entity\WebPage',
-                'label' => 'Página padre',
-                'required' => false
+                'class'       => 'IEPC\ContentBundle\Entity\WebPage',
+                'label'       => 'Página padre',
+                'empty_data'  => null,
+                'placeholder' => '-----',
+                'required'    => false
             ])
             ->add('Guardar', SubmitType::class)
         ;
