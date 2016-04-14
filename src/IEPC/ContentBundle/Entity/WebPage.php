@@ -47,7 +47,7 @@ class WebPage
     /**
      * @var string
      *
-     * @ORM\Column(length=512)
+     * @ORM\Column(length=1250)
      */
     protected $fullPath;
 
