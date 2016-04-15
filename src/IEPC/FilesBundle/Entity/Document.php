@@ -6,8 +6,6 @@ use IEPC\WebsiteBundle\Entity\Content;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 
-use IEPC\ContentBundle\Entity\Section;
-
 /**
  * @ORM\Entity(repositoryClass="IEPC\FilesBundle\Repository\DocumentRepository")
  * @ORM\HasLifecycleCallbacks()
@@ -47,13 +45,6 @@ class Document extends Content
     protected $content; // Elastic Search
 
     /**
-     * @var string
-     *
-     * @ORM\Column(type="text")
-     */
-    protected $keywords;
-
-    /**
      * @var \Datetime
      *
      * @ORM\Column(type="datetime")
@@ -70,6 +61,13 @@ class Document extends Content
      * @ORM\OneToMany(targetEntity="IEPC\FilesBundle\Entity\DocumentVersion", mappedBy="document")
      */
     protected $versions;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Tag")
+     */
+    protected $tags;
 
     // </editor-fold>
 
@@ -98,24 +96,6 @@ class Document extends Content
     public function setTitle($title)
     {
         $this->title = $title;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getKeywords()
-    {
-        return $this->keywords;
-    }
-
-    /**
-     * @param string $keywords
-     * @return Document
-     */
-    public function setKeywords($keywords)
-    {
-        $this->keywords = $keywords;
         return $this;
     }
 
@@ -155,15 +135,31 @@ class Document extends Content
         return $this;
     }
 
+    /**
+     * @return ArrayCollection
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * @param ArrayCollection $tags
+     * @return Document
+     */
+    public function setTags($tags)
+    {
+        $this->tags = $tags;
+        return $this;
+    }
+
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Functions">
 
     public function __construct(UploadedFile $file = null)
     {
-        if ($file) {
-            $this->setFile($file);
-        }
+        parent::__construct();
     }
 
     public function __toString()
