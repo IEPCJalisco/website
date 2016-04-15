@@ -2,21 +2,20 @@
 
 {% block layout %}
     <header>
-        <h1><a href="{{ path('iepc_content_admin_homepage') }}">Administración</a></h1>
+        <h1><a href="{{ path('iepc_content_admin_homepage') }}">IEPC Admin</a></h1>
     </header>
 
     {% block mainMenu %}
-        {#{{  render(controller('IEPCWebsiteBundle:Menu:main')) }}#}
+        {{  render(controller('IEPCWebsiteBundle:Menu:main')) }}
     {% endblock mainMenu %}
 
     <main class="container">
         {% block content '' %}
     </main>
 
-    <footer>
-        -- Admin Footer--
+    {#<footer>#}
         {#{% block footer %}#}
             {#{% include '@IEPCWebsite/_shared/footer-default.html.twig' %}#}
         {#{% endblock footer %}#}
-    </footer>
+    {#</footer>#}
 {% endblock layout %}

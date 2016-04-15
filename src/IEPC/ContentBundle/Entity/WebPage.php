@@ -81,7 +81,7 @@ class WebPage
     /**
      * @var Content
      *
-     * @ORM\ManyToOne(targetEntity="IEPC\ContentBundle\Model\ContentInterface", inversedBy="webPages")
+     * @ORM\ManyToOne(targetEntity="IEPC\ContentBundle\Model\ContentInterface")
      */
     protected $content;
 

@@ -1,22 +1,54 @@
-{% extends 'IEPCWebsiteBundle::base.html.twig' %}
-
-{% block stylesheets %}
+<!DOCTYPE html>
+<html lang="es" data-ng-app="iepcAdmin">
+<head>
+    <title>{% block title 'Instituto Electoral y de Participación Ciudadana del Estado de Jalisco'%}</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="{{ asset('favicon_144px.png') }}">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('favicon_57px.png') }}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('favicon_60px.png') }}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('favicon_72px.png') }}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('favicon_76px.png') }}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('favicon_114px.png') }}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('favicon_120px.png') }}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('favicon_144px.png') }}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('favicon_152px.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicon_180px.png') }}">
+    <link rel="icon" type="image/png" sizes="192x192"  href="{{ asset('favicon_192px.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon_32px.png') }}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('favicon_96px.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon_16px.png') }}">
+    <link rel="shortcut icon" href="{{ asset('favicon_72px.png') }}">
+    <link type="text/plain" rel="author" href=" {{ asset('humans.txt') }}">
+    <link rel="manifest" href="{{ asset('manifest.json') }}">
+    <link rel="stylesheet" href='https://fonts.googleapis.com/css?family=Raleway:400,700'>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:400,700,700italic,400italic'>
     {% stylesheets output='css/iepcjaliscoadmin.css' filter='?yui_css'
+        '@IEPCWebsiteBundle/Resources/less/iepcjalisco.less'
         '@IEPCAdminBundle/Resources/less/iepcjaliscoadmin.less'
     %}
     <link rel="stylesheet" href="{{ asset_url }}">
     {% endstylesheets %}
-{% endblock stylesheets %}
-
-{% block javascripts %}
-    {{ parent() }}
-    {% javascripts output='js/iepcjaliscoadmin.js' filter='?yui_js'
-        'assets/vendor/angular/angular.js'
-        'assets/vendor/tinymce/jquery.tinymce.js'
-        '@IEPCAdminBundle/Resources/javascript/admincontent.js'
-    %}
-    <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}
-{% endblock javascripts %}
-
+    {% block stylesheets '' %}
+</head>
+<body class="{% block bodyClass '' %}">
 {% block layout '' %}
+
+{% javascripts output='js/iepcjaliscoadmin.js' filter='?yui_js'
+    'assets/vendor/jquery/dist/jquery.min.js'
+    '@IEPCWebsiteBundle/Resources/javascript/menu.js'
+    'assets/vendor/angular/angular.js'
+    'assets/vendor/angular-ui-router/release/angular-ui-router.js'
+    'assets/vendor/tinymce/jquery.tinymce.js'
+    '@IEPCAdminBundle/Resources/javascript/admincontent.js'
+%}
+    <script src="{{ asset_url }}"></script>
+{% endjavascripts %}
+{% block javascripts '' %}
+</body>
+</html>

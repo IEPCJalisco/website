@@ -1,5 +1,15 @@
 'use strict'
 
+angular.module('iepcAdmin', ['ui.router'])
+    .config(['$compileProvider', function ($compileProvider) {
+        $compileProvider.debugInfoEnabled(false);
+        $compileProvider.aHrefSanitizationWhitelist(/^\s*(geo|mailto|tel|maps):/);
+    }])
+    .run(['$location', function($location){
+        $location.path('/');
+    }]);
+
+
 function saveContent() {
     var $content = $(this).parents('article').first(),
         id       = $content.attr('data-id'),
