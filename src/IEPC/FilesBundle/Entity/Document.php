@@ -3,7 +3,6 @@
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use IEPC\WebsiteBundle\Entity\Content;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -36,6 +35,13 @@ class Document extends Content
      * @ORM\Column(length=256)
      */
     protected $title; // Elastic Search
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="text")
+     */
+    protected $description; // Elastic Searchs
 
     /**
      * @var string
@@ -100,6 +106,24 @@ class Document extends Content
     }
 
     /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     * @return Document
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+        return $this;
+    }
+
+    /**
      * @return \Datetime
      */
     public function getDate()
@@ -157,108 +181,38 @@ class Document extends Content
 
     // <editor-fold defaultstate="collapsed" desc="Functions">
 
-    public function __construct(UploadedFile $file = null)
+    public function __construct()
     {
         parent::__construct();
     }
 
     public function __toString()
     {
-        return $this->getWebPath();
+        return $this->getTitle();
     }
 
-    public function getAbsolutePath()
+    public function getContent()
     {
-        return null === $this->path
-            ? null
-            : $this->getUploadRootDir() . '/' . $this->getId() . '.' . $this->getPath();
-    }
-
-    public function getWebPath()
-    {
-        return null === $this->path
-            ? null
-            : '/' . $this->getUploadDir() . '/' . $this->getId() . '.' . $this->getPath();
-    }
-
-    protected function getUploadRootDir()
-    {
-        return __DIR__.'/../../../../web/'.$this->getUploadDir();
-    }
-
-    protected function getUploadDir()
-    {
-        return 'files';
-    }
-
-    /**
-     * @ORM\PrePersist()
-     * @ORM\PreUpdate()
-     */
-    public function preUpload()
-    {
-    }
-
-    /**
-     * @ORM\PostPersist()
-     * @ORM\PostUpdate()
-     */
-    public function upload()
-    {
-        if (null === $this->getFile()) {
-            return;
-        }
-
-        if ($this->getTemp()) {
-            unlink($this->getTemp());
-            $this->setTemp(null);
-        }
-
-        $extension = $this->getFile()->guessClientExtension()?: $this->getFile()->getClientOriginalExtension();
-
-        $localFile = $this->getFile()->move(
-            $this->getUploadRootDir(), "{$this->getId()}.{$extension}"
-        );
-
-        chmod($localFile->getPathname(), 0660);
-        $this->setFile(null);
-    }
-
-    /**
-     * @ORM\PostRemove()
-     */
-    public function removeUpload()
-    {
-        if ($this->getTemp()) {
-            unlink($this->getTemp());
-        }
-    }
-
-    /**
-     * @ORM\PreRemove()
-     */
-    public function storeFilenameForRemove()
-    {
-        $this->setTemp($this->getAbsolutePath());
-    }
-
-    public function getContent() {
-        // TODO: Implement getContent() method.
+        return $this->getTitle();
     }
 
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Static Functions">
-
+    /**
+     * @return string
+     */
     public static function getEntityName()
     {
-        return 'Página';
+
     }
 
+    /**
+     * @return string
+     */
     public static function getEntityNamePlural()
     {
-        return 'Páginas';
-    }
 
+    }
     // </editor-fold>
 }

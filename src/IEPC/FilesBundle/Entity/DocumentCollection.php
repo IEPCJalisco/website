@@ -1,7 +1,7 @@
 <?php namespace IEPC\FilesBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 use IEPC\WebsiteBundle\Entity\Content;
 
@@ -17,7 +17,6 @@ use IEPC\ContentBundle\Entity\Section;
 class DocumentCollection extends Content
 {
     // <editor-fold defaultstate="collapsed" desc="Constants">
-
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Properties">
@@ -43,7 +42,7 @@ class DocumentCollection extends Content
     // <editor-fold defaultstate="collapsed" desc="Relations">
 
     /**
-     * @var Section
+     * @var ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="Document")
      * @ORM\JoinTable(name="document_document_collection",
@@ -58,18 +57,63 @@ class DocumentCollection extends Content
     // <editor-fold defaultstate="collapsed" desc="Getter and setters">
 
     /**
-     * @return Section
+     * @return int
      */
-    public function getSection() {
-        return $this->section;
+    public function getId() {
+        return $this->id;
     }
 
     /**
-     * @param Section $section
-     * @return File
+     * @return string
      */
-    public function setSection($section) {
-        $this->section = $section;
+    public function getTitle() {
+        return $this->title;
+    }
+
+    /**
+     * @param string $title
+     * @return DocumentCollection
+     */
+    public function setTitle($title) {
+        $this->title = $title;
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getDocuments() {
+        return $this->documents;
+    }
+
+    /**
+     * @param ArrayCollection $documents
+     * @return DocumentCollection
+     */
+    public function setDocuments($documents) {
+        $this->documents = $documents;
+        return $this;
+    }
+
+    /**
+     * @param \IEPC\FilesBundle\Entity\Document $document
+     * @return DocumentCollection
+     */
+    public function addDocument(Document $document)
+    {
+        if (!$this->getDocuments()->contains($document)) {
+            $this->getDocuments()->add($document);
+        }
+        return $this;
+    }
+
+    /**
+     * @param \IEPC\FilesBundle\Entity\Document $document
+     * @return DocumentCollection
+     */
+    public function removeDocument(Document $document)
+    {
+        $this->getDocuments()->removeElement($document);
         return $this;
     }
 
@@ -77,88 +121,19 @@ class DocumentCollection extends Content
 
     // <editor-fold defaultstate="collapsed" desc="Functions">
 
-    public function __construct(UploadedFile $file = NULL) {
-        if ($file) {
-            $this->setFile($file);
-        }
+    public function __construct()
+    {
+        $this->setDocuments(new ArrayCollection());
     }
 
-    public function __toString() {
-        return $this->getWebPath();
-    }
-
-    public function getAbsolutePath() {
-        return NULL === $this->path
-            ? NULL
-            : $this->getUploadRootDir() . '/' . $this->getId() . '.' . $this->getPath();
-    }
-
-    public function getWebPath() {
-        return NULL === $this->path
-            ? NULL
-            : '/' . $this->getUploadDir() . '/' . $this->getId() . '.' . $this->getPath();
-    }
-
-    protected function getUploadRootDir() {
-        return __DIR__ . '/../../../../web/' . $this->getUploadDir();
-    }
-
-    protected function getUploadDir() {
-        return 'files';
-    }
-
-    /**
-     * @ORM\PrePersist()
-     * @ORM\PreUpdate()
-     */
-    public function preUpload() {
-    }
-
-    /**
-     * @ORM\PostPersist()
-     * @ORM\PostUpdate()
-     */
-    public function upload() {
-        if (NULL === $this->getFile()) {
-            return;
-        }
-
-        if ($this->getTemp()) {
-            unlink($this->getTemp());
-            $this->setTemp(NULL);
-        }
-
-        $extension = $this->getFile()
-            ->guessClientExtension() ?: $this->getFile()
-            ->getClientOriginalExtension();
-
-        $localFile = $this->getFile()->move(
-            $this->getUploadRootDir(), "{$this->getId()}.{$extension}"
-        );
-
-        chmod($localFile->getPathname(), 0660);
-        $this->setFile(NULL);
-    }
-
-    /**
-     * @ORM\PostRemove()
-     */
-    public function removeUpload() {
-        if ($this->getTemp()) {
-            unlink($this->getTemp());
-        }
-    }
-
-    /**
-     * @ORM\PreRemove()
-     */
-    public function storeFilenameForRemove() {
-        $this->setTemp($this->getAbsolutePath());
+    public function __toString()
+    {
+        return $this->getTitle();
     }
 
     public function getContent()
     {
-
+        return $this->getTitle();
     }
 
     // </editor-fold>

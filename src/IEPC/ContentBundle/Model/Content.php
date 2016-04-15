@@ -32,14 +32,6 @@ abstract class Content implements ContentInterface
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Relations">
-
-    /**
-     * @var ArrayCollection
-     *
-     * @ORM\OneToMany(targetEntity="IEPC\ContentBundle\Entity\WebPage", mappedBy="content")
-     */
-    protected $webPages;
-
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Getter and setters">
@@ -70,29 +62,12 @@ abstract class Content implements ContentInterface
         return $this;
     }
 
-    /**
-     * @return ArrayCollection
-     */
-    public function getWebPages() {
-        return $this->webPages;
-    }
-
-    /**
-     * @param ArrayCollection $webPages
-     * @return Content
-     */
-    public function setWebPages(ArrayCollection $webPages) {
-        $this->webPages = $webPages;
-        return $this;
-    }
-
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Functions">
 
     public function __construct()
     {
-        $this->setWebPages(new ArrayCollection());
     }
 
     public function renderJson()
@@ -105,7 +80,9 @@ abstract class Content implements ContentInterface
     public function renderHtml()
     {
         $id = $this->getId();
-        return "<article>Content Id: <strong>{ $id }</strong> </article>";
+        $name = $this->getName();
+
+        return "<article data-id\"{ $id }\">{$name}</article>";
     }
 
     public function __toString()

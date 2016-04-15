@@ -16,7 +16,6 @@ use IEPC\ContentBundle\Entity\Section;
 class DocumentVersion
 {
     // <editor-fold defaultstate="collapsed" desc="Constants">
-
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Properties">
@@ -118,91 +117,13 @@ class DocumentVersion
 
     // <editor-fold defaultstate="collapsed" desc="Functions">
 
-    public function __construct(UploadedFile $file = null)
+    public function __construct()
     {
-        if ($file) {
-            $this->setFile($file);
-        }
     }
 
     public function __toString()
     {
-        return $this->getWebPath();
-    }
-
-    public function getAbsolutePath()
-    {
-        return null === $this->path
-            ? null
-            : $this->getUploadRootDir() . '/' . $this->getId() . '.' . $this->getPath();
-    }
-
-    public function getWebPath()
-    {
-        return null === $this->path
-            ? null
-            : '/' . $this->getUploadDir() . '/' . $this->getId() . '.' . $this->getPath();
-    }
-
-    protected function getUploadRootDir()
-    {
-        return __DIR__.'/../../../../web/'.$this->getUploadDir();
-    }
-
-    protected function getUploadDir()
-    {
-        return 'files';
-    }
-
-    /**
-     * @ORM\PrePersist()
-     * @ORM\PreUpdate()
-     */
-    public function preUpload()
-    {
-    }
-
-    /**
-     * @ORM\PostPersist()
-     * @ORM\PostUpdate()
-     */
-    public function upload()
-    {
-        if (null === $this->getFile()) {
-            return;
-        }
-
-        if ($this->getTemp()) {
-            unlink($this->getTemp());
-            $this->setTemp(null);
-        }
-
-        $extension = $this->getFile()->guessClientExtension()?: $this->getFile()->getClientOriginalExtension();
-
-        $localFile = $this->getFile()->move(
-            $this->getUploadRootDir(), "{$this->getId()}.{$extension}"
-        );
-
-        chmod($localFile->getPathname(), 0660);
-        $this->setFile(null);
-    }
-
-    /**
-     * @ORM\PostRemove()
-     */
-    public function removeUpload()
-    {
-        if ($this->getTemp()) {
-            unlink($this->getTemp());
-        }
-    }
-
-    /**
-     * @ORM\PreRemove()
-     */
-    public function storeFilenameForRemove()
-    {
-        $this->setTemp($this->getAbsolutePath());
+        return $this->getVersion();
     }
 
     // </editor-fold>
