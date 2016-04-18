@@ -1,4 +1,4 @@
-<?php namespace IEPC\ContentBundle\Service;
+<?php namespace IEPC\FilesBundle\Service;
 
 use IEPC\ContentBundle\Model\ContentInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
@@ -6,9 +6,9 @@ use Symfony\Component\DependencyInjection\ContainerInterface as Container;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * @package IEPC\ContentBundle\Service
+ * @package IEPC\FilesBundle\Service
  */
-class ContentManager implements ContainerAwareInterface
+class DocumentManager implements ContainerAwareInterface
 {
     private $container;
 

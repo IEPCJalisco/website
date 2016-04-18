@@ -7,15 +7,6 @@
         {% for content in contents %}
             <li>
                 [<a href="{{ path('iepc_content_admin_content_edit', {id: content.id}) }}">editar</a>] <strong>{{ content.name }}</strong>
-                {% if content.webpages %}
-                    <ul>
-                        {% for webpage in content.webpages %}
-                            <li>
-                                <a href="{{ webpage }}" target="_blank">{{ webpage }}</a>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
             </li>
         {% endfor %}
     </ul>

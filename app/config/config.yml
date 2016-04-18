@@ -5,6 +5,7 @@ imports:
     - { resource: assetic.yml }
     - { resource: content.yml }
     - { resource: "@IEPCContentBundle/Resources/config/services.yml" }
+    - { resource: "@IEPCFilesBundle/Resources/config/services.yml" }
     - { resource: "@IEPCSecurityBundle/Resources/config/services.yml" }
 
 parameters:

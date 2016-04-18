@@ -1,1 +1,4 @@
 services:
+    iepc.document_manager:
+        class: IEPC\FilesBundle\Service\DocumentManager
+        arguments: ['@service_container']

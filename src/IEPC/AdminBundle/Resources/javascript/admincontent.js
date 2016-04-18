@@ -12,7 +12,7 @@ angular.module('iepcAdmin', ['ui.router'])
 
 function saveContent() {
     var $content = $(this).parents('article').first(),
-        id       = $content.attr('data-id'),
+        id       = $('#page_id').val(),
         value    = $content.find('textarea').val();
 
     $.post('/admin/content/edit/' + id , {content: value}, function(data){

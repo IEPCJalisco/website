@@ -1,5 +1,7 @@
 {% extends '@IEPCWebsite/_layouts/' ~ layout  ~ '.html.twig' %}
 
 {% block content %}
-    {{ webpage.content| raw }}
+    <div style="text-align: justify;">
+        {{ webpage.content| raw }}
+    </div>
 {% endblock content %}

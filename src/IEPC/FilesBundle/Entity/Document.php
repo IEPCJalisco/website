@@ -15,7 +15,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Document extends Content
 {
     // <editor-fold defaultstate="collapsed" desc="Constants">
-
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Properties">
@@ -199,12 +198,12 @@ class Document extends Content
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Static Functions">
+
     /**
      * @return string
      */
     public static function getEntityName()
     {
-
     }
 
     /**
@@ -212,7 +211,7 @@ class Document extends Content
      */
     public static function getEntityNamePlural()
     {
-
     }
+
     // </editor-fold>
 }
