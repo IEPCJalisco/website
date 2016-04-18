@@ -67,6 +67,13 @@ class WebPage
 
     protected $internalName;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="text")
+     */
+    protected $metaTags;
+
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Relations">
@@ -241,6 +248,42 @@ class WebPage
     }
 
     /**
+     * @return mixed
+     */
+    public function getInternalName()
+    {
+        return $this->internalName;
+    }
+
+    /**
+     * @param mixed $internalName
+     * @return WebPage
+     */
+    public function setInternalName($internalName)
+    {
+        $this->internalName = $internalName;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMetaTags()
+    {
+        return $this->metaTags;
+    }
+
+    /**
+     * @param string $metaTags
+     * @return WebPage
+     */
+    public function setMetaTags($metaTags)
+    {
+        $this->metaTags = $metaTags;
+        return $this;
+    }
+
+    /**
      * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getChildren()
@@ -285,7 +328,8 @@ class WebPage
         $this->setShowOnMenu(false);
     }
 
-    public function __toString() {
+    public function __toString()
+    {
         return $this->getFullPath();
     }
 
