@@ -38,13 +38,12 @@
 </head>
 <body class="{% block bodyClass '' %}">
 {% block layout '' %}
-
+<script src="/assets/vendor/jquery/dist/jquery.min.js"></script>
+<script src="/assets/vendor/tinymce/tinymce.min.js"></script>
 {% javascripts output='js/iepcjaliscoadmin.js' filter='?yui_js'
-    'assets/vendor/jquery/dist/jquery.min.js'
     '@IEPCWebsiteBundle/Resources/javascript/menu.js'
     'assets/vendor/angular/angular.min.js'
     'assets/vendor/angular-ui-router/release/angular-ui-router.js'
-    'assets/vendor/tinymce/jquery.tinymce.min.js'
     '@IEPCAdminBundle/Resources/javascript/admincontent.js'
 %}
     <script src="{{ asset_url }}"></script>

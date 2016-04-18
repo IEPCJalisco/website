@@ -11,7 +11,7 @@ angular.module('iepcAdmin', ['ui.router'])
 
 
 function saveContent() {
-    var $content = $(this).parents('article').first(),
+    var $content = $(this).parents('form').first(),
         id       = $('#page_id').val(),
         value    = $content.find('textarea').val();
 
