@@ -25,6 +25,11 @@
                         <img src="{{ asset('bundles/iepcwebsite/images/participacion-ciudadana/banner-libros.png') }}">
                     </a>
                 </div>
+                <div id="tres" style="display: none;">
+                    <a href="http://www.revistafolios.mx/hemeroteca" target="_blank">
+                        <img src="{{ asset('bundles/iepcwebsite/images/participacion-ciudadana/banner-folios.png') }}">
+                    </a>
+                </div>
             </column>
         </row>
         <row>
@@ -75,16 +80,24 @@
         })();
 
         setInterval(function(){
-            var $uno = $('#uno');
-            var $dos = $('#dos');
+            var $uno  = $('#uno');
+            var $dos  = $('#dos');
+            var $tres = $('#tres');
 
-            if ($uno.is(':hidden')) {
+            if ($uno.is(':visible')) {
+                $uno.hide();
+                $dos.show();
+                $tres.hide();
+            }
+            else if ($dos.is(':visible')){
+                $uno.hide();
+                $dos.hide();
+                $tres.show();
+            }
+            else if ($tres.is(':visible')) {
                 $uno.show();
                 $dos.hide();
-            }
-            else {
-                $dos.show();
-                $uno.hide();
+                $tres.hide();
             }
         }, 4000);
 
