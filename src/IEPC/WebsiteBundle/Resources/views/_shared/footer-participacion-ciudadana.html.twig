@@ -1,0 +1,39 @@
+<div>
+    <nav class="sitemap">
+        <div class="links">
+            <form>
+                Buzón:
+                <label>Nombre:<input type="text"></label>
+                <br>
+                <label>Correo:<input type="text"></label>
+                <br>
+                <label>
+                    Comentarios:
+                    <textarea></textarea>
+                </label>
+            </form>
+    </nav>
+    <div class="map">
+        <div>
+            <div class="gmaps">
+                <a href="https://www.google.com.mx/maps/place/Instituto+Electoral+y+de+Participaci%C3%B3n+Ciudana+del+Estado+de+Jalisco/@20.6916996,-103.3760411,15z/data=!4m2!3m1!1s0x8428ae3ea966b0ed:0xded589bd795d099e" target="_blank">
+                    {% image '@IEPCWebsiteBundle/Resources/images/mapa.png' %}
+                    <img src="{{ asset_url }}" alt="Esquina Florencia y López Mateos" style="height: 150px;">
+                    {% endimage %}
+                </a>
+            </div>
+            <div class="address">
+                <a href="https://www.google.com.mx/maps/place/Instituto+Electoral+y+de+Participaci%C3%B3n+Ciudana+del+Estado+de+Jalisco/@20.6916996,-103.3760411,15z/data=!4m2!3m1!1s0x8428ae3ea966b0ed:0xded589bd795d099e" target="_blank">
+                    Florencia #2370</a>
+                , Colonia Italia Providencia
+                <br>
+                CP. 44648, Guadalajara, Jalisco, México<br>
+                <strong>Directo: 01 33 38 17 75 56</strong>
+                <a href="{{ url('iepc_website_page') }}">www.iepcjalisco.org.mx</a>
+            </div>
+        </div>
+        <div class="aviso">
+            <a title="Aviso de confidencialidad" href="http://www.iepcjalisco.org.mx/aviso-de-confidencialidad">Aviso de confidencialidad</a>
+        </div>
+    </div>
+</div>
