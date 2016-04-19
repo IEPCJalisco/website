@@ -1,12 +1,8 @@
 {% extends '@IEPCAdmin/base.html.twig' %}
 
 {% block layout %}
-    <header>
-        <h1><a href="{{ path('iepc_content_admin_homepage') }}">IEPC Admin</a></h1>
-    </header>
-
     {% block mainMenu %}
-        {{  render(controller('IEPCWebsiteBundle:Menu:main')) }}
+        {{  render(controller('IEPCAdminBundle:Menu:admin')) }}
     {% endblock mainMenu %}
 
     <main class="container">
