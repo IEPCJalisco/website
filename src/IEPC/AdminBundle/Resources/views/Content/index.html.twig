@@ -2,11 +2,17 @@
 
 {% block content %}
     <h1>Contenidos</h1>
-    [<a href="{{ path('iepc_content_admin_content_edit') }}">nuevo</a>]
+
+    [<a href="{{ path('iepc_content_admin_content_edit') }}">Nuevo</a>]
+
+
+
     <ul>
         {% for content in contents %}
             <li>
-                [<a href="{{ path('iepc_content_admin_content_edit', {id: content.id}) }}">editar</a>] <strong>{{ content.name }}</strong>
+                [<a href="{{ path('iepc_content_admin_content_edit', {id: content.id}) }}">editar</a>]
+                ({{ content.entityName }})
+                <strong>{{ content.name }}</strong>
             </li>
         {% endfor %}
     </ul>

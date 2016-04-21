@@ -29,4 +29,5 @@ security:
             anonymous:    true
 
     access_control:
-        - { path: ^/admin/,    role: ROLE_USER }
+        - { host: '%admin_host%', path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { host: '%admin_host%', role: ROLE_USER }

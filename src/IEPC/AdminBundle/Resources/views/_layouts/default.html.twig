@@ -5,13 +5,5 @@
         {{  render(controller('IEPCAdminBundle:Menu:admin')) }}
     {% endblock mainMenu %}
 
-    <main class="container">
-        {% block content '' %}
-    </main>
-
-    {#<footer>#}
-        {#{% block footer %}#}
-            {#{% include '@IEPCWebsite/_shared/footer-default.html.twig' %}#}
-        {#{% endblock footer %}#}
-    {#</footer>#}
+    <main class="container" data-ui-view></main>
 {% endblock layout %}

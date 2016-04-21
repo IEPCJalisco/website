@@ -22,3 +22,7 @@ parameters:
     default_layout: default
     documents_dir: documents
     files_dir: 'web/files'
+
+    #Routing
+    admin_host: admin.iepcjalisco.org.mx
+    cdn_host: cdn.iepcjalisco.org.mx

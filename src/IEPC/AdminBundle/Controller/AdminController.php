@@ -5,10 +5,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 /**
  * @package IEPC\AdminBundle\Controller
  */
-class ContentAdminController extends Controller
+class AdminController extends Controller
 {
     public function indexAction()
     {
         return $this->render('IEPCAdminBundle:Admin:index.html.twig');
+    }
+
+    public function mainAction()
+    {
+        return $this->render('IEPCAdminBundle:Admin:main.html.twig');
     }
 }

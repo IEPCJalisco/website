@@ -29,7 +29,7 @@ class Users extends AbstractFixture implements OrderedFixtureInterface, Containe
         $izam = new User();
         $izam->setUsername('izambl')
             ->setEmail('izma@mabkil.com')
-            ->setPlainPassword('toor12345')
+            ->setPlainPassword('password')
             ->setRoles(['ROLE_ADMIN'])
             ->setEnabled(true);
         $em->persist($izam);

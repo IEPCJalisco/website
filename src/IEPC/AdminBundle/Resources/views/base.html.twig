@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" data-ng-app="iepcAdmin">
+<html lang="es" data-ng-app="iepcAdmin" data-ng-strict-di>
 <head>
     <title>{% block title 'Instituto Electoral y de Participación Ciudadana del Estado de Jalisco'%}</title>
     <meta name="description" content="">
@@ -36,15 +36,23 @@
     {% endstylesheets %}
     {% block stylesheets '' %}
 </head>
-<body class="{% block bodyClass '' %}">
+<body class="{% block bodyClass '' %}" data-ng-controller="adminController">
 {% block layout '' %}
-<script src="/assets/vendor/jquery/dist/jquery.min.js"></script>
-<script src="/assets/vendor/tinymce/tinymce.min.js"></script>
+
+{% javascripts output='js/iepcjaliscoadminvendors.js'
+    'assets/vendor/tinymce-dist/tinymce.min.js'
+    'assets/vendor/angular/angular.min.js'
+    'assets/vendor/angular-ui-tinymce/dist/tinymce.min.js'
+    'assets/vendor/angular-ui-router/release/angular-ui-router.min.js'
+%}
+    <script src="{{ asset_url }}"></script>
+{% endjavascripts %}
+
 {% javascripts output='js/iepcjaliscoadmin.js' filter='?yui_js'
     '@IEPCWebsiteBundle/Resources/javascript/menu.js'
-    'assets/vendor/angular/angular.min.js'
-    'assets/vendor/angular-ui-router/release/angular-ui-router.js'
-    '@IEPCAdminBundle/Resources/javascript/admincontent.js'
+    '@IEPCAdminBundle/Resources/javascript/admin.js'
+    '@IEPCAdminBundle/Resources/javascript/controllers/*'
+    '@IEPCAdminBundle/Resources/javascript/services/*'
 %}
     <script src="{{ asset_url }}"></script>
 {% endjavascripts %}

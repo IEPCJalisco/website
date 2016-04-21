@@ -12,13 +12,11 @@ use IEPC\WebsiteBundle\Entity\Content;
  *     @ORM\Index(name="idx_fullPath", columns={"full_path"})
  * })
  * @UniqueEntity("fullPath")
+ * @UniqueEntity("internalName")
  *
  * @package IEPC\ContentBundle\Entity
  * 
- * @TODO Make fields for meta tags for social sharing
- * @TODO Make option to publish/unpublish
  * @TODO Make Uniqueness only for published pages (repositoryMethod)
- *
  * @TODO Make Interface to make webpages searchables by elasticsearch api
  */
 class WebPage
@@ -65,7 +63,20 @@ class WebPage
      */
     protected $layout;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(length=128)
+     */
     protected $internalName;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(type="boolean")
+     */
+    protected $published;
 
     /**
      * @var string
@@ -281,6 +292,32 @@ class WebPage
     {
         $this->metaTags = $metaTags;
         return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isPublished()
+    {
+        return $this->getPublished();
+    }
+
+    /**
+     * @param boolean $published
+     * @return WebPage
+     */
+    public function setPublished($published)
+    {
+        $this->published = $published;
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getPublished()
+    {
+        return $this->published;
     }
 
     /**

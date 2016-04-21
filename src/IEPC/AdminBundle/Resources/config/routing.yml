@@ -1,7 +1,25 @@
-iepc_content_admin_homepage:
+iepc_admin_homepage:
     path:     /
     defaults:
-        _controller: IEPCAdminBundle:ContentAdmin:index
+        _controller: IEPCAdminBundle:Admin:index
+
+iepc_admin_main:
+    path:     /main
+    defaults:
+        _controller: IEPCAdminBundle:Admin:main
+
+iepc_content_admin_section:
+    path:     /sections
+    defaults:
+        _controller: IEPCAdminBundle:Section:index
+
+iepc_content_admin_section_edit:
+    path:     /sections/edit/{id}
+    defaults:
+        _controller: IEPCAdminBundle:Section:edit
+        id: null
+
+#**********************************************************************************************************************#
 
 iepc_admin_tinymce_upload:
     path: /tinymce/upload
@@ -13,16 +31,16 @@ iepc_admin_tinymce_upload:
 #    defaults:
 #        _controller: IEPCAdminBundle:TinyMCE:browse
 
-iepc_content_admin_section:
-    path:     /section
+iepc_website_admin_content_page:
+    path:     /admin/content/page/edit/{id}
     defaults:
-        _controller: IEPCAdminBundle:Section:index
-
-iepc_content_admin_section_edit:
-    path:     /section/edit/{id}
-    defaults:
-        _controller: IEPCAdminBundle:Section:edit
+        _controller: IEPCWebsiteBundle:Page:edit
         id: null
+
+
+
+
+
 
 iepc_content_admin_section_delete:
     path:     /section/delete/{id}

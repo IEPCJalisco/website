@@ -1,19 +1,13 @@
 parameters:
     content:
         types:
-            'IEPC\WebsiteBundle\Entity\Event':
-                edit_route: iepc_website_admin_content_event
-            'IEPC\WebsiteBundle\Entity\Page':
-                edit_route: iepc_website_admin_content_page
-            'IEPC\WebsiteBundle\Entity\Bulletin':
-                edit_route: iepc_website_admin_content_page
-            'IEPC\WebsiteBundle\Entity\Gallery':
-                edit_route: iepc_website_admin_content_page
-            'IEPC\WebsiteBundle\Entity\News':
-                edit_route: iepc_website_admin_content_page
-            'IEPC\FilesBundle\Entity\Document':
-                edit_route: iepc_website_admin_content_page
-            'IEPC\FilesBundle\Entity\DocumentCollection':
-                edit_route: iepc_website_admin_content_page
+            - 'IEPC\WebsiteBundle\Entity\Event'
+            - 'IEPC\WebsiteBundle\Entity\Page'
+            - 'IEPC\WebsiteBundle\Entity\Bulletin'
+            - 'IEPC\WebsiteBundle\Entity\Gallery'
+            - 'IEPC\WebsiteBundle\Entity\News'
+            - 'IEPC\FilesBundle\Entity\Document'
+            - 'IEPC\FilesBundle\Entity\DocumentCollection'
         tmp_dir:   'media/_tmp'
         files_dir: 'media/content/{type}/{id}'
+    
