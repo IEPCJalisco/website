@@ -4,10 +4,16 @@
     <main class="container" id="frontpage">
         <row>
             <column cols="9" class="mainBanner">
-                <blockquote>
+                <blockquote id="buno">
                     <p>Nunca dudes que un pequeño <strong>grupo de ciudadanos pensantes</strong> y comprometidos pueden <strong>cambiar el mundo</strong>, porque en el fondo es lo único que siempre lo ha cambiado.</p>
                     <footer>
                         <cite>Margaret Mead</cite>
+                    </footer>
+                </blockquote>
+                <blockquote id="bdos" style="display: none;">
+                    <p>Nadie puede ser feliz sin participar en la <strong>felicidad pública</strong>, nadie puede ser libre sin la experiencia de la <strong>libertad pública</strong>, y nadie, finalmente, puede ser feliz o libre sin implicarse y formar parte del <strong>poder político</strong>.</p>
+                    <footer>
+                        <cite>Hannah Arendt</cite>
                     </footer>
                 </blockquote>
             </column>
@@ -100,6 +106,20 @@
                 $tres.hide();
             }
         }, 4000);
+
+        setInterval(function(){
+            var $uno  = $('#buno');
+            var $dos  = $('#bdos');
+
+            if ($uno.is(':visible')) {
+                $uno.hide();
+                $dos.show();
+            }
+            else {
+                $uno.show();
+                $dos.hide();
+            }
+        }, 5000);
 
     </script>
 {% endblock %}

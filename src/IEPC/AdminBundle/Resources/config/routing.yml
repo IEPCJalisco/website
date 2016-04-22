@@ -13,6 +13,11 @@ iepc_content_admin_section:
     defaults:
         _controller: IEPCAdminBundle:Section:index
 
+iepc_content_admin_section_get:
+    path:     /sections/get
+    defaults:
+        _controller: IEPCAdminBundle:Section:get
+
 iepc_content_admin_section_edit:
     path:     /sections/edit/{id}
     defaults:

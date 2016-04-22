@@ -2,3 +2,7 @@ services:
     iepc.content_manager:
         class: IEPC\ContentBundle\Service\ContentManager
         arguments: ['@service_container']
+    get_set_method_normalizer:
+        class: Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer
+        tags:
+            - { name: serializer.normalizer }

@@ -1,15 +1,17 @@
 <section data-ng-controller="sectionController">
-    <h1>Secciones</h1>
-    <button data-ng-click="newSection()">nueva</button>
 
-    {#<ul>#}
-        {#{% for section in sections %}#}
-            {#<li>#}
-                {#[<a href="{{ path('iepc_content_admin_section_edit', {id: section.id}) }}">editar</a>]#}
-                {#[<a href="{{ path('iepc_content_admin_section_delete', {id: section.id}) }}">borrar</a>]#}
-                {#{{ section }}#}
-                {#[<i>{{ section.fullPath }}</i>]#}
-            {#</li>#}
-        {#{% endfor %}#}
-    {#</ul>#}
+    <h1>Secciones</h1>
+    <span data-ng-click="newSection()">[new]</span>
+    <a data-ui-sref="sections.edit">edit</a>
+
+    <row>
+        <column cols="6">
+            <ul>
+                <li data-ng-repeat="section in sections track by $index">
+                    [edit] [delete] {{ '{{ section.name }}' }}
+                </li>
+            </ul>
+        </column>
+        <column cols="6" data-ui-view></column>
+    </row>
 </section>

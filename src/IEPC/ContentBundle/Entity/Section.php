@@ -14,7 +14,6 @@ use IEPC\ContentBundle\Entity\WebPage;
  *
  * @package IEPC\ContentBundle\Entity
  *
- * @TODO Make option to disable/unpublish entire section
  */
 class Section
 {
@@ -73,13 +72,6 @@ class Section
      * @ORM\OneToMany(targetEntity="Section", mappedBy="parent")
      */
     protected $children;
-
-    /**
-     * @var ArrayCollection
-     *
-     * @ORM\OneToMany(targetEntity="IEPC\ContentBundle\Entity\WebPage", mappedBy="section")
-     */
-    protected $webPages;
 
     // </editor-fold>
 
@@ -172,45 +164,6 @@ class Section
         return $this;
     }
 
-    /**
-     * @return ArrayCollection
-     */
-    public function getWebPages() {
-        return $this->webPages;
-    }
-
-    /**
-     * @param ArrayCollection $webPages
-     * @return Section
-     */
-    public function setWebPages($webPages) {
-        $this->webPages = $webPages;
-        return $this;
-    }
-
-    /**
-     * @param WebPage $webPage
-     * @return Section
-     */
-    public function addWebPage(WebPage $webPage)
-    {
-        if (!$this->getWebPages()->contains($webPage)) {
-            $this->getWebPages()->add($webPage);
-            $webPage->setSection($this);
-        }
-        return $this;
-    }
-
-    /**
-     * @param \IEPC\ContentBundle\Entity\WebPage $webPage
-     * @return Section
-     */
-    public function removeWebPage(WebPage $webPage)
-    {
-        $this->getWebPages()->removeElement($webPage);
-        return $this;
-    }
-
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Functions">
@@ -222,7 +175,6 @@ class Section
         }
 
         $this->setChildren(new ArrayCollection());
-        $this->setWebPages(new ArrayCollection());
     }
 
     /**

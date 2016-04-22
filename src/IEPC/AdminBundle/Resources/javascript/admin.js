@@ -19,7 +19,7 @@ angular.module('iepcAdmin', ['ui.router'])
                 url : '/sections',
                 templateUrl : 'sections'
             })
-            .state('sections.new', {
+            .state('sections.edit', {
                 url : '/sections/edit',
                 templateUrl : 'sections/edit'
             })

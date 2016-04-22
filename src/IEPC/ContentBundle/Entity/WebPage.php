@@ -92,7 +92,7 @@ class WebPage
     /**
      * @var Section
      *
-     * @ORM\ManyToOne(targetEntity="IEPC\ContentBundle\Entity\Section", inversedBy="webPages");
+     * @ORM\ManyToOne(targetEntity="IEPC\ContentBundle\Entity\Section");
      */
     protected $section;
 

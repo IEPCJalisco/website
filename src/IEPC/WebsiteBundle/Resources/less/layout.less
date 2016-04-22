@@ -13,7 +13,7 @@ body > footer {
         .container;
         .row;
     }
-    .sitemap {
+    .left {
         .col(6);
         .links {
             .media-grid(3);
@@ -52,8 +52,9 @@ body > footer {
                 margin-top: 1em;
             }
         }
+        padding-right: 1em;
     }
-    .map {
+    .right {
         .col(6);
         & > div {
             .row;
@@ -66,16 +67,17 @@ body > footer {
                 .col(4);
             }
         }
+        padding-left: 1em;
     }
 
     @media @notmaxwidth {
-        .sitemap {
+        .left {
             .col(8);
             .links {
                 .media-grid(3);
             }
         }
-        .map {
+        .right {
             .col(4);
             & > div {
                 .gmaps {
@@ -88,11 +90,12 @@ body > footer {
             }
         }
     }
+
     @media @tabletview {
-        .sitemap {
+        .left {
             display: none;
         }
-        .map {
+        .right {
             .col(12);
             & > div {
                 .gmaps {
@@ -102,6 +105,7 @@ body > footer {
                     .col(12);
                 }
             }
+            padding-left: 0;
         }
     }
 }
