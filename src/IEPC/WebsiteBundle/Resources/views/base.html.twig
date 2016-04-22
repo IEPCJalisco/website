@@ -45,6 +45,16 @@
         %}
         <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
+        {% if is_granted('ROLE_ADMIN') %}
+            {% javascripts output='js/iepcjaliscoadmin.js' filter='?yui_js'
+                '@IEPCWebsiteBundle/Resources/javascript/menu.js'
+                '@IEPCAdminBundle/Resources/javascript/admin.js'
+                '@IEPCAdminBundle/Resources/javascript/controllers/*'
+                '@IEPCAdminBundle/Resources/javascript/services/*'
+            %}
+            <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+        {% endif %}
         {% block javascripts '' %}
     </body>
 </html>
