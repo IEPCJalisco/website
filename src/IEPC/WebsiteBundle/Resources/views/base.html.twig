@@ -35,10 +35,20 @@
         %}
         <link rel="stylesheet" href="{{ asset_url }}">
         {% endstylesheets %}
+        {% if is_granted('ROLE_ADMIN') %}
+            {% stylesheets output='css/iepcjaliscoadmin.css' filter='?yui_css'
+                '@IEPCAdminBundle/Resources/less/iepcjaliscoadmin.less'
+            %}
+            <link rel="stylesheet" href="{{ asset_url }}">
+            {% endstylesheets %}
+        {% endif %}
         {% block stylesheets '' %}
     </head>
     <body class="{% block bodyClass '' %}">
         {% block layout '' %}
+        {% if is_granted('ROLE_ADMIN') %}
+            {% include '@IEPCAdmin/controls.html.twig' %}
+        {% endif %}
         {% javascripts output='js/iepcjalisco.js' filter='?yui_js'
             'assets/vendor/jquery/dist/jquery.min.js'
             '@IEPCWebsiteBundle/Resources/javascript/menu.js'
@@ -46,6 +56,13 @@
         <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
         {% if is_granted('ROLE_ADMIN') %}
+            {% javascripts output='js/iepcjaliscoadminvendors.js'
+                'assets/vendor/tinymce-dist/tinymce.min.js'
+                'assets/vendor/angular/angular.min.js'
+                'assets/vendor/angular-ui-tinymce/dist/tinymce.min.js'
+            %}
+            <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
             {% javascripts output='js/iepcjaliscoadmin.js' filter='?yui_js'
                 '@IEPCWebsiteBundle/Resources/javascript/menu.js'
                 '@IEPCAdminBundle/Resources/javascript/admin.js'

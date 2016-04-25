@@ -1,28 +1,12 @@
 'use strict';
 
-angular.module('iepcAdmin', ['ui.router'])
+angular.module('iepcAdmin')
     .config(['$compileProvider', function ($compileProvider) {
         $compileProvider.debugInfoEnabled(true);
     }])
-    .run(['$location', function($location){
-        //$location.path('/');
+    .run(['$location', function($location) {
     }])
-    .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-        $urlRouterProvider.otherwise('/');
-
-        $stateProvider
-            .state('home', {
-                url         : '/',
-                templateUrl : 'main'
-            })
-            .state('sections', {
-                url : '/sections',
-                templateUrl : 'sections'
-            })
-            .state('sections.edit', {
-                url : '/sections/edit',
-                templateUrl : 'sections/edit'
-            })
+    .config(['$stateProvider', function($stateProvider) {
     }]);
 
 // function saveContent() {

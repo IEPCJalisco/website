@@ -1,28 +1,7 @@
 <div>
     <nav class="left">
         <div class="mailbox">
-            <form>
-                <p>Estamos comprometidos con la participación ciudadana, por lo que te invitamos a que nos envíes tus
-                    comentarios, sugerencias y dudas a través de nuestras cuentas en twitter y facebook, o a través del
-                    siguiente formulario.</p>
-                <div class="data">
-                    <div class="names">
-                        <label>Nombre</label>
-                        <input type="text">
-
-                        <label>Email</label>
-                        <input type="text">
-
-                        <label>Asunto</label>
-                        <input type="text">
-                    </div>
-                    <div class="msg">
-                        <label>Mensaje</label>
-                        <textarea></textarea>
-                    </div>
-                </div>
-                <button type="submit">Enviar</button>
-            </form>
+            {{ render(controller('IEPCWebsiteBundle:WebForm:ParticipacionCiudadana')) }}
         </div>
     </nav>
     <div class="right">
