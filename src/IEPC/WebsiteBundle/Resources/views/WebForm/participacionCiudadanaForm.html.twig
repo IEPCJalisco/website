@@ -1,26 +1,21 @@
 {{ form_start(form, {action:path('webform_participacion_ciudadana')}) }}
-{{ form_widget(form) }}
+    <p>Estamos comprometidos con la participación ciudadana, por lo que te invitamos a que nos envíes tus comentarios, sugerencias y dudas a través de nuestras cuentas en twitter y facebook, o a través del siguiente formulario.</p>
+
+        {{ form_label(form.name) }}
+        {{ form_errors(form.name) }}
+        {{ form_widget(form.name) }}
+
+        {{ form_label(form.email) }}
+        {{ form_errors(form.email) }}
+        {{ form_widget(form.email) }}
+
+        {{ form_label(form.subject) }}
+        {{ form_errors(form.subject) }}
+        {{ form_widget(form.subject) }}
+
+        {{ form_label(form.message) }}
+        {{ form_errors(form.message) }}
+        {{ form_widget(form.message) }}
+
+        {{ form_widget(form.send) }}
 {{ form_end(form) }}
-
-{#<form method="post" action="{{ path('webform_participacion_ciudadana') }}">#}
-    {#<p>Estamos comprometidos con la participación ciudadana, por lo que te invitamos a que nos envíes tus#}
-        {#comentarios, sugerencias y dudas a través de nuestras cuentas en twitter y facebook, o a través del#}
-        {#siguiente formulario.</p>#}
-    {#<div class="data">#}
-        {#<div class="names">#}
-            {#<label>Nombre</label>#}
-            {#<input type="text" name="nombre">#}
-
-            {#<label>Email</label>#}
-            {#<input type="text" name="email">#}
-
-            {#<label>Asunto</label>#}
-            {#<input type="text" name="asunto">#}
-        {#</div>#}
-        {#<div class="msg">#}
-            {#<label>Mensaje</label>#}
-            {#<textarea name="mensaje"></textarea>#}
-        {#</div>#}
-    {#</div>#}
-    {#<button type="submit">Enviar</button>#}
-{#</form>#}

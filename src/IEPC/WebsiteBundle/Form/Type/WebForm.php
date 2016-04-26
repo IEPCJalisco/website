@@ -17,22 +17,27 @@ class WebForm extends AbstractType
         $builder
             ->setMethod('POST')
             ->add('name', TextType::class, [
-                'label' => 'Nombre',
-                'required' => true
+                'label'    => 'Nombre',
+                'required' => true,
+                'attr'     => ['placeholder' => 'Nombre', 'class' => 'name']
             ])
             ->add('email', EmailType::class, [
-                'label' => 'Email',
-                'required' => true
+                'label'    => 'Email',
+                'required' => true,
+                'attr'     => ['placeholder' => 'Email', 'class' => 'email']
             ])
             ->add('subject', TextType::class, [
-                'label' => 'Asunto',
-                'required' => true
+                'label'    => 'Asunto',
+                'required' => true,
+                'attr'     => ['placeholder' => 'Asunto', 'class' => 'subject']
             ])
             ->add('message', TextareaType::class, [
-                'label' => 'Mensaje',
-                'required' => true
+                'label'    => 'Mensaje',
+                'required' => true,
+                'attr'     => ['placeholder' => 'Mensaje', 'class' => 'fmessage']
             ])
-            ->add('Enviar', SubmitType::class)
-        ;
+            ->add('send', SubmitType::class, [
+                'label' => 'Enviar'
+            ]);
     }
 }
