@@ -16,27 +16,43 @@ class WebForm extends AbstractType
     {
         $builder
             ->setMethod('POST')
-            ->add('name', TextType::class, [
+            ->add('name',    TextType::class,     [
                 'label'    => 'Nombre',
                 'required' => true,
-                'attr'     => ['placeholder' => 'Nombre', 'class' => 'name']
+                'attr'     => [
+                    'placeholder' => 'Nombre',
+                    'class'       => 'name',
+                    'title'       => 'Nombre'
+                ]
             ])
-            ->add('email', EmailType::class, [
+            ->add('email',   EmailType::class,    [
                 'label'    => 'Email',
                 'required' => true,
-                'attr'     => ['placeholder' => 'Email', 'class' => 'email']
+                'attr'     => [
+                    'placeholder' => 'Email',
+                    'class'       => 'email',
+                    'title'       => 'Email'
+                ]
             ])
-            ->add('subject', TextType::class, [
+            ->add('subject', TextType::class,     [
                 'label'    => 'Asunto',
                 'required' => true,
-                'attr'     => ['placeholder' => 'Asunto', 'class' => 'subject']
+                'attr'     => [
+                    'placeholder' => 'Asunto',
+                    'class'       => 'subject',
+                    'title'       => 'Asunto'
+                ]
             ])
             ->add('message', TextareaType::class, [
                 'label'    => 'Mensaje',
                 'required' => true,
-                'attr'     => ['placeholder' => 'Mensaje', 'class' => 'fmessage']
+                'attr'     => [
+                    'placeholder' => 'Mensaje',
+                    'class'       => 'fmessage',
+                    'title'       => 'Mensaje'
+                ]
             ])
-            ->add('send', SubmitType::class, [
+            ->add('send',    SubmitType::class,   [
                 'label' => 'Enviar'
             ]);
     }

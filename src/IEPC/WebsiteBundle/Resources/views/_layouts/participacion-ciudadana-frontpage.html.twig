@@ -4,21 +4,21 @@
     <main class="container" id="frontpage">
         <row>
             <column cols="9" class="mainBanner">
-                <blockquote id="buno">
+                <blockquote>
                     <p>Nunca dudes que un pequeño <strong>grupo de ciudadanos pensantes</strong> y comprometidos pueden <strong>cambiar el mundo</strong>, porque en el fondo es lo único que siempre lo ha cambiado.</p>
                     <footer>
                         <cite>Margaret Mead</cite>
                     </footer>
                 </blockquote>
-                <blockquote id="bdos" style="display: none;">
+                <blockquote>
                     <p>Nadie puede ser feliz sin participar en la <strong>felicidad pública</strong>, nadie puede ser libre sin la experiencia de la <strong>libertad pública</strong>, y nadie, finalmente, puede ser feliz o libre sin implicarse y formar parte del <strong>poder político</strong>.</p>
                     <footer>
                         <cite>Hannah Arendt</cite>
                     </footer>
                 </blockquote>
             </column>
-            <column cols="3" class="textBanner animated zoomInUp">
-                <div id="uno">
+            <column cols="3" class="textBanner animated zoomInUp sideBanners">
+                <div>
                     <a href="/participacion-ciudadana/democracia-directa/reforma-participacion-ciudadana">
                         <img src="{{ asset('bundles/iepcwebsite/images/participacion-ciudadana/banner-consulta.jpeg') }}">
                     </a>
@@ -26,12 +26,12 @@
                         <img src="{{ asset('bundles/iepcwebsite/images/participacion-ciudadana/banner-eventos.jpeg') }}">
                     </a>
                 </div>
-                <div id="dos" style="display: none;">
+                <div>
                     <a href="/participacion-ciudadana/divulgacion/libros-sobre-participacion-ciudadana">
                         <img src="{{ asset('bundles/iepcwebsite/images/participacion-ciudadana/banner-libros.png') }}">
                     </a>
                 </div>
-                <div id="tres" style="display: none;">
+                <div>
                     <a href="http://www.revistafolios.mx/hemeroteca" target="_blank">
                         <img src="{{ asset('bundles/iepcwebsite/images/participacion-ciudadana/banner-folios.png') }}">
                     </a>
@@ -65,10 +65,31 @@
     </main>
 {% endblock mainContainer %}
 
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link rel="stylesheet" href="{{ asset('assets/vendor/slick-carousel/slick/slick.css') }}">
+{% endblock stylesheets %}
+
 {% block javascripts %}
     {{ parent() }}
+
+    <script src="{{ asset('assets/vendor/slick-carousel/slick/slick.min.js') }}"></script>
     <script>
-        (function(){
+        $(function(){
+            $('.mainBanner').slick({
+                autoplay: true,
+                autoplaySpeed: 10000,
+                arrows: false,
+                fade: true
+            });
+
+            $('.sideBanners').slick({
+                autoplay: true,
+                autoplaySpeed: 4000,
+                arrows: false
+            });
+
             var citess = [
                         {cite: 'No estudio por <strong>saber más</strong>, sino por <strong>ignorar menos</strong>.', author: 'Sor Juana Inés de la Cruz'},
                         {cite: 'Sin <strong>democracia</strong> la libertad es una <strong>quimera</strong>.', author: 'Octavio Paz'},
@@ -83,43 +104,6 @@
                         $citesRotator.find('p').html(cite.cite);
                         $citesRotator.find('footer cite').text(cite.author);
                     }, 10000);
-        })();
-
-        setInterval(function(){
-            var $uno  = $('#uno');
-            var $dos  = $('#dos');
-            var $tres = $('#tres');
-
-            if ($uno.is(':visible')) {
-                $uno.hide();
-                $dos.show();
-                $tres.hide();
-            }
-            else if ($dos.is(':visible')){
-                $uno.hide();
-                $dos.hide();
-                $tres.show();
-            }
-            else if ($tres.is(':visible')) {
-                $uno.show();
-                $dos.hide();
-                $tres.hide();
-            }
-        }, 4000);
-
-        setInterval(function(){
-            var $uno  = $('#buno');
-            var $dos  = $('#bdos');
-
-            if ($uno.is(':visible')) {
-                $uno.hide();
-                $dos.show();
-            }
-            else {
-                $uno.show();
-                $dos.hide();
-            }
-        }, 5000);
-
+        });
     </script>
 {% endblock %}

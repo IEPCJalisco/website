@@ -14,6 +14,7 @@
     "tinymce": "tinymce-dist#^4.3.7",
     "angular-carousel": "^1.0.1",
     "jquery": "^2.2.3",
-    "angular-ui-tinymce": "^0.0.15"
+    "angular-ui-tinymce": "^0.0.15",
+    "slick-carousel": "^1.5.9"
   }
 }

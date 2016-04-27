@@ -19,7 +19,7 @@ body > header {
     .left {
         padding: 0.75em 0;
         img {
-            max-height: 5em;
+            max-height: 4em;
         }
     }
     .center {
@@ -132,6 +132,22 @@ body > footer {
             background-color: #ffffff;
             border: none;
             padding: 0.5em;
+            &::-webkit-input-placeholder {
+                color: #BE9FC5;
+                font-weight: bold;
+            }
+            &:-moz-placeholder {
+                color: #BE9FC5;
+                font-weight: bold;
+            }
+            &::-moz-placeholder {
+                color: #BE9FC5;
+                font-weight: bold;
+            }
+            &:-ms-input-placeholder {
+                color: #BE9FC5;
+                font-weight: bold;
+            }
         }
         input {
             height: auto;
@@ -141,7 +157,10 @@ body > footer {
         }
         input.name,
         input.email {
-            width: 49%
+            width: 47.5%
+        }
+        input.name {
+            margin-right: 5%;
         }
         input.subject {
             width: 100%;

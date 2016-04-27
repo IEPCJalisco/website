@@ -23,15 +23,15 @@ use Symfony\Component\HttpFoundation\Request;
             $sentMessages = 0;
 
             $mensaje = [
-                'nombre'  => $request->request->get('nombre'),
-                'email'   => $request->request->get('email'),
-                'asunto'  => $request->request->get('asunto'),
-                'mensaje' => $request->request->get('mensaje')
+                'nombre'  => $request->request->get('web_form')['name'],
+                'email'   => $request->request->get('web_form')['email'],
+                'asunto'  => $request->request->get('web_form')['subject'],
+                'mensaje' => $request->request->get('web_form')['message']
             ];
 
             // Email to User
             $message = new \Swift_Message();
-            $message->setSubject('Contacto web participación ciudadana')
+            $message->setSubject('Contacto web participación ciudadana - ' . $mensaje['asunto'])
                 ->setFrom('noreply@iepcjalisco.org.mx', 'Web IEPC Jalisco')
                 ->setTo('participacionciudadana@iepcjalisco.org.mx', 'Dirección de Participación Ciudadana')
                 ->setReplyTo($mensaje['email'], $mensaje['nombre'])
@@ -45,6 +45,8 @@ use Symfony\Component\HttpFoundation\Request;
                 );
 
             $sentMessages += $this->get('mailer')->send($message);
+
+            $this->get('session')->getFlashBag()->add('pc_form', 'Tu mensaje ha sido enviado');
 
             return $this->redirect($request->headers->get('referer'));
         }

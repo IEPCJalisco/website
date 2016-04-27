@@ -1,21 +1,28 @@
 {{ form_start(form, {action:path('webform_participacion_ciudadana')}) }}
+
     <p>Estamos comprometidos con la participación ciudadana, por lo que te invitamos a que nos envíes tus comentarios, sugerencias y dudas a través de nuestras cuentas en twitter y facebook, o a través del siguiente formulario.</p>
 
-        {{ form_label(form.name) }}
-        {{ form_errors(form.name) }}
-        {{ form_widget(form.name) }}
+        {% for flashMessage in app.session.flashbag.get('pc_form') %}
+            <h6 style="margin-top: 10px;">{{ flashMessage }}</h6>
+        {% endfor %}
 
-        {{ form_label(form.email) }}
-        {{ form_errors(form.email) }}
-        {{ form_widget(form.email) }}
+        {% spaceless %}
+            {{ form_label(form.name) }}
+            {{ form_errors(form.name) }}
+            {{ form_widget(form.name) }}
 
-        {{ form_label(form.subject) }}
-        {{ form_errors(form.subject) }}
-        {{ form_widget(form.subject) }}
+            {{ form_label(form.email) }}
+            {{ form_errors(form.email) }}
+            {{ form_widget(form.email) }}
 
-        {{ form_label(form.message) }}
-        {{ form_errors(form.message) }}
-        {{ form_widget(form.message) }}
+            {{ form_label(form.subject) }}
+            {{ form_errors(form.subject) }}
+            {{ form_widget(form.subject) }}
 
-        {{ form_widget(form.send) }}
+            {{ form_label(form.message) }}
+            {{ form_errors(form.message) }}
+            {{ form_widget(form.message) }}
+
+            {{ form_widget(form.send) }}
+        {% endspaceless %}
 {{ form_end(form) }}

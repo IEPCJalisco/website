@@ -20,12 +20,10 @@
         font-family: Raleway, sans-serif;
         position: relative;
         blockquote {
-            .vertical-center;
-            padding: 0 2em;
+            padding: 5em 2em 0 2em;
             border: none;
             font-style: normal;
             display: block;
-            width: 100%;
             p {
                 font-size: 1.25em;
                 margin: 0;
@@ -46,9 +44,17 @@
                 margin-right: 2em;
             }
         }
+        @media @notmaxwidth {
+            blockquote {
+                padding: 3em 2em 0 2em;
+            }
+        }
         @media @mobileview {
             min-height: 14em;
             font-size: 0.8em;
+            blockquote {
+                padding: 0 2em;
+            }
         }
     }
     .banner {
