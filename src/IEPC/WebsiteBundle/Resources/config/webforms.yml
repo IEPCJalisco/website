@@ -1,4 +1,4 @@
 webform_participacion_ciudadana:
-    path:     /participacion-ciudadana
+    path:     /participacion-ciudadana/webform
     defaults:
         _controller: IEPCWebsiteBundle:WebForm:ParticipacionCiudadana

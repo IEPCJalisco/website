@@ -1,6 +1,6 @@
 web_forms:
     resource: "webforms.yml"
-    prefix: /webforms
+#    prefix: /webforms
 
 iepc_website_page:
     path:     /{path}
