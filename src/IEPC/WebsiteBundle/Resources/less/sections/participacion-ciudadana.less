@@ -2,12 +2,6 @@
 @import "../variables";
 @import "../mixins";
 
-.container {
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 #frontpage {
     .mainBanner {
         background: transparent url('/bundles/iepcwebsite/images/participacion-ciudadana/banner-frontpage.png') top left no-repeat;
@@ -177,4 +171,37 @@ article.organizacion {
 h1, h2, h3, h4, h5, h6 {
     color: #757575;
     border-bottom: 2px solid @mainHL;
+}
+
+body {
+    padding-bottom: 40px;
+}
+
+body > footer {
+    min-height: 0;
+    position: absolute;
+    bottom: 0;
+    padding: 0;
+    z-index: 10000;
+    .handler {
+        height: 30px;
+        transition: height 200ms ease-out 300ms;
+        cursor: pointer;
+    }
+    #footerDiv {
+        max-height: 30px;
+        overflow: hidden;
+        transition: max-height 200ms ease-out 300ms, padding 200ms ease-out;
+    }
+    &:hover {
+        .handler {
+            height: 0;
+            overflow: hidden;
+        }
+        #footerDiv {
+            padding: 1em 0;
+            height: auto;
+            max-height: 1000px;
+        }
+    }
 }
