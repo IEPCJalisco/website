@@ -183,6 +183,7 @@ body > footer {
     bottom: 0;
     padding: 0;
     z-index: 10000;
+    box-shadow: none;
     .handler {
         height: 30px;
         transition: height 200ms ease-out 300ms;
@@ -191,7 +192,7 @@ body > footer {
     #footerDiv {
         max-height: 30px;
         overflow: hidden;
-        transition: max-height 200ms ease-out 300ms, padding 200ms ease-out;
+        transition: max-height 200ms ease-out 200ms, padding 200ms ease-out;
     }
     &:hover {
         .handler {
@@ -203,5 +204,6 @@ body > footer {
             height: auto;
             max-height: 1000px;
         }
+        box-shadow: 0 0 10px 0 #666666;
     }
 }
