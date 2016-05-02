@@ -4,7 +4,7 @@
     <main class="container">
         <row end>
             <column cols="9">
-                {% block content '' %}
+                {{ render(controller('IEPCContentBundle:WebPage:RenderContent', {content: webpage.content})) }}
             </column>
             <column cols="3" class="hideMobile sidebar">
                 <a href="/participacion-ciudadana/programas/programas-con-perspectiva-de-genero">Programas con perspectiva de género</a>

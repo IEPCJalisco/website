@@ -12,6 +12,34 @@
     {% endstylesheets %}
 {% endblock stylesheets %}
 
+{% block itemscope '' %}
+
+{% block title '' %}
+
+{% block description '' %}
+
+{% block keywords '' %}
+
+{% block socialtags %}
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@iepcjalisco">
+    <meta name="twitter:title" content="Page Title">
+    <meta name="twitter:description" content="Page description less than 200 characters">
+    <meta name="twitter:creator" content="@iepcjalisco">
+    <!-- Twitter Summary card images must be at least 120x120px -->
+    <meta name="twitter:image" content="http://www.example.com/image.jpg">
+
+    <!-- Open Graph data -->
+    <meta property="og:title" content="Title Here" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="http://www.example.com/" />
+    <meta property="og:image" content="http://example.com/image.jpg" />
+    <meta property="og:description" content="Description Here" />
+    <meta property="og:site_name" content="Participación Ciudadana" />
+    <meta property="fb:admins" content="Facebook numeric ID" />
+{% endblock socialtags %}
+
 {% block layout %}
     <header>
         {% block header %}
@@ -27,7 +55,7 @@
         <main class="container">
             <row end>
                 <column cols="9">
-                    {% block content '' %}
+                    {{ render(controller('IEPCContentBundle:WebPage:RenderContent', {content: webpage.content})) }}
                 </column>
                 <column cols="3" class="hideMobile sidebar">
                     &nbsp;

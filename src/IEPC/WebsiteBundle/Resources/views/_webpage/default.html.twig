@@ -12,7 +12,7 @@
     {% endblock mainMenu %}
 
     <main class="container">
-        {% block content '' %}
+        {{ render(controller('IEPCContentBundle:WebPage:RenderContent', {content: webpage.content})) }}
     </main>
 
     <footer>
