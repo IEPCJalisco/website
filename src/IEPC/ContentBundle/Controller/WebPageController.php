@@ -1,10 +1,10 @@
 <?php namespace IEPC\ContentBundle\Controller;
 
 use IEPC\ContentBundle\Entity\WebPage;
-use IEPC\ContentBundle\Model\ContentInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
+use Twig_Error;
 
 /**
  * @package IEPC\ContentBundle\Controller
@@ -37,45 +37,23 @@ class WebPageController extends Controller
     public function RenderWebPage(WebPage $webPage)
     {
         $layout = $webPage->getActiveLayout() ?: $this->getParameter('default_layout');
-        $bundle = $this->getBundleNameFromEntity(get_class($webPage->getContent()), $this->get('kernel')->getBundles());
+        $cm = $this->get('iepc.content_manager');
+        $bundle = $cm->getBundleName($webPage->getContent());
 
+        // @todo Rethink this ugliness (organize section layout in directories)
         $template = "{$bundle}:_webpage:{$layout}.html.twig";
 
-        return $this->render($template, [
-            'webpage' => $webPage
-        ]);
-    }
-
-    /**
-     * @param \IEPC\ContentBundle\Model\ContentInterface $content
-     * @return \Symfony\Component\HttpFoundation\Response
-     *
-     * @todo move to ContentController and merge with current implementation
-     */
-    public function RenderContentAction(ContentInterface $content)
-    {
-        $bundle = $this->getBundleNameFromEntity(get_class($content), $this->get('kernel')->getBundles());
-
-        $template = "{$bundle}:_content/page:default.html.twig";
-
-        return $this->render($template, [
-            'content' => $content
-        ]);
-    }
-
-
-    // @todo put this in a service
-    protected static function getBundleNameFromEntity($entityNamespace, $bundles)
-    {
-        $dataBaseNamespace = substr($entityNamespace, 0, strpos($entityNamespace, '\\Entity\\'));
-
-        foreach ($bundles as $type => $bundle) {
-            $bundleRefClass = new \ReflectionClass($bundle);
-            if ($bundleRefClass->getNamespaceName() === $dataBaseNamespace) {
-                return $type;
-            }
+        try {
+            $response = $this->render($template, [
+                'webpage' => $webPage
+            ]);
+        }
+        catch (\InvalidArgumentException $e) {
+            $response = $this->render($this->getParameter('default_webpage_layout'), [
+                'webpage' => $webPage
+            ]);
         }
 
-        return null;
+        return $response;
     }
 }

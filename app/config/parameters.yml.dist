@@ -20,6 +20,7 @@ parameters:
 
     #CMS
     default_layout: default
+    default_webpage_layout: IEPCContentBundle:_webpage:default.html.twig
     documents_dir: documents
     files_dir: 'web/files'
 

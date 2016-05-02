@@ -10,7 +10,7 @@
                         <cite>Margaret Mead</cite>
                     </footer>
                 </blockquote>
-                <blockquote>
+                <blockquote class="hidden">
                     <p>Nadie puede ser feliz sin participar en la <strong>felicidad pública</strong>, nadie puede ser libre sin la experiencia de la <strong>libertad pública</strong>, y nadie, finalmente, puede ser feliz o libre sin implicarse y formar parte del <strong>poder político</strong>.</p>
                     <footer>
                         <cite>Hannah Arendt</cite>
@@ -26,12 +26,12 @@
                         <img src="{{ asset('bundles/iepcwebsite/images/participacion-ciudadana/banner-eventos.jpeg') }}">
                     </a>
                 </div>
-                <div>
+                <div class="hidden">
                     <a href="/participacion-ciudadana/divulgacion/libros-sobre-participacion-ciudadana">
                         <img src="{{ asset('bundles/iepcwebsite/images/participacion-ciudadana/banner-libros.png') }}">
                     </a>
                 </div>
-                <div>
+                <div class="hidden">
                     <a href="http://www.revistafolios.mx/hemeroteca" target="_blank">
                         <img src="{{ asset('bundles/iepcwebsite/images/participacion-ciudadana/banner-folios.png') }}">
                     </a>
@@ -62,9 +62,6 @@
                 <p><a href="/participacion-ciudadana/participacion-politica-de-las-mujeres">Participación política de las <strong>mujeres</strong></a></p>
             </column>
         </row>
-        {#<p>Vine a Comala porque me dijeron que acá vivía mi padre, un tal Pedro Páramo. Mi madre me lo dijo. Y yo le prometí que vendría a verlo en cuanto ella muriera. Le apreté sus manos en señal de que lo haría; pues ella estaba por morirse y yo en plan de prometerlo todo. «No dejes de ir a visitarlo -me recomendó-. Se llama de otro modo y de este otro. Estoy segura de que le dará gusto conocerte.» Entonces no pude hacer otra cosa sino decirle que así lo haría, y de tanto decírselo se lo seguí diciendo aun después que a mis manos les costó trabajo zafarse de sus manos muertas. </p>#}
-        {#<p>-¿Quieres hacerme creer que te mató el ahogo, Juan Preciado? Yo te encontré en la plaza, muy lejos de la casa de Donis, y junto a mí también estaba él, diciendo que te estabas haciendo el muerto. Entre los dos te arrastramos a la sombra del portal, ya bien tirante, acalambrado como mueren los que mueren muertos de miedo. De no haber habido aire para respirar esa noche de que hablas, nos hubieran faltado las fuerzas para llevarte y contimás para enterrarte. Y ya ves, te enterramos. </p>#}
-        {#<p>El viento bajaba de las montañas en las mañanas de febrero. Y las nubes se quedaban allá arriba en espera de que el tiempo bueno las hiciera bajar al valle; mientras tanto dejaban vacío el cielo azul, dejaban que la luz cayera en el juego del viento haciendo círculos sobre la tierra, removiendo el polvo y batiendo las ramas de los naranjos.</p>#}
     </main>
 {% endblock mainContainer %}
 
@@ -86,12 +83,14 @@
                 arrows: false,
                 fade: true
             });
+            $('.mainBanner .slick-track').children().removeClass('hidden');
 
             $('.sideBanners').slick({
                 autoplay: true,
                 autoplaySpeed: 4000,
                 arrows: false
             });
+            $('.sideBanners .slick-track').children().removeClass('hidden');
 
             var citess = [
                         {cite: 'No estudio por <strong>saber más</strong>, sino por <strong>ignorar menos</strong>.', author: 'Sor Juana Inés de la Cruz'},
@@ -100,13 +99,13 @@
                         {cite: 'Piense <strong>usted</strong> lo que quiera, pero <strong>piénselo</strong>.', author: 'Fernando Savater'},
                         {cite: 'La vida de <strong>la República</strong> descansa en la energía, <strong>virtud e inteligencia</strong> de sus ciudadanos.', author: 'Andrew Johnson'}
                     ],
-                    citesRotator = setInterval(function() {
-                        var $citesRotator = $('#citesRotator'),
-                                cite          = citess[Math.floor(Math.random() * citess.length)];
+                citesRotator = setInterval(function() {
+                    var $citesRotator = $('#citesRotator'),
+                            cite          = citess[Math.floor(Math.random() * citess.length)];
 
-                        $citesRotator.find('p').html(cite.cite);
-                        $citesRotator.find('footer cite').text(cite.author);
-                    }, 10000);
+                    $citesRotator.find('p').html(cite.cite);
+                    $citesRotator.find('footer cite').text(cite.author);
+                }, 10000);
         });
     </script>
 {% endblock %}

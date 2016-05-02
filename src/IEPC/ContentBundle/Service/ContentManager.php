@@ -8,24 +8,21 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * @package IEPC\ContentBundle\Service
  */
-class ContentManager implements ContainerAwareInterface
-{
+class ContentManager implements ContainerAwareInterface {
     private $container;
 
-    public function getContentTypes()
-    {
+    public function getContentTypes() {
         $contentTypes = $this->container->getParameter('content')['types'];
 
         return $contentTypes;
     }
 
-    public function getContentEditRoute($id)
-    {
+    public function getContentEditRoute($id) {
         $em = $this->container->get('doctrine')->getManager();
 
 
         // @todo fix harcode route
-        if (null !== $id) {
+        if (NULL !== $id) {
             $entity = $em->getRepository('IEPC\ContentBundle\Model\ContentInterface')
                 ->find($id);
             $class = get_class($entity);
@@ -41,18 +38,15 @@ class ContentManager implements ContainerAwareInterface
 
     /**
      * @param \IEPC\ContentBundle\Model\ContentInterface $content
-     * @param string $type
+     * @param string $format
      * @param string $layout
      *
      * @return mixed
      */
-    public function render(ContentInterface $content, $type = 'html', $layout = 'default')
-    {
+    public function render(ContentInterface $content, $format = 'html', $layout = 'default') {
         $templating = $this->container->get('templating');
 
-        $layout = $this->getContentLayout($content, $type, $layout);
-
-        return $templating->render($layout, [
+        return $templating->render($this->getLayout($content, $format, $layout), [
             'content' => $content
         ]);
     }
@@ -62,24 +56,26 @@ class ContentManager implements ContainerAwareInterface
      * @param string $content
      * @return string
      */
-    public function updateFileRoutes(ContentInterface $contentEntity, $content)
-    {
+    public function updateFileRoutes(ContentInterface $contentEntity, $content) {
         $tmp_dir = $this->container->getParameter('content')['tmp_dir'];
         $files_dir = $this->container->getParameter('content')['files_dir'];
-        $webDir =  $this->container->get('kernel')->getRootDir() . '/../web/';
+        $webDir = $this->container->get('kernel')->getRootDir() . '/../web/';
 
         $entityType = explode('\\', get_class($contentEntity));
         $entityType = array_pop($entityType);
-        $files_dir = str_replace(['{type}','{id}'], [strtolower($entityType), $contentEntity->getId()], $files_dir);
+        $files_dir = str_replace(['{type}', '{id}'], [
+            strtolower($entityType),
+            $contentEntity->getId()
+        ], $files_dir);
 
-        preg_match_all('/src="([^"]+)"/',  $content, $images);
+        preg_match_all('/src="([^"]+)"/', $content, $images);
         preg_match_all('/href="([^"]+)"/', $content, $files);
 
         $links = array_merge($images[0], $files[0]);
 
         foreach ($links as $originalLink) {
             $link = substr($originalLink, 0, (strlen($originalLink) - 1));
-            $protocol = $this->startsWith($originalLink, 'src')?'src':'href';
+            $protocol = $this->startsWith($originalLink, 'src') ? 'src' : 'href';
 
             if ($this->endsWith($link, '?iepc_tmp')) {
                 $filename = explode('/', $link);
@@ -87,10 +83,10 @@ class ContentManager implements ContainerAwareInterface
                 $filename = substr($filename, 0, strpos($filename, '?'));
 
                 $originalFile = $webDir . $tmp_dir . '/' . $filename;
-                $destFile     = $webDir . $files_dir . '/' . $filename;
+                $destFile = $webDir . $files_dir . '/' . $filename;
 
                 if (!file_exists($webDir . $files_dir)) {
-                    mkdir($webDir . $files_dir, 0770, true);
+                    mkdir($webDir . $files_dir, 0770, TRUE);
                 }
                 rename($originalFile, $destFile);
                 $content = str_replace($originalLink, "{$protocol}=\"/{$files_dir}/{$filename}\"", $content);
@@ -103,28 +99,29 @@ class ContentManager implements ContainerAwareInterface
      * @param \IEPC\ContentBundle\Model\ContentInterface $entity
      * @param string $content
      */
-    public function cleanOrphans(ContentInterface $entity, $content)
-    {
+    public function cleanOrphans(ContentInterface $entity, $content) {
     }
 
-    public function setContainer(ContainerInterface $container = null)
-    {
-        $this->container = $container;
-    }
 
-    public function __construct(Container $container)
-    {
+    public function __construct(Container $container) {
         $this->setContainer($container);
     }
 
-    private function getContentLayout(ContentInterface $content, $type = 'html', $layout = 'default')
+    public function getBundleName(ContentInterface $content)
+    {
+        $classNameArray = explode('\\', preg_replace('/\\\\/', '', get_class($content), 1));
+
+        return $classNameArray[0];
+    }
+
+    private function getLayout(ContentInterface $content, $format = 'html', $layout = 'default')
     {
         $classNameArray = explode('\\', preg_replace('/\\\\/', '', get_class($content), 1));
 
         $bundleDir = $classNameArray[0];
         $entityName = strtolower(array_pop($classNameArray));
 
-        $layoutName = "{$bundleDir}:_content/{$entityName}:{$layout}.{$type}.twig";
+        $layoutName = "{$bundleDir}:_content/{$entityName}:{$layout}.{$format}.twig";
 
         // @todo If no file then look for default layout
         // @todo If no default layout aim for default on contentbundle
@@ -141,5 +138,25 @@ class ContentManager implements ContainerAwareInterface
         // search backwards starting from haystack length characters from the end
         return $needle === "" || strrpos($haystack, $needle, -strlen($haystack)) !== false;
     }
+
+    public function setContainer(ContainerInterface $container = null)
+    {
+        $this->container = $container;
+    }
 }
 
+/** Another way to get bundle name
+ *
+        $bundles = $this->getContainer()->get('kernel')->getBundles()
+
+        $dataBaseNamespace = substr($entityNamespace, 0, strpos($entityNamespace, '\\Entity\\'));
+
+        foreach ($bundles as $type => $bundle) {
+            $bundleRefClass = new \ReflectionClass($bundle);
+            if ($bundleRefClass->getNamespaceName() === $dataBaseNamespace) {
+                return $type;
+            }
+        }
+
+        return null;
+**/
