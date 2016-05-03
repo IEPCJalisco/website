@@ -13,6 +13,7 @@ class WebPageController extends Controller
 {
     /**
      * @param string $path
+     * 
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function renderPathAction($path = '/')
@@ -32,6 +33,7 @@ class WebPageController extends Controller
 
     /**
      * @param \IEPC\ContentBundle\Entity\WebPage $webPage
+     * 
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function RenderWebPage(WebPage $webPage)

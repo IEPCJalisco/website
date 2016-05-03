@@ -4,36 +4,64 @@ use IEPC\ContentBundle\Model\ContentInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface as Container;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @package IEPC\ContentBundle\Service
  */
-class ContentManager implements ContainerAwareInterface {
+class ContentManager implements ContainerAwareInterface
+{
     private $container;
 
-    public function getContentTypes() {
+    /**
+     * @return mixed
+     */
+    public function getContentTypes()
+    {
         $contentTypes = $this->container->getParameter('content')['types'];
 
         return $contentTypes;
     }
 
-    public function getContentEditRoute($id) {
-        $em = $this->container->get('doctrine')->getManager();
+    /**
+     * @param \IEPC\ContentBundle\Model\ContentInterface $content
+     *
+     * @return mixed
+     */
+    public function getBundleName(ContentInterface $content)
+    {
+        $classNameArray = explode('\\', preg_replace('/\\\\/', '', get_class($content), 1));
 
+        return $classNameArray[0];
 
-        // @todo fix harcode route
-        if (NULL !== $id) {
-            $entity = $em->getRepository('IEPC\ContentBundle\Model\ContentInterface')
-                ->find($id);
-            $class = get_class($entity);
+//        $bundles = $this->getContainer()->get('kernel')->getBundles()
+//        $dataBaseNamespace = substr($entityNamespace, 0, strpos($entityNamespace, '\\Entity\\'));
+//        foreach ($bundles as $type => $bundle) {
+//            $bundleRefClass = new \ReflectionClass($bundle);
+//            if ($bundleRefClass->getNamespaceName() === $dataBaseNamespace) {
+//                return $type;
+//            }
+//        }
+//        return null;
+    }
 
-            $contents = $this->getContentTypes();
-        }
-        else {
-            return 'iepc_website_admin_content_page';
-        }
+    /**
+     * @param \IEPC\ContentBundle\Model\ContentInterface $content
+     * @param string $format
+     * @param string $layout
+     *
+     * @return string
+     */
+    private function getLayout(ContentInterface $content, $format = 'html', $layout = 'default')
+    {
+        $classNameArray = explode('\\', preg_replace('/\\\\/', '', get_class($content), 1));
 
-        return $contents[$class]['edit_route'];
+        $bundleDir = $classNameArray[0];
+        $entityName = strtolower(array_pop($classNameArray));
+
+        $layoutName = "{$bundleDir}:_content/{$entityName}:{$layout}.{$format}.twig";
+
+        return $layoutName;
     }
 
     /**
@@ -43,20 +71,31 @@ class ContentManager implements ContainerAwareInterface {
      *
      * @return mixed
      */
-    public function render(ContentInterface $content, $format = 'html', $layout = 'default') {
+    public function render(ContentInterface $content, $format = 'html', $layout = 'default')
+    {
         $templating = $this->container->get('templating');
 
-        return $templating->render($this->getLayout($content, $format, $layout), [
-            'content' => $content
-        ]);
+        try {
+            $response = $templating->render($this->getLayout($content, $format, $layout), [
+                'content' => $content
+            ]);
+        }
+        catch (\InvalidArgumentException $e) {
+            $response = $templating->render("IEPCContentBundle:_content:default.{$format}.twig", [
+                'content' => $content
+            ]);
+        }
+        return $response;
     }
 
     /**
      * @param \IEPC\ContentBundle\Model\ContentInterface $contentEntity
      * @param string $content
+     *
      * @return string
      */
-    public function updateFileRoutes(ContentInterface $contentEntity, $content) {
+    public function updateFileRoutes(ContentInterface $contentEntity, $content)
+    {
         $tmp_dir = $this->container->getParameter('content')['tmp_dir'];
         $files_dir = $this->container->getParameter('content')['files_dir'];
         $webDir = $this->container->get('kernel')->getRootDir() . '/../web/';
@@ -99,64 +138,77 @@ class ContentManager implements ContainerAwareInterface {
      * @param \IEPC\ContentBundle\Model\ContentInterface $entity
      * @param string $content
      */
-    public function cleanOrphans(ContentInterface $entity, $content) {
+    public function cleanOrphans(ContentInterface $entity, $content)
+    {
     }
 
-
-    public function __construct(Container $container) {
+    /**
+     * ContentManager constructor.
+     *
+     * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
+     */
+    public function __construct(Container $container)
+    {
         $this->setContainer($container);
     }
 
-    public function getBundleName(ContentInterface $content)
-    {
-        $classNameArray = explode('\\', preg_replace('/\\\\/', '', get_class($content), 1));
-
-        return $classNameArray[0];
-    }
-
-    private function getLayout(ContentInterface $content, $format = 'html', $layout = 'default')
-    {
-        $classNameArray = explode('\\', preg_replace('/\\\\/', '', get_class($content), 1));
-
-        $bundleDir = $classNameArray[0];
-        $entityName = strtolower(array_pop($classNameArray));
-
-        $layoutName = "{$bundleDir}:_content/{$entityName}:{$layout}.{$format}.twig";
-
-        // @todo If no file then look for default layout
-        // @todo If no default layout aim for default on contentbundle
-
-        return $layoutName;
-    }
-
-    private function endsWith($haystack, $needle) {
-        // search forward starting from end minus needle length characters
-        return $needle === "" || (($temp = strlen($haystack) - strlen($needle)) >= 0 && strpos($haystack, $needle, $temp) !== false);
-    }
-
-    private function startsWith($haystack, $needle) {
-        // search backwards starting from haystack length characters from the end
-        return $needle === "" || strrpos($haystack, $needle, -strlen($haystack)) !== false;
-    }
-
+    /**
+     * @param \Symfony\Component\DependencyInjection\ContainerInterface|NULL $container
+     */
     public function setContainer(ContainerInterface $container = null)
     {
         $this->container = $container;
     }
-}
 
-/** Another way to get bundle name
- *
-        $bundles = $this->getContainer()->get('kernel')->getBundles()
+    /**
+     * @reference http://stackoverflow.com/a/10473026
+     *
+     * @param $haystack
+     * @param $needle
+     *
+     * @return bool
+     */
+    private function endsWith($haystack, $needle)
+    {
+        // search forward starting from end minus needle length characters
+        return $needle === '' || (($temp = strlen($haystack) - strlen($needle)) >= 0 && strpos($haystack, $needle, $temp) !== false);
+    }
 
-        $dataBaseNamespace = substr($entityNamespace, 0, strpos($entityNamespace, '\\Entity\\'));
+    /**
+     * @reference http://stackoverflow.com/a/10473026
+     *
+     * @param $haystack
+     * @param $needle
+     *
+     * @return bool
+     */
+    private function startsWith($haystack, $needle)
+    {
+        // search backwards starting from haystack length characters from the end
+        return $needle === '' || strrpos($haystack, $needle, -strlen($haystack)) !== false;
+    }
 
-        foreach ($bundles as $type => $bundle) {
-            $bundleRefClass = new \ReflectionClass($bundle);
-            if ($bundleRefClass->getNamespaceName() === $dataBaseNamespace) {
-                return $type;
-            }
+
+
+    // @todo Rethink logic for this (admin bundle)
+    public function getContentEditRoute($id)
+    {
+        $em = $this->container->get('doctrine')->getManager();
+
+
+        // @todo fix harcode route
+        if (NULL !== $id) {
+            $entity = $em->getRepository('IEPC\ContentBundle\Model\ContentInterface')
+                ->find($id);
+            $class = get_class($entity);
+
+            $contents = $this->getContentTypes();
+        }
+        else {
+            return 'iepc_website_admin_content_page';
         }
 
-        return null;
-**/
+        return $contents[$class]['edit_route'];
+    }
+
+}

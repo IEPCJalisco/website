@@ -15,6 +15,7 @@ class ContentController extends Controller
      * @param $contentName
      * @param string $format
      * @param string $layout
+     * 
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function renderByNameAction($contentName, $format = 'html', $layout = 'default')
@@ -38,6 +39,7 @@ class ContentController extends Controller
      * @param \IEPC\ContentBundle\Model\ContentInterface $content
      * @param string $format
      * @param string $layout
+     * 
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function RenderAction(ContentInterface $content, $format = 'html', $layout = 'default')
