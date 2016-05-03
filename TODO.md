@@ -8,7 +8,6 @@ Things to do
 + Redirect to search page when Page Not Found (HTTP 302)
   + Install and configure Elastic Search
 + Make menu sticky when scrolling
-  + Make it work on mobiles
-  + Fix PC body padding for mobiles menu
+  + Make it work on mobiles 
 + Bind Swipe-right event to open menu on mobiles
 + *Make document creation politics: Use only open source fonts*
