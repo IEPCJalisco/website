@@ -3,20 +3,22 @@
 $(function() {
     function openMenu()
     {
-        var bodyScrollTop = $body.scrollTop();
+        var bodyScrollTop = $body.scrollTop(),
+            windowHeight  = $(window).height(),
+            bodyHeight    = $body.height();
 
         $mainMenu.addClass('open');
-        $body.addClass('menuOpen');
+        $body    .addClass('menuOpen');
 
         $menuContainer.scrollTop(0);
         $menuContainer.css({
             top:    bodyScrollTop,
-            bottom: -bodyScrollTop
+            bottom: bodyHeight - windowHeight - bodyScrollTop
         });
 
         $overlay.css({
             top:    bodyScrollTop,
-            bottom: -bodyScrollTop
+            bottom: bodyHeight - windowHeight - bodyScrollTop
         });
     }
     function closeMenu()

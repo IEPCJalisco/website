@@ -1,11 +1,12 @@
 <nav id="mainMenu">
-    <div class="openMenu">
-        {% image '@IEPCWebsiteBundle/Resources/images/icons/menu.svg' %}
-            <img src="{{ asset_url }}" alt="Menu">
-        {% endimage %}
+    <div class="menuBar">
+        <div class="openMenu">
+            {% image '@IEPCWebsiteBundle/Resources/images/icons/menu.svg' %}
+                <img src="{{ asset_url }}" alt="Menu">
+            {% endimage %}
+        </div>
+        <div class="overlay" onclick="$('#mainMenu').removeClass('open');"></div>
     </div>
-    <div class="overlay" onclick="$('#mainMenu').removeClass('open');"></div>
-
     <div class="menuContainer">
         <ul class="container">
             <li class="header">
