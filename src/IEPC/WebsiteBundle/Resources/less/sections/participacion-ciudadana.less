@@ -1,14 +1,59 @@
-//@import "../kube/kube";
 @import "../variables";
 @import "../mixins";
+
+h1, h2, h3, h4, h5, h6 {
+    color: #757575;
+    border-bottom: 2px solid @mainHL;
+}
+
+body {
+    padding-bottom: 40px;
+}
+
+body > footer {
+    min-height: 0;
+    position: absolute;
+    bottom: 0;
+    padding: 0;
+    z-index: 10000;
+    -webkit-box-shadow: none;
+       -moz-box-shadow: none;
+            box-shadow: none;
+    .handler {
+        height: 30px;
+        -webkit-transition: height 200ms ease-out 300ms;
+                transition: height 200ms ease-out 300ms;
+        cursor: pointer;
+    }
+    #footerDiv {
+        max-height: 30px;
+        overflow: hidden;
+        -webkit-transition: max-height 200ms ease-out 200ms, padding 200ms ease-out;
+                transition: max-height 200ms ease-out 200ms, padding 200ms ease-out;
+    }
+    &:hover {
+        .handler {
+            height: 0;
+            overflow: hidden;
+        }
+        #footerDiv {
+            padding: 1em 0;
+            height: auto;
+            max-height: 1000px;
+        }
+        -webkit-box-shadow: 0 0 10px 0 #666666;
+           -moz-box-shadow: 0 0 10px 0 #666666;
+                box-shadow: 0 0 10px 0 #666666;
+    }
+}
 
 #frontpage {
     .mainBanner {
         background: transparent url('/bundles/iepcwebsite/images/participacion-ciudadana/banner-frontpage.png') top left no-repeat;
         -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
+           -moz-background-size: cover;
+             -o-background-size: cover;
+                background-size: cover;
         min-height: 18em;
         text-align: center;
         font-family: Raleway, sans-serif;
@@ -61,9 +106,9 @@
         min-height: 8em;
         text-align: center;
         -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
+           -moz-background-size: cover;
+             -o-background-size: cover;
+                background-size: cover;
         p {
             .vertical-center;
             display: block;
@@ -169,51 +214,20 @@ article.organizacion {
     }
 }
 
-h1, h2, h3, h4, h5, h6 {
-    color: #757575;
-    border-bottom: 2px solid @mainHL;
-}
-
-body {
-    padding-bottom: 40px;
-}
-
-body > footer {
-    min-height: 0;
-    position: absolute;
-    bottom: 0;
-    padding: 0;
-    z-index: 10000;
-    box-shadow: none;
-    .handler {
-        height: 30px;
-        transition: height 200ms ease-out 300ms;
-        cursor: pointer;
-    }
-    #footerDiv {
-        max-height: 30px;
-        overflow: hidden;
-        transition: max-height 200ms ease-out 200ms, padding 200ms ease-out;
-    }
-    &:hover {
-        .handler {
-            height: 0;
-            overflow: hidden;
-        }
-        #footerDiv {
-            padding: 1em 0;
-            height: auto;
-            max-height: 1000px;
-        }
-        box-shadow: 0 0 10px 0 #666666;
-    }
-}
-
 @media @notmaxwidth {
     #mainMenu {
         .menuContainer {
             // Adjust the scroll moved becasuse fixed footer
             margin-bottom: 40px;
+        }
+    }
+}
+@media @tabletview {
+    #frontpage {
+        .sideBanners {
+            text-align: center;
+            max-width: 350px;
+            margin: 1em auto;
         }
     }
 }

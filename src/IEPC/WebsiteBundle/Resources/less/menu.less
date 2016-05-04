@@ -69,6 +69,18 @@
             margin: 0.25em 0 0.25em 0.25em;
         }
     }
+    .menuTitle {
+        position: absolute;
+        display: block;
+        visibility: hidden;
+        opacity: 0;
+        right: 1em;
+        top: 50%;
+        transform: translateY(-50%);
+        font-weight: bold;
+        -webkit-transition: opacity 0.5s ease-in;
+                transition: opacity 0.5s ease-in;
+    }
 }
 #mainMenu .overlay {
     display: none;
@@ -244,6 +256,11 @@ body.sticky {
             width: 100%;
             height: auto;
             z-index: 5000;
+            .menuTitle {
+                display: block;
+                visibility: visible;
+                opacity: 1;
+            }
         }
     }
     padding-top: 1.5em;

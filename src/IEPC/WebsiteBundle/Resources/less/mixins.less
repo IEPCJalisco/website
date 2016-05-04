@@ -20,23 +20,24 @@
 @mobileview: ~"only screen and (max-width: 500px)";
 
 // Mixins
+
 .flexboxMenu {
     display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
     display: -ms-flexbox;  /* TWEENER - IE 10 */
     display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
     display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
 
-    -ms-flex-direction: row;
     -webkit-flex-direction: row;
-    flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
 
-    -ms-flex-wrap: nowrap;
     -webkit-flex-wrap: nowrap;
-    flex-wrap: nowrap;
+        -ms-flex-wrap: nowrap;
+            flex-wrap: nowrap;
 
-    -ms-justify-content: space-between;
     -webkit-justify-content: space-between;
-    justify-content: space-between;
+        -ms-justify-content: space-between;
+            justify-content: space-between;
 }
 
 .simpleUl {
@@ -52,7 +53,7 @@
 .vertical-center {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
     -moz-transform: translateY(-50%);
+     -ms-transform: translateY(-50%);
+         transform: translateY(-50%);
 }
