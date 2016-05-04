@@ -1,14 +1,13 @@
 "use strict";
 
 $(function() {
-    function openMenu()
-    {
+    function openMenu() {
         var bodyScrollTop = $body.scrollTop(),
-            windowHeight  = $(window).height(),
-            bodyHeight    = $body.height();
+            windowHeight = $(window).height(),
+            bodyHeight = $body.height();
 
         $mainMenu.addClass('open');
-        $body    .addClass('menuOpen');
+        $body.addClass('menuOpen');
 
         $menuContainer.scrollTop(0);
         $menuContainer.css({
@@ -21,13 +20,13 @@ $(function() {
             bottom: bodyHeight - windowHeight - bodyScrollTop
         });
     }
-    function closeMenu()
-    {
+
+    function closeMenu() {
         $mainMenu.removeClass('open');
         $body.removeClass('menuOpen');
     }
-    function scrollHandler(event)
-    {
+
+    function scrollHandler(event) {
         if ($(this).scrollTop() > event.data.top) {
             $('body').addClass('sticky');
         }
@@ -35,6 +34,13 @@ $(function() {
             $('body').removeClass('sticky');
         }
     }
+
+    function resizeHandler() {
+        if ($mainMenu.is('.open')) {
+            openMenu();
+        }
+    }
+
 
     var $body          = $('body'),
         $mainMenu      = $('#mainMenu'),
@@ -44,5 +50,7 @@ $(function() {
     $mainMenu.find('.openMenu').on('click', openMenu);
     $mainMenu.find('.header')  .on('click', closeMenu);
     $overlay                   .on('click', closeMenu);
-    $(window).on('scroll', {top: $mainMenu.offset().top}, scrollHandler);
+
+    $(window).on('scroll.menu', {top: $mainMenu.offset().top}, scrollHandler);
+    $(window).on('resize.menu', resizeHandler);
 });

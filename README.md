@@ -1,5 +1,5 @@
 IEPC Website 2016   
-============
+=================
 
 El Instituto Electoral y de Participación Ciudadana del Estado de Jalisco (Instituto Electoral) es el organismo público autónomo depositario de la autoridad electoral, responsable del ejercicio de la función estatal de organizar los procesos electorales locales y los de plebiscito y referéndum. El Instituto Electoral vela por la realización de elecciones libres, auténticas y periódicas.
 
