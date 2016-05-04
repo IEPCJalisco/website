@@ -15,17 +15,15 @@ $(function() {
             bottom: bodyHeight - windowHeight - bodyScrollTop
         });
 
-        $overlay.css({
-            top:    bodyScrollTop,
-            bottom: bodyHeight - windowHeight - bodyScrollTop
-        });
+        // $overlay.css({
+        //     top:    bodyScrollTop,
+        //     bottom: bodyHeight - windowHeight - bodyScrollTop
+        // });
     }
-
     function closeMenu() {
         $mainMenu.removeClass('open');
         $body.removeClass('menuOpen');
     }
-
     function scrollHandler(event) {
         if ($(this).scrollTop() > event.data.top) {
             $('body').addClass('sticky');
@@ -34,13 +32,11 @@ $(function() {
             $('body').removeClass('sticky');
         }
     }
-
     function resizeHandler() {
         if ($mainMenu.is('.open')) {
             openMenu();
         }
     }
-
 
     var $body          = $('body'),
         $mainMenu      = $('#mainMenu'),
