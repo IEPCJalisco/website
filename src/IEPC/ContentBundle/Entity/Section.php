@@ -7,9 +7,14 @@ use Symfony\Component\Validator\Constraints as Assert;
 use IEPC\ContentBundle\Entity\WebPage;
 
 /**
- * @ORM\Table(name="section")
  * @ORM\Entity(repositoryClass="IEPC\ContentBundle\Repository\SectionRepository")
- *
+ * @ORM\Table(
+ *     uniqueConstraints={
+ *         @ORM\UniqueConstraint(name="idx_path", columns={"path", "parent_id"}),
+ *         @ORM\UniqueConstraint(name="idx_name", columns={"name"}),
+ *     }
+ * )
+
  * @UniqueEntity({"path", "parent"})
  *
  * @package IEPC\ContentBundle\Entity

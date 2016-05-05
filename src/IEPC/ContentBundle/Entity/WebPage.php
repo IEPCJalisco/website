@@ -2,22 +2,25 @@
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use IEPC\ContentBundle\Model\SearchableInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use IEPC\WebsiteBundle\Entity\Content;
 
 /**
  * @ORM\Entity(repositoryClass="IEPC\ContentBundle\Repository\WebPageRepository")
  * @ORM\HasLifecycleCallbacks
- * @ORM\Table(indexes={
- *     @ORM\Index(name="idx_fullPath", columns={"full_path"})
- * })
+ * @ORM\Table(
+ *     indexes={
+ *         @ORM\Index(name="idx_fullPath", columns={"full_path"}),
+ *         @ORM\Index(name="idx_name",     columns={"internal_name"})
+ *     },
+ *     uniqueConstraints={@ORM\UniqueConstraint(name="idx_webpage", columns={"full_path", "published"})}
+ * )
  * @UniqueEntity("fullPath")
  * @UniqueEntity("internalName")
  *
  * @package IEPC\ContentBundle\Entity
  * 
- * @TODO Make Uniqueness only for published pages (repositoryMethod)
- * @TODO Make Interface to make webpages searchables by elasticsearch api
  */
 class WebPage
 {
