@@ -3,21 +3,21 @@
 {% block mainContainer %}
     <main class="container" id="frontpage">
         <row>
-            <column cols="9" class="mainBanner">
-                <blockquote>
+            <column cols="9" class="mainBanner owl-carousel">
+                <blockquote class="">
                     <p>Nunca dudes que un pequeño <strong>grupo de ciudadanos pensantes</strong> y comprometidos pueden <strong>cambiar el mundo</strong>, porque en el fondo es lo único que siempre lo ha cambiado.</p>
                     <footer>
                         <cite>Margaret Mead</cite>
                     </footer>
                 </blockquote>
-                <blockquote class="hidden">
+                <blockquote class="">
                     <p>Nadie puede ser feliz sin participar en la <strong>felicidad pública</strong>, nadie puede ser libre sin la experiencia de la <strong>libertad pública</strong>, y nadie, finalmente, puede ser feliz o libre sin implicarse y formar parte del <strong>poder político</strong>.</p>
                     <footer>
                         <cite>Hannah Arendt</cite>
                     </footer>
                 </blockquote>
             </column>
-            <column cols="3" class="textBanner animated zoomInUp sideBanners">
+            <column cols="3" class="textBanner animated zoomInUp sideBanners owl-carousel">
                 <div>
                     <a href="/participacion-ciudadana/democracia-directa/reforma-participacion-ciudadana">
                         <img src="{{ asset('bundles/iepcwebsite/images/participacion-ciudadana/banner-consulta.jpeg') }}">
@@ -26,12 +26,12 @@
                         <img src="{{ asset('bundles/iepcwebsite/images/participacion-ciudadana/banner-eventos.jpeg') }}">
                     </a>
                 </div>
-                <div class="hidden">
+                <div>
                     <a href="/participacion-ciudadana/divulgacion/libros-sobre-participacion-ciudadana">
                         <img src="{{ asset('bundles/iepcwebsite/images/participacion-ciudadana/banner-libros.png') }}">
                     </a>
                 </div>
-                <div class="hidden">
+                <div>
                     <a href="http://www.revistafolios.mx/hemeroteca" target="_blank">
                         <img src="{{ asset('bundles/iepcwebsite/images/participacion-ciudadana/banner-folios.png') }}">
                     </a>
@@ -50,7 +50,7 @@
                     </blockquote>
                 </div>
             </column>
-            <column cols="6" class="banner textBanner ongs  animated bounceInRight">
+            <column cols="6" class="banner textBanner ongs animated bounceInRight">
                 <p><a href="/participacion-ciudadana/participacion-ongs">Participación <strong>ONG's</strong> y <strong>OSC's</strong></a></p>
             </column>
         </row>
@@ -67,30 +67,40 @@
 
 {% block stylesheets %}
     {{ parent() }}
-
-    <link rel="stylesheet" href="{{ asset('assets/vendor/slick-carousel/slick/slick.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/owl.carousel/dist/assets/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/owl.carousel/dist/assets/owl.theme.default.min.css') }}">
 {% endblock stylesheets %}
 
 {% block javascripts %}
     {{ parent() }}
-
-    <script src="{{ asset('assets/vendor/slick-carousel/slick/slick.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/owl.carousel/dist/owl.carousel.min.js') }}"></script>
     <script>
         $(function(){
-            $('.mainBanner').slick({
+            $('.mainBanner').owlCarousel({
+                center: true,
+                loop: true,
+                nav: false,
+                items: 1,
                 autoplay: true,
-                autoplaySpeed: 10000,
-                arrows: false,
-                fade: true
+                autoplayTimeout: 10000,
+                autoplayHoverPause: false,
+                animateOut: 'bounceOut',
+                animateIn: 'fadeIn'
             });
-            $('.mainBanner .slick-track').children().removeClass('hidden');
+            $('.mainBanner .item').removeClass('hide');
 
-            $('.sideBanners').slick({
+            $('.sideBanners').owlCarousel({
+                center: true,
+                loop: true,
+                nav: false,
+                items: 1,
                 autoplay: true,
-                autoplaySpeed: 4000,
-                arrows: false
+                autoplayTimeout: 7500,
+                autoplayHoverPause: true,
+                animateOut: 'bounceOutRight',
+                animateIn: 'bounceInLeft'
             });
-            $('.sideBanners .slick-track').children().removeClass('hidden');
+            $('.sideBanners .item').removeClass('hide');
 
             var citess = [
                         {cite: 'No estudio por <strong>saber más</strong>, sino por <strong>ignorar menos</strong>.', author: 'Sor Juana Inés de la Cruz'},
