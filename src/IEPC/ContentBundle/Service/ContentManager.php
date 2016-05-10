@@ -74,7 +74,7 @@ class ContentManager implements ContainerAwareInterface
     public function render(ContentInterface $content, $format = 'html', $layout = 'default')
     {
         $templating = $this->container->get('templating');
-
+        
         try {
             $response = $templating->render($this->getLayout($content, $format, $layout), [
                 'content' => $content

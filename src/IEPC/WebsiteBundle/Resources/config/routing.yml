@@ -1,11 +1,3 @@
 web_forms:
-    resource: "webforms.yml"
+    resource: 'webforms.yml'
 #    prefix: /webforms
-
-iepc_website_page:
-    path:     /{path}
-    defaults:
-        _controller: IEPCContentBundle:WebPage:renderPath
-        path: '/'
-    requirements:
-        path: .+

@@ -1,6 +1,7 @@
 <?php namespace IEPC\FilesBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use IEPC\ContentBundle\Model\BrowseableInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -13,7 +14,7 @@ use IEPC\ContentBundle\Entity\Section;
  *
  * @package IEPC\FilesBundle\Entity
  */
-class DocumentVersion
+class DocumentVersion implements BrowseableInterface
 {
     // <editor-fold defaultstate="collapsed" desc="Constants">
     // </editor-fold>
@@ -32,9 +33,16 @@ class DocumentVersion
     /**
      * @var string
      *
-     * @ORM\Column(length=10)
+     * @ORM\Column(length=25)
      */
     protected $version;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(length=750)
+     */
+    protected $fullPath;
 
     // </editor-fold>
 
@@ -78,6 +86,24 @@ class DocumentVersion
      */
     public function setVersion($version) {
         $this->version = $version;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFullPath()
+    {
+        return $this->fullPath;
+    }
+
+    /**
+     * @param string $fullPath
+     * @return Document
+     */
+    public function setFullPath($fullPath)
+    {
+        $this->fullPath = $fullPath;
         return $this;
     }
 

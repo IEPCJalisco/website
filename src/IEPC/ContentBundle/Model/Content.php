@@ -69,21 +69,6 @@ abstract class Content implements ContentInterface
     {
     }
 
-    public function renderJson()
-    {
-        return json_encode([
-            'id' => $this->getId()
-        ]);
-    }
-
-    public function renderHtml()
-    {
-        $id = $this->getId();
-        $name = $this->getName();
-
-        return "<article data-id\"{ $id }\">{$name}</article>";
-    }
-
     public function __toString()
     {
         return $this->getName();

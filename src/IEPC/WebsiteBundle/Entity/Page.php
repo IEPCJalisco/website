@@ -123,15 +123,5 @@ class Page extends Content
 
     // <editor-fold defaultstate="collapsed" desc="Static Functions">
 
-    public static function getEntityName()
-    {
-        return 'Página';
-    }
-
-    public static function getEntityNamePlural()
-    {
-        return 'Páginas';
-    }
-
     // </editor-fold>
 }

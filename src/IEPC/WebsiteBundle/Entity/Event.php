@@ -88,15 +88,5 @@ class Event extends Content
 
     // <editor-fold defaultstate="collapsed" desc="Static Functions">
 
-    public static function getEntityName()
-    {
-        return 'Evento';
-    }
-
-    public static function getEntityNamePlural()
-    {
-        return 'Eventos';
-    }
-
     // </editor-fold>
 }

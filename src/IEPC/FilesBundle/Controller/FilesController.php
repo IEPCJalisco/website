@@ -5,10 +5,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 /**
  * @package IEPC\FilesBundle\Controller
  */
-class DefaultController extends Controller
+class FilesController extends Controller
 {
-    public function indexAction()
-    {
-        return $this->render('IEPCFilesBundle:Default:index.html.twig');
-    }
 }

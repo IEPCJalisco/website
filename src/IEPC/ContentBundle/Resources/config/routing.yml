@@ -1,7 +1,7 @@
-iepc_document:
+iepc_content_webPage:
     path:     /{path}
     defaults:
-        _controller: 'IEPCFilesBundle:Document:renderPath'
+        _controller: 'IEPCContentBundle:WebPage:renderPath'
         path: '/'
     requirements:
         path: .+

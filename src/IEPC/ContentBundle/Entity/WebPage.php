@@ -2,7 +2,7 @@
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use IEPC\ContentBundle\Model\SearchableInterface;
+use IEPC\ContentBundle\Model\BrowseableInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use IEPC\WebsiteBundle\Entity\Content;
 
@@ -14,15 +14,16 @@ use IEPC\WebsiteBundle\Entity\Content;
  *         @ORM\Index(name="idx_fullPath", columns={"full_path"}),
  *         @ORM\Index(name="idx_name",     columns={"internal_name"})
  *     },
- *     uniqueConstraints={@ORM\UniqueConstraint(name="idx_webpage", columns={"full_path", "published"})}
  * )
  * @UniqueEntity("fullPath")
  * @UniqueEntity("internalName")
  *
+ *     [u]niqueConstraints={@ORM\UniqueConstraint(name="idx_webpage", columns={"full_path", "published"})}
+ *
  * @package IEPC\ContentBundle\Entity
  * 
  */
-class WebPage
+class WebPage implements BrowseableInterface
 {
     // <editor-fold defaultstate="collapsed" desc="Constants">
     // </editor-fold>
@@ -48,7 +49,7 @@ class WebPage
     /**
      * @var string
      *
-     * @ORM\Column(length=1250)
+     * @ORM\Column(length=750)
      */
     protected $fullPath;
 

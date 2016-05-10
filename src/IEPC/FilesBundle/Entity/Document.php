@@ -40,7 +40,7 @@ class Document extends Content
      *
      * @ORM\Column(type="text")
      */
-    protected $description; // Elastic Searchs
+    protected $description; // Elastic Search
 
     /**
      * @var string
@@ -52,9 +52,16 @@ class Document extends Content
     /**
      * @var \Datetime
      *
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     protected $date;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(length=700)
+     */
+    protected $path;
 
     // </editor-fold>
 
@@ -141,6 +148,24 @@ class Document extends Content
     }
 
     /**
+     * @return string
+     */
+    public function getPath()
+    {
+        return $this->path;
+    }
+
+    /**
+     * @param string $path
+     * @return Document
+     */
+    public function setPath($path)
+    {
+        $this->path = $path;
+        return $this;
+    }
+
+    /**
      * @return ArrayCollection
      */
     public function getVersions()
@@ -180,16 +205,25 @@ class Document extends Content
 
     // <editor-fold defaultstate="collapsed" desc="Functions">
 
+    /**
+     * Document constructor
+     */
     public function __construct()
     {
         parent::__construct();
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->getTitle();
     }
 
+    /**
+     * @return string
+     */
     public function getContent()
     {
         return $this->getTitle();
@@ -198,20 +232,5 @@ class Document extends Content
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Static Functions">
-
-    /**
-     * @return string
-     */
-    public static function getEntityName()
-    {
-    }
-
-    /**
-     * @return string
-     */
-    public static function getEntityNamePlural()
-    {
-    }
-
     // </editor-fold>
 }

@@ -8,10 +8,14 @@ iepc_admin_bundle:
     prefix:   /admin
     #host: "%admin_host%"
 
+iepc_website_bundle:
+    resource: "@IEPCWebsiteBundle/Resources/config/routing.yml"
+    prefix:   /
+
 iepc_files_bundle:
     resource: "@IEPCFilesBundle/Resources/config/routing.yml"
     host: "%cdn_host%"
 
-iepc_website_bundle:
-    resource: "@IEPCWebsiteBundle/Resources/config/routing.yml"
+iepc_content_bundle:
+    resource: "@IEPCContentBundle/Resources/config/routing.yml"
     prefix:   /
