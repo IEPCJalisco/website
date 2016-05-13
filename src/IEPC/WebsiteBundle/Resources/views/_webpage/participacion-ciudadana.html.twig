@@ -73,6 +73,13 @@
 
 {% block javascripts %}
     {{ parent() }}
+
+    {% javascripts output='js/participacion-ciudadana.js' filter='?yui_js'
+        '@IEPCWebsiteBundle/Resources/javascript/participacion-ciudadana.js'
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
     {% if app.environment == 'prod' %}
         <script>
             window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
